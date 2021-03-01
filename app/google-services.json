@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "238274249526",
+    "firebase_url": "https://rate-my-beer-8566e-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "rate-my-beer-8566e",
+    "storage_bucket": "rate-my-beer-8566e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:238274249526:android:01f1df771d94af28716997",
+        "android_client_info": {
+          "package_name": "com.example.ratemybeer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "238274249526-e6u900ccvk1gaf9mubckknn7e8po4iqv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGnznjyx0xT0N7FAkjj9EeNMRuyR3TO9Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "238274249526-e6u900ccvk1gaf9mubckknn7e8po4iqv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -23,15 +23,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ratemybeer.AddBeerActivity;
 import com.example.ratemybeer.Inscription;
 import com.example.ratemybeer.R;
-import com.example.ratemybeer.ui.login.LoginViewModel;
-import com.example.ratemybeer.ui.login.LoginViewModelFactory;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
     private Button inscript;
+    private FirebaseAuth mAuth;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,12 +43,36 @@ public class LoginActivity extends AppCompatActivity {
 
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
-        final Button loginButton = findViewById(R.id.login);
+        final Button signup = findViewById(R.id.signup);
+        final Button login = findViewById(R.id.login);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String username = usernameEditText.getText().toString();
+                String password = passwordEditText.getText().toString();
+
+                /*if(username.isEmpty()){
+                    username.setErr
+                }*/
+                Intent otherActivity=new Intent(getApplicationContext(),Inscription.class);
+                startActivity(otherActivity);
+                finish();
+
+            }
+        });
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String username = usernameEditText.getText().toString();
+                String password = passwordEditText.getText().toString();
+                mAuth = FirebaseAuth.getInstance();
+
+                /*if(username.isEmpty()){
+                    username.setErr
+                }*/
                 Intent otherActivity=new Intent(getApplicationContext(),Inscription.class);
                 startActivity(otherActivity);
                 finish();
@@ -61,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (loginFormState == null) {
                     return;
                 }
-                loginButton.setEnabled(loginFormState.isDataValid());
+                signup.setEnabled(loginFormState.isDataValid());
                 if (loginFormState.getUsernameError() != null) {
                     usernameEditText.setError(getString(loginFormState.getUsernameError()));
                 }
@@ -122,7 +147,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loadingProgressBar.setVisibility(View.VISIBLE);
