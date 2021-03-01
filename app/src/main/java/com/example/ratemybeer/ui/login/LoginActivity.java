@@ -5,6 +5,7 @@ import android.app.Activity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -22,6 +23,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ratemybeer.Inscription;
 import com.example.ratemybeer.R;
 import com.example.ratemybeer.ui.login.LoginViewModel;
 import com.example.ratemybeer.ui.login.LoginViewModelFactory;
@@ -29,6 +31,7 @@ import com.example.ratemybeer.ui.login.LoginViewModelFactory;
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
+    private Button inscript;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,16 @@ public class LoginActivity extends AppCompatActivity {
         final EditText passwordEditText = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent otherActivity=new Intent(getApplicationContext(),Inscription.class);
+                startActivity(otherActivity);
+                finish();
+
+            }
+        });
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
