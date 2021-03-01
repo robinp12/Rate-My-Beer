@@ -50,7 +50,6 @@ public class LoginActivity extends AppCompatActivity {
         final EditText passwordEditText = findViewById(R.id.password);
         final Button signup = findViewById(R.id.signup);
         final Button login = findViewById(R.id.login);
-        final Button but = findViewById(R.id.button2);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
 
         signup.setOnClickListener(new View.OnClickListener() {
@@ -98,18 +97,6 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-
-        but.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(LoginActivity.this, "Logged", Toast.LENGTH_SHORT).show();
-
-                Intent otherActivity=new Intent(getApplicationContext(),AddBeerActivity.class);
-                startActivity(otherActivity);
-                finish();
-            }
-        });
-
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
@@ -179,14 +166,14 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        signup.setOnClickListener(new View.OnClickListener() {
+       /* signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 loginViewModel.login(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
             }
-        });
+        });*/
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
