@@ -28,6 +28,7 @@ import android.widget.Toast;
 import com.example.ratemybeer.AddBeerActivity;
 import com.example.ratemybeer.Inscription;
 import com.example.ratemybeer.R;
+import com.example.ratemybeer.TimelineActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -73,10 +74,10 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String username = usernameEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
-                mAuth = FirebaseAuth.getInstance();
+                //mAuth = FirebaseAuth.getInstance();
                 Toast.makeText(LoginActivity.this, "Logged", Toast.LENGTH_SHORT).show();
 
-                mAuth.signInWithEmailAndPassword(username,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+               /* mAuth.signInWithEmailAndPassword(username,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
@@ -87,11 +88,11 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this,"Failed", Toast.LENGTH_SHORT).show();
                         }
                     }
-                });
+                });*/
                 /*if(username.isEmpty()){
                     username.setErr
                 }*/
-                Intent otherActivity=new Intent(getApplicationContext(),AddBeerActivity.class);
+                Intent otherActivity=new Intent(getApplicationContext(), TimelineActivity.class);
                 startActivity(otherActivity);
                 finish();
 
@@ -174,14 +175,14 @@ public class LoginActivity extends AppCompatActivity {
                         passwordEditText.getText().toString());
             }
         });*/
-        login.setOnClickListener(new View.OnClickListener() {
+        /*login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 loginViewModel.login(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
             }
-        });
+        });*/
     }
 
     private void updateUiWithUser(LoggedInUserView model) {
