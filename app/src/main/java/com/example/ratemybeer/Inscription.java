@@ -17,6 +17,15 @@ public class Inscription extends AppCompatActivity {
         setContentView(R.layout.activity_inscription);
 
         final Button previousButton = findViewById(R.id.button2);
+        final Button confirmedButton=findViewById(R.id.button);
+        confirmedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent otherActivity=new Intent(getApplicationContext(),TimelineActivity.class);
+                startActivity(otherActivity);
+                finish();
+            }
+        });
 
         previousButton.setOnClickListener(new View.OnClickListener() {
             @Override
