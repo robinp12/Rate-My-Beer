@@ -54,8 +54,8 @@
         android:id="@+id/editText2"
         android:layout_width="383dp"
         android:layout_height="67dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="276dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="272dp"
         android:hint="Mot de passe"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

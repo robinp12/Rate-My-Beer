@@ -14,14 +14,14 @@
         android:enabled="true"
         android:text="Ajouter"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="259dp"
-        tools:layout_editor_absoluteY="515dp" />
+        tools:layout_editor_absoluteX="267dp"
+        tools:layout_editor_absoluteY="613dp" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:layout_width="161dp"
         android:layout_height="75dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="284dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="352dp"
         android:hint="Pourcentage d'alcool"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,8 +30,8 @@
         android:id="@+id/editText2"
         android:layout_width="161dp"
         android:layout_height="70dp"
-        android:layout_marginStart="116dp"
-        android:layout_marginTop="196dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="272dp"
         android:hint="Pays d'origine"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -40,8 +40,8 @@
         android:id="@+id/editText"
         android:layout_width="160dp"
         android:layout_height="66dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="384dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="448dp"
         android:hint="Description"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -49,8 +49,8 @@
     <com.google.android.material.textfield.TextInputEditText
         android:layout_width="159dp"
         android:layout_height="74dp"
-        android:layout_marginStart="116dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="196dp"
         android:hint="Nom"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -61,7 +61,27 @@
         android:layout_height="wrap_content"
         android:text="Retour"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="69dp"
-        tools:layout_editor_absoluteY="515dp" />
+        tools:layout_editor_absoluteX="75dp"
+        tools:layout_editor_absoluteY="613dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Beer"
+        android:textColor="#704405"
+        android:textSize="29dp"
+        android:textStyle="italic"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="138dp"
+        tools:layout_editor_absoluteY="127dp" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="111dp"
+        android:layout_height="122dp"
+        android:background="@drawable/b"
+        tools:layout_editor_absoluteX="138dp"
+        tools:layout_editor_absoluteY="5dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
