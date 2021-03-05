@@ -9,6 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@drawable/backi"
     tools:context=".ui.login.LoginActivity">
 
     <Button
@@ -103,8 +104,11 @@
         android:text="Rate My Beer"
         android:textSize="30sp"
         android:typeface="normal"
+        android:textStyle="italic"
+        android:textColor="#A41EB3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="62dp" />
+        tools:layout_editor_absoluteY="62dp"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
