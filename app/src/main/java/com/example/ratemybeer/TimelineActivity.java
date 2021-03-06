@@ -2,10 +2,14 @@ package com.example.ratemybeer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import com.example.ratemybeer.ui.login.LoginActivity;
 
 import java.util.ArrayList;
 
@@ -28,7 +32,11 @@ public class TimelineActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
- 
+                Toast.makeText(TimelineActivity.this, "Biere 1", Toast.LENGTH_SHORT).show();
+
+                Intent otherActivity = new Intent(getApplicationContext(),BeerActivity.class);
+                startActivity(otherActivity);
+                finish();
             }
         });
 
