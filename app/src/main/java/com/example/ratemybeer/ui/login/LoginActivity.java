@@ -28,6 +28,7 @@ import android.widget.Toast;
 import com.example.ratemybeer.AddBeerActivity;
 import com.example.ratemybeer.Inscription;
 import com.example.ratemybeer.R;
+import com.example.ratemybeer.TestActivity;
 import com.example.ratemybeer.TimelineActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -51,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         final EditText passwordEditText = findViewById(R.id.password);
         final Button signup = findViewById(R.id.signup);
         final Button login = findViewById(R.id.login);
+        final Button test = findViewById(R.id.button4);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
 
         signup.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +95,17 @@ public class LoginActivity extends AppCompatActivity {
                     username.setErr
                 }*/
                 Intent otherActivity=new Intent(getApplicationContext(), TimelineActivity.class);
+                startActivity(otherActivity);
+                finish();
+
+            }
+        });
+
+        test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent otherActivity=new Intent(getApplicationContext(), TestActivity.class);
                 startActivity(otherActivity);
                 finish();
 
