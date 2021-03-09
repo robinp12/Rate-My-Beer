@@ -1,26 +1,28 @@
 package com.example.ratemybeer;
 
 public class Biere {
-    int Image;
-    String Title;
-    String Des;
+    private int image;
+    private String name;
+    private String description;
 
-    public Biere(int image,String title, String des){
-        Image=image;
-        Title=title;
-        Des=des;
+    public Biere(){};
+
+    public Biere(String name, String description){
+
+        this.name=name;
+        this.description=description;
     }
 
-    public String getDes() {
-        return Des;
+    public String getDescription() {
+        return description;
     }
 
     public int getImage() {
-        return Image;
+        return image;
     }
 
-    public String getTitle() {
-        return Title;
+    public String getName() {
+        return name;
     }
 
 }
