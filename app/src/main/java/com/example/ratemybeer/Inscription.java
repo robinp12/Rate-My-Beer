@@ -21,7 +21,7 @@ public class Inscription extends AppCompatActivity {
         confirmedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent otherActivity=new Intent(getApplicationContext(),TimelineActivity.class);
+                Intent otherActivity=new Intent(getApplicationContext(),Activity_home.class);
                 startActivity(otherActivity);
                 finish();
             }

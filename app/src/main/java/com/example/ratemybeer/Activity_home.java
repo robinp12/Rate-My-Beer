@@ -5,25 +5,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-public class AddBeerActivity extends AppCompatActivity {
+public class Activity_home extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_beer);
-        final Button retour=findViewById(R.id.buttonRetourFromAdd);
-        final Button add=findViewById(R.id.buttonAddFromAdd);
-        retour.setOnClickListener(new View.OnClickListener() {
+        setContentView(R.layout.activity_home);
+        final ImageView addNewBeer=findViewById(R.id.addNewBeer);
+        final ImageView homeButton=findViewById(R.id.homeButton);
+        addNewBeer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent otherActivity=new Intent(getApplicationContext(),Activity_home.class);
+                Intent otherActivity=new Intent(getApplicationContext(),AddBeerActivity.class);
                 startActivity(otherActivity);
                 finish();
             }
         });
-        add.setOnClickListener(new View.OnClickListener() {
+        homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent otherActivity=new Intent(getApplicationContext(),TimelineActivity.class);

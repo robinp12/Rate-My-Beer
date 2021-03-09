@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/dash1"
-    tools:context=".activity_home">
+    tools:context=".Activity_home">
 
     <TextView
         android:id="@+id/textView4"
@@ -100,7 +100,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Searc a beer"
+                    android:text="Search a beer"
                     android:textStyle="bold"
                     android:textSize="18sp"
                     android:textColor="#FF5025A1">
@@ -132,8 +132,10 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/addNewBeer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:clickable="true"
                     android:src="@drawable/ic_add1">
 
                 </ImageView>
@@ -173,8 +175,10 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/homeButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:clickable="true"
                     android:src="@drawable/ic_home">
 
                 </ImageView>

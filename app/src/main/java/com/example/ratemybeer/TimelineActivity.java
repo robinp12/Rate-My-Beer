@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ public class TimelineActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_timeline);
         listView=findViewById(R.id.listView);
 
@@ -39,6 +41,16 @@ public class TimelineActivity extends AppCompatActivity {
                 finish();
             }
         });
+        final Button retour=findViewById(R.id.buttonRetourFromTimeline);
+        retour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent otherActivity=new Intent(getApplicationContext(),Activity_home.class);
+                startActivity(otherActivity);
+                finish();
+            }
+        });
+
 
     }
 }

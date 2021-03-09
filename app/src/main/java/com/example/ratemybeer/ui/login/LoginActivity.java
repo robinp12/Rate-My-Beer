@@ -25,6 +25,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ratemybeer.Activity_home;
 import com.example.ratemybeer.AddBeerActivity;
 import com.example.ratemybeer.Inscription;
 import com.example.ratemybeer.R;
@@ -94,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
                 /*if(username.isEmpty()){
                     username.setErr
                 }*/
-                Intent otherActivity=new Intent(getApplicationContext(), TimelineActivity.class);
+                Intent otherActivity=new Intent(getApplicationContext(), Activity_home.class);
                 startActivity(otherActivity);
                 finish();
 
