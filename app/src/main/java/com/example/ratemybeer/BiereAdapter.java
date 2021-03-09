@@ -32,8 +32,8 @@ public class BiereAdapter extends ArrayAdapter<Biere> {
         TextView txtTitle=convertView.findViewById(R.id.title);
         TextView description=convertView.findViewById(R.id.description);
         imageView.setImageResource(getItem(position).getImage());
-        txtTitle.setText(getItem(position).getTitle());
-        description.setText(getItem(position).getDes());
+        txtTitle.setText(getItem(position).getName());
+        description.setText(getItem(position).getDescription());
 
         return convertView;
 
