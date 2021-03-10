@@ -22,8 +22,8 @@
     <com.google.android.material.textfield.TextInputEditText
         android:layout_width="161dp"
         android:layout_height="75dp"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="352dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="348dp"
         android:hint="Pourcentage d'alcool"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,8 +32,8 @@
         android:id="@+id/editText2"
         android:layout_width="161dp"
         android:layout_height="70dp"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="272dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="280dp"
         android:hint="Pays d'origine"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -42,8 +42,8 @@
         android:id="@+id/editText"
         android:layout_width="160dp"
         android:layout_height="66dp"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="448dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="428dp"
         android:hint="Description"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -51,8 +51,8 @@
     <com.google.android.material.textfield.TextInputEditText
         android:layout_width="159dp"
         android:layout_height="74dp"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="196dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="212dp"
         android:hint="Nom"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -77,7 +77,7 @@
         android:text="Add Beer"
         android:textColor="#FFFFFF"
         android:textSize="29dp"
-        android:textStyle="italic"
+        android:textStyle="italic|bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
