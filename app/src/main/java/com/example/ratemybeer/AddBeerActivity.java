@@ -17,7 +17,7 @@ public class AddBeerActivity extends AppCompatActivity {
         final Button add=findViewById(R.id.buttonAddFromAdd);
         retour.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+           public void onClick(View v) {
                 Intent otherActivity=new Intent(getApplicationContext(),Activity_home.class);
                 startActivity(otherActivity);
                 finish();

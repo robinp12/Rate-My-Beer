@@ -19,7 +19,7 @@ public class Activity_home extends AppCompatActivity {
         addNewBeer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent otherActivity=new Intent(getApplicationContext(),AddBeerActivity.class);
+                Intent otherActivity=new Intent(getApplicationContext(),BeerActivity.class);
                 startActivity(otherActivity);
                 finish();
             }
