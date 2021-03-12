@@ -113,7 +113,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
                                     if(task.isSuccessful()){
                                         Toast.makeText(Registration.this, "User has been registred successfully!",Toast.LENGTH_LONG).show();
-                                        //direct to login layout
+                                        startActivity(new Intent(Registration.this, login.class));
                                     }
                                     else {
                                         Toast.makeText(Registration.this, "Failed to register! Try again.",Toast.LENGTH_LONG).show();
