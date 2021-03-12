@@ -37,7 +37,9 @@ public class ForgotPassword extends AppCompatActivity {
         resetPasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resetPassword() ;
+
+                       resetPassword() ;
+
             }
         });
 
@@ -64,7 +66,6 @@ public class ForgotPassword extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(ForgotPassword.this, "check your email to reset your password!", Toast.LENGTH_LONG).show();
-
                 }
                 else{
                     Toast.makeText(ForgotPassword.this, "Try again, something wrong happened!", Toast.LENGTH_LONG).show();

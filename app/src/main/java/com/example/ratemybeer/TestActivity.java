@@ -31,7 +31,7 @@ public class TestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
 
         //Button and ListView
-        final Button retour =findViewById(R.id.button3);
+        final Button retour = findViewById(R.id.button3);
         listView = (ListView) findViewById(R.id.listView);
         beer = new Biere();
 
@@ -44,12 +44,12 @@ public class TestActivity extends AppCompatActivity {
         DatabaseReference dataBeers = database.child("Beers");
 
         list = new ArrayList<>();
-        adapter = new ArrayAdapter<String>(this,R.layout.beer_element, R.id.beer_info, list);
+        adapter = new ArrayAdapter<String>(this, R.layout.beer_element, R.id.beer_info, list);
 
         retour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent otherActivity=new Intent(getApplicationContext(), Activity_home.class);
+                Intent otherActivity = new Intent(getApplicationContext(), Activity_home.class);
                 startActivity(otherActivity);
                 finish();
             }
@@ -77,4 +77,4 @@ public class TestActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
     }
-}
+    }

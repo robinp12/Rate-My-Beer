@@ -23,7 +23,7 @@ public class BiereAdapter extends ArrayAdapter<Biere> {
         this.mRessource=resource;
     }
 
-    @NonNull
+   /* @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater layoutInflater=LayoutInflater.from(mContext);
@@ -36,6 +36,6 @@ public class BiereAdapter extends ArrayAdapter<Biere> {
         description.setText(getItem(position).getDescription());
 
         return convertView;
+**/
 
-    }
 }

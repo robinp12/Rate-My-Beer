@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/dash1"
+    android:background="@drawable/homix"
     tools:context=".Activity_home">
 
     <TextView
@@ -60,7 +60,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Favorite beers"
-                    android:textColor="#FF5025A1"
+                    android:textColor="#C69347"
                     android:textSize="18sp"
                     android:textStyle="bold">
 
@@ -103,7 +103,7 @@
                     android:text="Search a beer"
                     android:textStyle="bold"
                     android:textSize="18sp"
-                    android:textColor="#FF5025A1">
+                    android:textColor="#C69347">
 
                 </TextView>
 
@@ -144,7 +144,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Add a new beer"
-                    android:textColor="#FF5025A1"
+                    android:textColor="#C69347"
                     android:textSize="18sp"
                     android:textStyle="bold">
 
@@ -189,7 +189,7 @@
                     android:text="Home sweet home"
                     android:textStyle="bold"
                     android:textSize="18sp"
-                    android:textColor="#FF5025A1">
+                    android:textColor="#C69347">
 
                 </TextView>
 
