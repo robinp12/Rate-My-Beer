@@ -58,9 +58,10 @@ public class TestActivity extends AppCompatActivity {
         dataBeers.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
                 for(DataSnapshot ds : snapshot.getChildren()){
                     beer = ds.getValue(Biere.class);
-                    list.add(beer.getName()+"\n"+beer.getDescription());
+                    list.add(beer.getName());
                 }
                 listView.setAdapter(adapter);
             }
