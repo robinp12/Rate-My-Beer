@@ -20,11 +20,15 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class AddBeerActivity extends AppCompatActivity {
@@ -32,9 +36,12 @@ public class AddBeerActivity extends AppCompatActivity {
     public Uri imageUri;
     private FirebaseStorage storage ;
     private StorageReference storageReference ;
+    // Pour addbeer:
+
+    private EditText editTextname, editTextorigin ,editTextalcohol, editTextdescription ;
+    private ProgressBar progressBar ;
 
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_beer);
@@ -48,12 +55,21 @@ public class AddBeerActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
+
+
+        //creer les inputs de la biere
+        editTextname = (EditText) findViewById(R.id.name) ;
+        editTextorigin = (EditText) findViewById(R.id.origin) ;
+        editTextalcohol = (EditText) findViewById(R.id.alcohol) ;
+        editTextdescription = (EditText) findViewById(R.id.description) ;
+        progressBar = (ProgressBar) findViewById(R.id.progressBar) ;
+
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent otherActivity=new Intent(getApplicationContext(),TestActivity.class);
-                startActivity(otherActivity);
-                finish();
+               addBeer() ;
             }
         });
 
@@ -73,6 +89,41 @@ public class AddBeerActivity extends AppCompatActivity {
 
     }
 
+    private void addBeer() {
+        String name = editTextname.getText().toString().trim() ;
+        String origin = editTextorigin.getText().toString().trim() ;
+        String alcohol = editTextalcohol.getText().toString().trim() ;
+        String description = editTextdescription.getText().toString().trim() ;
+
+        if (name.isEmpty()){
+            editTextname.setError("Name is required");
+            editTextname.requestFocus();
+            return;
+        }
+        if (origin.isEmpty()){
+            editTextorigin.setError("Origin is required");
+            editTextorigin.requestFocus();
+            return;
+        }
+        if (alcohol.isEmpty()){
+            editTextalcohol.setError("Alcohol per cent is required");
+            editTextalcohol.requestFocus();
+            return;
+        }
+        if (description.isEmpty()){
+            editTextdescription.setError("Description is required");
+            editTextdescription.requestFocus();
+            return;
+        }
+        progressBar.setVisibility(View.VISIBLE);
+
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference("Beers").push();
+        Map<String, Biere> beer = new HashMap<>();
+        beer.put(name,new Biere(origin,alcohol,description)) ;
+        ref.setValue(beer) ;
+
+    }
 
 
     private void choosePicture() {

@@ -1,18 +1,24 @@
 package com.example.ratemybeer;
 
+import android.media.Image;
+
 public class Biere {
     private int image;
     private String name;
-    private float global_rating;
+    private String origin ;
+    private String alcohol ;
+    //private float global_rating;
     private String description;
 
     public Biere(){};
 
-    public Biere(String name, String description, float global_rating){
+    public Biere(String origin,String alcohol, String description){
 
         this.name=name;
         this.description=description;
-        this.global_rating = global_rating;
+        this.origin = origin;
+        this.alcohol=alcohol ;
+
     }
 
     public String getDescription() {
@@ -24,7 +30,7 @@ public class Biere {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setImage(int image) {
@@ -35,12 +41,12 @@ public class Biere {
         this.name = name;
     }
 
-    public float getGlobal_rating() {
-        return global_rating;
-    }
+    //public float getGlobal_rating() {
+       // return global_rating;
+    //}
 
     public void setGlobal_rating(float global_rating) {
-        this.global_rating = global_rating;
+        this.origin = origin;
     }
 
     public void setDescription(String description) {
