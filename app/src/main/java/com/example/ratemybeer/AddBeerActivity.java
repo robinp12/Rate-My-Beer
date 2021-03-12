@@ -115,7 +115,10 @@ public class AddBeerActivity extends AppCompatActivity {
             editTextdescription.requestFocus();
             return;
         }
-        progressBar.setVisibility(View.VISIBLE);
+
+//progressBar.setVisibility(View.VISIBLE);
+
+        Toast.makeText(getApplicationContext(), "Beer added successfully .", Toast.LENGTH_LONG).show();
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference("Beers").push();
