@@ -32,7 +32,7 @@ public class TestActivity extends AppCompatActivity {
 
         //Button and ListView
         final Button retour = findViewById(R.id.button3);
-        listView = (ListView) findViewById(R.id.listView);
+        listView = findViewById(R.id.listView);
         beer = new Biere();
 
         //ArrayAdapter

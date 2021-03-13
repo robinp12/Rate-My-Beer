@@ -12,7 +12,7 @@ public class Biere {
 
     public Biere(){};
 
-    public Biere(String origin,String alcohol, String description){
+    public Biere(String name, String origin,String alcohol, String description){
 
         this.name=name;
         this.description=description;

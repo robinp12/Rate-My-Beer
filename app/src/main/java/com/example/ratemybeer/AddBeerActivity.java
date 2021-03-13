@@ -121,10 +121,10 @@ public class AddBeerActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Beer added successfully .", Toast.LENGTH_LONG).show();
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference("Beers").push();
-        Map<String, Biere> beer = new HashMap<>();
-        beer.put(name,new Biere(origin,alcohol,description)) ;
-        ref.setValue(beer) ;
+        DatabaseReference ref = database.getReference("Beers");
+        Biere beer = new Biere(name, origin,alcohol,description);
+        DatabaseReference newBeer = ref.push();
+        newBeer.setValue(beer);
 
     }
 
