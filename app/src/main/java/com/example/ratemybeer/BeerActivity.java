@@ -9,6 +9,11 @@ import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Map;
+
 public class BeerActivity extends AppCompatActivity {
     TextView vs ;
     TextView beerName ;
@@ -47,8 +52,19 @@ public class BeerActivity extends AppCompatActivity {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 vs.setText("Your rating is : "+rating);
+                DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+                DatabaseReference mRatingBarCh = rootRef.child("ratings");
+
+                rating= ratingBar.getRating();
+
+
+                mRatingBarCh.child("rating").child(name).setValue(String.valueOf(rating));
+
             }
         });
+
+
+
     }
 
 }
