@@ -16,7 +16,7 @@ public class Activity_home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         final ImageView addNewBeer=findViewById(R.id.addNewBeer);
         final ImageView homeButton=findViewById(R.id.homeButton);
-        final ImageView favorisButton=findViewById(R.id.favoris);
+        //final ImageView favorisButton=findViewById(R.id.favoris);
         addNewBeer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,7 +34,7 @@ public class Activity_home extends AppCompatActivity {
             }
         });
 
-        favorisButton.setOnClickListener(new View.OnClickListener() {
+        /*favorisButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent otherActivity=new Intent(getApplicationContext(),BeerActivity.class);
@@ -42,5 +42,7 @@ public class Activity_home extends AppCompatActivity {
                 finish();
             }
         });
+
+         */
     }
 }

@@ -1,9 +1,7 @@
 package com.example.ratemybeer;
 
-import android.media.Image;
-
 public class Biere {
-   // private int image;
+    private String image;
     private String name;
     private String origin ;
     private String alcohol ;
@@ -12,13 +10,13 @@ public class Biere {
 
     public Biere(){};
 
-    public Biere(String name, String origin,String alcohol, String description){
+    public Biere(String name, String origin, String alcohol, String description, String image){
 
         this.name=name;
         this.description=description;
         this.origin = origin;
         this.alcohol=alcohol ;
-
+        this.image = image ;
     }
 
     public String getDescription() {
@@ -31,9 +29,9 @@ public class Biere {
         return alcohol;
     }
 
-    /*public int getImage() {
+    public String getImage() {
         return image;
-    }*/
+    }
 
     public String getName() {
         return this.name;

@@ -36,6 +36,7 @@ public class AddBeerActivity extends AppCompatActivity {
     public Uri imageUri;
     private FirebaseStorage storage ;
     private StorageReference storageReference ;
+
     // Pour addbeer:
 
     private EditText editTextname, editTextorigin ,editTextalcohol, editTextdescription ;
@@ -122,7 +123,7 @@ public class AddBeerActivity extends AppCompatActivity {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference("Beers");
-        Biere beer = new Biere(name, origin,alcohol,description);
+        Biere beer = new Biere(name, origin,alcohol,description, new String(String.valueOf(image)));
         DatabaseReference newBeer = ref.push();
         newBeer.setValue(beer);
 

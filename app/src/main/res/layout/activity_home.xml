@@ -49,13 +49,14 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <ImageView
+                <!--<ImageView
                     android:id="@+id/favoris"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_star">
 
                 </ImageView>
+
 
                 <TextView
                     android:id="@+id/favoriss"
@@ -66,7 +67,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold">
 
-                </TextView>
+                </TextView> -->
 
             </LinearLayout>
 
@@ -92,7 +93,7 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <ImageView
+                <!--<ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_search">
@@ -107,7 +108,7 @@
                     android:textSize="18sp"
                     android:textColor="#C69347">
 
-                </TextView>
+                </TextView>-->
 
             </LinearLayout>
 
