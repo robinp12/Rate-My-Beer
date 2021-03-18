@@ -19,6 +19,9 @@ public class BeerActivity extends AppCompatActivity {
     TextView beerName ;
     TextView beerDesc ;
     RatingBar rb ;
+    double accum =0 ;
+    int sumUser =0;
+    double global_rating = 0 ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,9 +59,13 @@ public class BeerActivity extends AppCompatActivity {
                 DatabaseReference mRatingBarCh = rootRef.child("ratings");
 
                 rating= ratingBar.getRating();
+                accum+=rating ;
+                sumUser++ ;
+                global_rating = accum/sumUser ;
 
-
-                mRatingBarCh.child("rating").child(name).setValue(String.valueOf(rating));
+                mRatingBarCh.child("rating").child(name).setValue(String.valueOf(accum));
+                mRatingBarCh.child("rating").child(name).child("Nombre user").setValue(String.valueOf(sumUser));
+                mRatingBarCh.child("rating").child(name).child("Globale Rating").setValue(String.valueOf(global_rating));
 
             }
         });

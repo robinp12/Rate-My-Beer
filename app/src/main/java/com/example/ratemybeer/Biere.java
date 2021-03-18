@@ -5,6 +5,8 @@ public class Biere {
     private String name;
     private String origin ;
     private String alcohol ;
+    private int sumUser ;
+    private double sumRate ;
     //private float global_rating;
     private String description;
 
@@ -18,7 +20,12 @@ public class Biere {
         this.alcohol=alcohol ;
         this.image = image ;
     }
-
+    public double getSumRate(){
+        return getSumRate() ;
+    }
+    public int getSumUser(){
+        return getSumUser() ;
+    }
     public String getDescription() {
         return description;
     }
