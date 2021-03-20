@@ -9,14 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class ForgotPassword extends AppCompatActivity {
+public class Activity_ResetPassword extends AppCompatActivity {
     private EditText emailEditText;
     private Button resetPasswordButton ;
     private ProgressBar progressBar ;
@@ -37,16 +36,12 @@ public class ForgotPassword extends AppCompatActivity {
         resetPasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                       resetPassword() ;
-
+                resetPassword() ;
             }
         });
-
     }
 
     private void resetPassword() {
-
         String email = emailEditText.getText().toString().trim();
 
         if(email.isEmpty()){
@@ -59,21 +54,17 @@ public class ForgotPassword extends AppCompatActivity {
             emailEditText.requestFocus();
             return ;
         }
-
         //progressBar.setVisibility(View.VISIBLE) ;
         auth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(ForgotPassword.this, "check your email to reset your password!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Activity_ResetPassword.this, "check your email to reset your password!", Toast.LENGTH_LONG).show();
                 }
                 else{
-                    Toast.makeText(ForgotPassword.this, "Try again, something wrong happened!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Activity_ResetPassword.this, "Try again, something wrong happened!", Toast.LENGTH_LONG).show();
                 }
             }
         }) ;
-
-
-
     }
 }

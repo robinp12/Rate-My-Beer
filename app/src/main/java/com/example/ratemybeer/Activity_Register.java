@@ -19,7 +19,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class Registration extends AppCompatActivity implements View.OnClickListener {
+public class Activity_Register extends AppCompatActivity implements View.OnClickListener {
     private FirebaseAuth mAuth;
     private TextView banner, registerUser ;
     private EditText editTextFullName, editTextAge ,editTextEmail, editTextPassword ;
@@ -28,7 +28,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration);
+        setContentView(R.layout.activity_register);
 
         mAuth = FirebaseAuth.getInstance();
         banner = (TextView) findViewById(R.id.banner) ;
@@ -43,14 +43,13 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         editTextPassword = (EditText) findViewById(R.id.password) ;
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar) ;
-
     }
 
     @Override
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.banner:
-                startActivity(new Intent(this, login.class));
+                startActivity(new Intent(this, Activity_Login.class));
                 break ;
             case R.id.registerUser :
                 registerUser() ;
@@ -95,41 +94,35 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
             return ;
         }
 
-
-
         progressBar.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(email,password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-
-                        if(task.isSuccessful()){
-                            User user = new User (fullname,age,email,password);
-                            FirebaseDatabase.getInstance().getReference("Users")
+            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if(task.isSuccessful()){
+                        User user = new User (fullname,age,email,password);
+                        FirebaseDatabase.getInstance().getReference("Users")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            .setValue(user)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-
                                     if(task.isSuccessful()){
-                                        Toast.makeText(Registration.this, "User has been registred successfully!",Toast.LENGTH_LONG).show();
-                                        startActivity(new Intent(Registration.this, login.class));
+                                        Toast.makeText(Activity_Register.this, "User has been registred successfully!",Toast.LENGTH_LONG).show();
+                                        startActivity(new Intent(Activity_Register.this, Activity_Login.class));
                                     }
                                     else {
-                                        Toast.makeText(Registration.this, "Failed to register! Try again.",Toast.LENGTH_LONG).show();
+                                        Toast.makeText(Activity_Register.this, "Failed to register! Try again.",Toast.LENGTH_LONG).show();
                                         progressBar.setVisibility(View.GONE);
                                     }
                                 }
                             });
-
-                        }
-
-                        else {
-                            Toast.makeText(Registration.this, "Failed to register! Try again.",Toast.LENGTH_LONG).show();
-                            progressBar.setVisibility(View.GONE);
-                        }
                     }
-                });
+                    else {
+                        Toast.makeText(Activity_Register.this, "Failed to register! Try again.",Toast.LENGTH_LONG).show();
+                        progressBar.setVisibility(View.GONE);
+                    }
+                }
+            });
     }
-
 }

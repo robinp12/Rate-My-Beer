@@ -19,20 +19,18 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.regex.Pattern;
-
-public class login extends AppCompatActivity implements View.OnClickListener {
-   private TextView register, forgotPassword ;
-   private EditText editTextEmail, editTextPassword;
-   private Button signIn ;
-   private FirebaseAuth mAuth ;
-   private ProgressBar progressBar;
-
+public class Activity_Login extends AppCompatActivity implements View.OnClickListener {
+    private TextView register, forgotPassword ;
+    private EditText editTextEmail, editTextPassword;
+    private Button signIn ;
+    private FirebaseAuth mAuth ;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login2);
+        setContentView(R.layout.activity_login);
+
         register = (TextView) findViewById(R.id.register);
         register.setOnClickListener(this);
 
@@ -47,20 +45,20 @@ public class login extends AppCompatActivity implements View.OnClickListener {
         mAuth = FirebaseAuth.getInstance();
 
         forgotPassword = (TextView) findViewById(R.id.forgotPassword);
-          forgotPassword.setOnClickListener(this);
+        forgotPassword.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.register:
-                startActivity(new Intent(this, Registration.class)) ;
+                startActivity(new Intent(this, Activity_Register.class)) ;
                 break ;
             case R.id.signIn:
                 userLogin() ;
                 break ;
             case R.id.forgotPassword:
-                startActivity(new Intent(this, ForgotPassword.class));
+                startActivity(new Intent(this, Activity_ResetPassword.class));
                 break;
         }
     }
@@ -93,45 +91,21 @@ public class login extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
-
                 if(task.isSuccessful()){
-
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
  ;                  if(user.isEmailVerified()){
-                        startActivity(new Intent(login.this, Activity_home.class));
+                        startActivity(new Intent(Activity_Login.this, Activity_Home.class));
                     }
                     else {
                         user.sendEmailVerification();
-                        Toast.makeText(login.this,"check your email to verify your account!",Toast.LENGTH_LONG).show();
+                        Toast.makeText(Activity_Login.this,"check your email to verify your account!",Toast.LENGTH_LONG).show();
                     }
                 }
-
                 else {
-                    Toast.makeText(login.this, "Failed to login, please check your credentials", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Activity_Login.this, "Failed to login, please check your credentials", Toast.LENGTH_LONG).show();
                 }
-
             }
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

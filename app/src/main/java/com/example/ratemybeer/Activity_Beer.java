@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
@@ -20,14 +19,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
-import java.util.Map;
 
-public class BeerActivity extends AppCompatActivity {
-    TextView vs ;
+public class Activity_Beer extends AppCompatActivity {
+    TextView ratingText;
     TextView beerName ;
     TextView beerDesc ;
 
-    RatingBar rb ;
+    RatingBar ratingStar;
     TextView gbrate;
 
     float accum =0 ;
@@ -42,21 +40,19 @@ public class BeerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beer);
 
-        vs= findViewById(R.id.vs) ;
-        rb = findViewById(R.id.rb) ;
+        mAuth = FirebaseAuth.getInstance();
+
+        ratingText = findViewById(R.id.vs) ;
+        ratingStar = findViewById(R.id.rb) ;
         gbrate = findViewById(R.id.gr);
         beerName = findViewById(R.id.textView3) ;
         beerDesc = findViewById(R.id.textView7) ;
 
-
         final Button retour=findViewById(R.id.buttonRetourFromBeerActivity);
-
-        mAuth = FirebaseAuth.getInstance();
-
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
+
         DatabaseReference current_user = database.getReference("Users").child(mAuth.getUid());
         String username = current_user.child("fullName").toString();
-
 
         // Receiving value into activity using intent.
         String name = getIntent().getStringExtra("ListViewClickedName");
@@ -69,35 +65,29 @@ public class BeerActivity extends AppCompatActivity {
         gbrate.setText(gr);
         rate = new Rating();
 
-
         retour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent otherActivity=new Intent(getApplicationContext(),TestActivity.class);
+                Intent otherActivity=new Intent(getApplicationContext(), Activity_Timeline.class);
                 startActivity(otherActivity);
                 finish();
             }
         });
 
-        rb.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+        ratingStar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                vs.setText("Your rating is : "+rating);
-
+                ratingText.setText("Your rating is : "+rating);
 
                 HashMap<String,Object> new_rate = new HashMap<>();
                 new_rate.put(name,Float.toString(rating));
                 current_user.child("user_rated_beers").updateChildren(new_rate);
-
-
 
                 DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
                 DatabaseReference mRatingBarCh = rootRef.child("ratings");
 
                 rating= ratingBar.getRating();
                 //accum+=rating ;
-
-
 
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 Rating rating1 = new Rating(rating,name) ;
@@ -109,7 +99,6 @@ public class BeerActivity extends AppCompatActivity {
 
                //b..child(name).child("Nombre user").setValue(String.valueOf(sumUser));
                 //b.child("ratings_global").child(name).child("Globale Rating").setValue(String.valueOf(global_rating));
-
             }
         });
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
@@ -124,27 +113,19 @@ public class BeerActivity extends AppCompatActivity {
                         somme += rate.getRate();
 
                     }
-
                    /* DatabaseReference a = FirebaseDatabase.getInstance().getReference();
                     DatabaseReference b = rootRef.child("ratings_global");
                     b.child(name).child("Nombre user").setValue(String.valueOf(sumUser));
                     b.child(name).child("Globale Rating").setValue(String.valueOf(global_rating));
                     sumUser =0 ;*/
                 }
-                  double global = somme/snapshot.getChildrenCount();
+                double global = somme/snapshot.getChildrenCount();
                 gbrate.setText("globale_rating is"+global);
-
             }
-
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-
-
-
     }
-
 }

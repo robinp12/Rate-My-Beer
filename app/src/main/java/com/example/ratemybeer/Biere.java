@@ -13,7 +13,6 @@ public class Biere {
     public Biere(){};
 
     public Biere(String name, String origin, String alcohol, String description, String image){
-
         this.name=name;
         this.description=description;
         this.origin = origin;

@@ -6,32 +6,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewStructure;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.example.ratemybeer.ui.login.LoginActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class TestActivity extends AppCompatActivity {
+public class Activity_Timeline extends AppCompatActivity {
     ListView listView;
     Biere beer;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test);
+        setContentView(R.layout.activity_timeline);
 
         //Button and ListView
         final Button retour = findViewById(R.id.button3);
@@ -50,7 +45,7 @@ public class TestActivity extends AppCompatActivity {
         retour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent otherActivity = new Intent(getApplicationContext(), Activity_home.class);
+                Intent otherActivity = new Intent(getApplicationContext(), Activity_Home.class);
                 startActivity(otherActivity);
                 finish();
             }
@@ -68,13 +63,11 @@ public class TestActivity extends AppCompatActivity {
                 listView.setAdapter(adapter);
             }
 
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -85,7 +78,7 @@ public class TestActivity extends AppCompatActivity {
                 String TempListViewClickedName = beerList.get(position).getName();
                 String TempListViewClickedDesc = beerList.get(position).getDescription();
 
-                Intent intent = new Intent(getApplicationContext(), BeerActivity.class);
+                Intent intent = new Intent(getApplicationContext(), Activity_Beer.class);
 
                 // Sending value to another activity using intent.
                 intent.putExtra("ListViewClickedName", TempListViewClickedName);
@@ -94,7 +87,6 @@ public class TestActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
     @Override
