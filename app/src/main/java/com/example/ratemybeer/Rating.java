@@ -2,21 +2,25 @@ package com.example.ratemybeer;
 
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class Rating {
     private double rate ;
     private double global_rating ;
     private TextView beer ;
     private String name ;
+    private String mAuth;
     private int sumUser ;
 
     public Rating(){
 
     }
 
-    public Rating( String name ,float rate, double global_rating, int sumUser ){
+    public Rating( float rate,String name ){
         this.rate = rate ;
         this.name = name ;
-        this.global_rating = global_rating ;
+
 
     }
 
@@ -26,10 +30,13 @@ public class Rating {
     public String getName(){
         return this.name;
     }
+   /*  public String getmAuth(){
+        return this.mAuth ;
+    }
 
-    public double getGlobal_rating(){
+   public double getGlobal_rating(){
         return this.global_rating;
     }
 
-    public int getSumUser(){return this.sumUser;}
+    public int getSumUser(){return this.sumUser;}*/
 }

@@ -92,4 +92,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/jupiler" />
 
+    <TextView
+        android:id="@+id/gr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="236dp"
+        android:text="globaaaaal"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rb"
+        tools:ignore="MissingConstraints" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

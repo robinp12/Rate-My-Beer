@@ -2,7 +2,6 @@ package com.example.ratemybeer.ui.login;
 
 import android.app.Activity;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -15,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -26,14 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ratemybeer.Activity_home;
-import com.example.ratemybeer.AddBeerActivity;
-import com.example.ratemybeer.Inscription;
 import com.example.ratemybeer.R;
-import com.example.ratemybeer.TestActivity;
-import com.example.ratemybeer.TimelineActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
@@ -65,8 +56,8 @@ public class LoginActivity extends AppCompatActivity {
                 /*if(username.isEmpty()){
                     username.setErr
                 }*/
-                Intent otherActivity=new Intent(getApplicationContext(),Inscription.class);
-                startActivity(otherActivity);
+               // Intent otherActivity=new Intent(getApplicationContext(),Inscription.class);
+                //startActivity(otherActivity);
                 finish();
 
             }

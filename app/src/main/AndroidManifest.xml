@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RateMyBeer">
+        <activity android:name=".Inscription"></activity>
         <activity android:name=".ForgotPassword" />
         <activity android:name=".Registration" />
         <activity android:name=".login">
@@ -38,7 +39,6 @@
         </activity>
         <activity android:name=".TimelineActivity" />
         <activity android:name=".AddBeerActivity" />
-        <activity android:name=".Inscription" />
     </application>
 
 </manifest>
