@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
@@ -18,18 +19,24 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class BeerActivity extends AppCompatActivity {
     TextView vs ;
     TextView beerName ;
     TextView beerDesc ;
+
     RatingBar rb ;
     TextView gbrate;
+
     float accum =0 ;
     int sumUser =0;
     double global_rating = 0 ;
     Rating rate ;
+
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +48,15 @@ public class BeerActivity extends AppCompatActivity {
         beerName = findViewById(R.id.textView3) ;
         beerDesc = findViewById(R.id.textView7) ;
 
+
         final Button retour=findViewById(R.id.buttonRetourFromBeerActivity);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference current_user = database.getReference("Users").child(mAuth.getUid());
+        String username = current_user.child("fullName").toString();
+
 
         // Receiving value into activity using intent.
         String name = getIntent().getStringExtra("ListViewClickedName");
@@ -53,6 +68,7 @@ public class BeerActivity extends AppCompatActivity {
         beerDesc.setText(desc);
         gbrate.setText(gr);
         rate = new Rating();
+
 
         retour.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +83,14 @@ public class BeerActivity extends AppCompatActivity {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 vs.setText("Your rating is : "+rating);
+
+
+                HashMap<String,Object> new_rate = new HashMap<>();
+                new_rate.put(name,Float.toString(rating));
+                current_user.child("user_rated_beers").updateChildren(new_rate);
+
+
+
                 DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
                 DatabaseReference mRatingBarCh = rootRef.child("ratings");
 
@@ -93,7 +117,7 @@ public class BeerActivity extends AppCompatActivity {
         mRatingBarCh.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                       double somme = 0 ;
+                double somme = 0 ;
                 for(DataSnapshot ds : snapshot.getChildren()){
                     rate = ds.getValue(Rating.class);
                     if(rate.getName()==name){
