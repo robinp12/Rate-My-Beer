@@ -1,6 +1,7 @@
 package com.example.ratemybeer;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,8 +15,9 @@ public class Activity_Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        final ImageView addNewBeer=findViewById(R.id.addNewBeer);
-        final ImageView homeButton=findViewById(R.id.homeButton);
+        final CardView addNewBeer=findViewById(R.id.addNewBeer);
+        final CardView homeButton=findViewById(R.id.homeButton);
+
         //final ImageView favorisButton=findViewById(R.id.favoris);
 
         addNewBeer.setOnClickListener(new View.OnClickListener() {
