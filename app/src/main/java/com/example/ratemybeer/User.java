@@ -46,6 +46,7 @@ public class User {
         this.rated_beers = rated_beers;
     }
 
+
     public User(){
 
     }

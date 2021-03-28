@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,7 +28,7 @@ public class Activity_Beer extends AppCompatActivity {
 
     RatingBar ratingStar;
     TextView gbrate;
-
+    boolean already_voted;
     float accum =0 ;
     int sumUser =0;
     double global_rating = 0 ;
@@ -65,6 +66,25 @@ public class Activity_Beer extends AppCompatActivity {
         gbrate.setText(gr);
         rate = new Rating();
 
+        // check if beer already rated
+        current_user.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.child("user_rated_beers").hasChild(name)){
+                    String  rate_beer = snapshot.child("user_rated_beers").child(name).getValue().toString();
+                    ratingStar.setRating(Float.parseFloat(rate_beer));
+                    }
+                else{
+                    Toast.makeText(getApplicationContext(),"Tu n'as pas encore voté la bière !", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         retour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,49 +101,17 @@ public class Activity_Beer extends AppCompatActivity {
 
                 HashMap<String,Object> new_rate = new HashMap<>();
                 new_rate.put(name,Float.toString(rating));
+
+                //if beer
                 current_user.child("user_rated_beers").updateChildren(new_rate);
 
                 DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
                 DatabaseReference mRatingBarCh = rootRef.child("ratings");
 
-                rating= ratingBar.getRating();
-                //accum+=rating ;
-
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 Rating rating1 = new Rating(rating,name) ;
                 DatabaseReference newrate = mRatingBarCh.push();
                 newrate.setValue(rating1) ;
-
-                //DatabaseReference a = FirebaseDatabase.getInstance().getReference();
-                //DatabaseReference b = rootRef.child("ratings_global");
-
-               //b..child(name).child("Nombre user").setValue(String.valueOf(sumUser));
-                //b.child("ratings_global").child(name).child("Globale Rating").setValue(String.valueOf(global_rating));
-            }
-        });
-        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference mRatingBarCh = rootRef.child("ratings");
-        mRatingBarCh.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                double somme = 0 ;
-                for(DataSnapshot ds : snapshot.getChildren()){
-                    rate = ds.getValue(Rating.class);
-                    if(rate.getName()==name){
-                        somme += rate.getRate();
-
-                    }
-                   /* DatabaseReference a = FirebaseDatabase.getInstance().getReference();
-                    DatabaseReference b = rootRef.child("ratings_global");
-                    b.child(name).child("Nombre user").setValue(String.valueOf(sumUser));
-                    b.child(name).child("Globale Rating").setValue(String.valueOf(global_rating));
-                    sumUser =0 ;*/
-                }
-                double global = somme/snapshot.getChildrenCount();
-                gbrate.setText("globale_rating is"+global);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
