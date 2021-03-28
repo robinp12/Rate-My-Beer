@@ -28,10 +28,6 @@ public class Activity_Beer extends AppCompatActivity {
 
     RatingBar ratingStar;
     TextView gbrate;
-    boolean already_voted;
-    float accum =0 ;
-    int sumUser =0;
-    double global_rating = 0 ;
     Rating rate ;
 
     private FirebaseAuth mAuth;
