@@ -37,7 +37,7 @@
             android:layout_column="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
-            android:visibility="invisible"
+            android:visibility="visible"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
             app:cardUseCompatPadding="true">
@@ -82,7 +82,7 @@
             android:layout_column="0"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
-            android:visibility="invisible"
+            android:visibility="visible"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
             app:cardUseCompatPadding="true">
@@ -140,8 +140,9 @@
                 <ImageView
                     android:layout_width="124dp"
                     android:layout_height="148dp"
-                    android:clickable="false"
+                    android:clickable="true"
                     android:src="@drawable/ic_add1"
+                    android:visibility="visible"
                     tools:visibility="visible">
 
                 </ImageView>
@@ -188,8 +189,9 @@
                 <ImageView
                     android:layout_width="139dp"
                     android:layout_height="181dp"
-                    android:clickable="false"
+                    android:clickable="true"
                     android:src="@drawable/ic_home"
+                    android:visibility="visible"
                     tools:visibility="visible">
 
                 </ImageView>
