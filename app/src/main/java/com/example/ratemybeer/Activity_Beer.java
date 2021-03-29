@@ -71,7 +71,7 @@ public class Activity_Beer extends AppCompatActivity {
                     ratingStar.setRating(Float.parseFloat(rate_beer));
                     }
                 else{
-                    Toast.makeText(getApplicationContext(),"Tu n'as pas encore voté la bière !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Tu n'as pas encore voté cette bière !", Toast.LENGTH_SHORT).show();
                 }
             }
 
