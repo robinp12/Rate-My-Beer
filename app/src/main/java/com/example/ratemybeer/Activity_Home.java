@@ -17,10 +17,21 @@ public class Activity_Home extends AppCompatActivity {
 
         final CardView addNewBeer=findViewById(R.id.addNewBeer);
         final CardView homeButton=findViewById(R.id.homeButton);
+        final ImageView homeIcon = findViewById(R.id.ic_home);
+        final ImageView Icon_addnewBeer = findViewById(R.id.ic_addnewBeer);
 
         //final ImageView favorisButton=findViewById(R.id.favoris);
 
         addNewBeer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent otherActivity=new Intent(getApplicationContext(), Activity_AddBeer.class);
+                startActivity(otherActivity);
+                finish();
+            }
+        });
+
+        Icon_addnewBeer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent otherActivity=new Intent(getApplicationContext(), Activity_AddBeer.class);
@@ -38,6 +49,14 @@ public class Activity_Home extends AppCompatActivity {
             }
         });
 
+        homeIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent otherActivity=new Intent(getApplicationContext(), Activity_Timeline.class);
+                startActivity(otherActivity);
+                finish();
+            }
+        });
         /*favorisButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
