@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class Activity_Timeline extends AppCompatActivity {
-    ListView listView;
+    ListView allBeerlistView;
     Biere beer;
 
     @Override
@@ -30,13 +31,15 @@ public class Activity_Timeline extends AppCompatActivity {
 
         //Button and ListView
         final Button retour = findViewById(R.id.button3);
-        listView = findViewById(R.id.listView);
+        allBeerlistView = findViewById(R.id.listView);
         beer = new Biere();
 
         //ArrayAdapter
         ArrayList<Biere> beerList = new ArrayList<>();
-        ArrayList<String> beerName = new ArrayList<>();
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.beer_element, R.id.beer_info, beerName);
+        //<String> beerName = new ArrayList<>();
+
+        ArrayAdapter<Biere> adapter = new ArrayAdapter<>(this, R.layout.beer_element, R.id.beer_info, beerList);
+
 
         //Query
         DatabaseReference database = FirebaseDatabase.getInstance().getReference();
@@ -57,10 +60,10 @@ public class Activity_Timeline extends AppCompatActivity {
                 beerList.clear();
                 for(DataSnapshot ds : snapshot.getChildren()){
                     beer = ds.getValue(Biere.class);
-                    beerName.add(beer.getName());
+                    //beerName.add(beer.getName());
                     beerList.add(beer);
                 }
-                listView.setAdapter(adapter);
+                allBeerlistView.setAdapter(new BeerAdapter(Activity_Timeline.this, beerList));
             }
 
             @Override
@@ -69,7 +72,7 @@ public class Activity_Timeline extends AppCompatActivity {
             }
         });
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        allBeerlistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // TODO Auto-generated method stub
