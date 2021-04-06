@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -21,7 +22,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class Activity_Timeline extends AppCompatActivity {
-    ListView allBeerlistView;
+    ListView allBeerlistView;;
+    SearchView searchView;
     Biere beer;
 
     @Override
@@ -32,14 +34,13 @@ public class Activity_Timeline extends AppCompatActivity {
         //Button and ListView
         final Button retour = findViewById(R.id.button3);
         allBeerlistView = findViewById(R.id.listView);
+        searchView = findViewById(R.id.search);
+
         beer = new Biere();
 
         //ArrayAdapter
         ArrayList<Biere> beerList = new ArrayList<>();
-        //<String> beerName = new ArrayList<>();
-
-        ArrayAdapter<Biere> adapter = new ArrayAdapter<>(this, R.layout.beer_element, R.id.beer_info, beerList);
-
+        // ArrayAdapter<Biere> adapter = new ArrayAdapter<>(this, R.layout.beer_element, R.id.beer_info, beerList);
 
         //Query
         DatabaseReference database = FirebaseDatabase.getInstance().getReference();
@@ -51,6 +52,20 @@ public class Activity_Timeline extends AppCompatActivity {
                 Intent otherActivity = new Intent(getApplicationContext(), Activity_Home.class);
                 startActivity(otherActivity);
                 finish();
+            }
+        });
+        BeerAdapter customAdapter = new BeerAdapter(Activity_Timeline.this, beerList);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                // Coder ici pour la recherche
+                return false;
             }
         });
 
