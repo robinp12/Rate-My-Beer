@@ -33,6 +33,7 @@ public class Activity_Timeline extends AppCompatActivity {
 
         //Button and ListView
         final Button retour = findViewById(R.id.button3);
+        final Button searchButton = findViewById(R.id.button);
         allBeerlistView = findViewById(R.id.listView);
         searchView = findViewById(R.id.search);
 
@@ -55,6 +56,23 @@ public class Activity_Timeline extends AppCompatActivity {
             }
         });
         BeerAdapter customAdapter = new BeerAdapter(Activity_Timeline.this, beerList);
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchView.setVisibility(View.VISIBLE);
+                searchButton.setVisibility(View.GONE);
+            }
+        });
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+
+            public boolean onClose() {
+                searchView.setVisibility(SearchView.GONE);
+                searchButton.setVisibility(View.VISIBLE);
+
+                return true;
+            }
+        });
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
