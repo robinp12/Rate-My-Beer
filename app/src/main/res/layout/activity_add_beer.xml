@@ -36,104 +36,106 @@
         app:layout_constraintRight_toRightOf="parent" />
 
     <EditText
-        android:id="@+id/name"
+        android:id="@+id/description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:fontFamily="sans-serif-black"
-
-        android:hint="Name"
+        android:hint="Description"
         android:inputType="text"
+        android:paddingLeft="10dp"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bannerDescription"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/origin"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:fontFamily="sans-serif-black"
-        android:hint="Origin"
-        android:inputType="text"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/name"
 
-        />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/alcohol" />
 
     <EditText
         android:id="@+id/alcohol"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:fontFamily="sans-serif-black"
         android:hint="Alcohol %"
         android:inputType="text"
+        android:paddingLeft="10dp"
         android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/origin"
 
-        />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/origin" />
 
     <EditText
-        android:id="@+id/description"
+        android:id="@+id/origin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:fontFamily="sans-serif-black"
-        android:hint="Description"
+        android:hint="Origin"
         android:inputType="text"
+        android:paddingLeft="10dp"
         android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/alcohol"
 
-        />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/name" />
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:ems="10"
+        android:fontFamily="sans-serif-black"
+
+        android:hint="Name"
+        android:inputType="text"
+        android:paddingLeft="10dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bannerDescription"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/turn"
-        android:layout_width="0dp"
-        android:layout_height="63dp"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="11dp"
-        android:text="Menu"
+        android:layout_width="165dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="27dp"
+        android:text="Retour"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/addBeer"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:icon="@android:drawable/ic_menu_revert"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/addBeer"
-        android:layout_width="0dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="26dp"
+        android:layout_width="141dp"
+        android:layout_height="60dp"
 
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="27dp"
         android:text="Add beer"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/turn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="MissingConstraints" />
 
     <ProgressBar

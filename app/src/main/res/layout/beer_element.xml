@@ -7,30 +7,30 @@
 
     <TextView
         android:id="@+id/beer_info"
-        android:layout_width="219dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="72dp"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="83dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="208dp"
-        android:text="4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/beer_info" />
+        android:layout_width="39dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="5dp"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/beer_info"
+        app:layout_constraintTop_toTopOf="@+id/beer_info" />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="79dp"
-        android:layout_height="132dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="60dp"
+        android:layout_height="96dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
         android:clickable="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
