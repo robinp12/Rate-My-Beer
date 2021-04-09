@@ -103,12 +103,14 @@ public class Activity_Timeline extends AppCompatActivity {
                 String TempListViewClickedName = beerList.get(position).getName();
                 String TempListViewClickedDesc = beerList.get(position).getDescription();
 
+
                 Intent intent = new Intent(getApplicationContext(), Activity_Beer.class);
                 Toast.makeText(Activity_Timeline.this, "Click",Toast.LENGTH_LONG).show();
 
                 // Sending value to another activity using intent.
                 intent.putExtra("ListViewClickedName", TempListViewClickedName);
                 intent.putExtra("ListViewClickedDesc", TempListViewClickedDesc);
+                intent.putExtra("urlImg",beer.getImg()) ;
 
                 startActivity(intent);
                 finish();

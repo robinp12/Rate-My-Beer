@@ -8,10 +8,12 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -20,10 +22,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Request;
 
 import java.util.HashMap;
 
-public class Activity_Beer extends AppCompatActivity {
+public class Activity_Beer extends AppCompatActivity  {
     TextView ratingText;
     TextView beerName ;
     TextView beerDesc ;
@@ -31,6 +35,8 @@ public class Activity_Beer extends AppCompatActivity {
     RatingBar ratingStar;
     TextView gbrate;
     Rating rate ;
+    TextView ve ;
+    ImageView b ;
     BottomNavigationView bottomNavigationView;
 
 
@@ -50,6 +56,8 @@ public class Activity_Beer extends AppCompatActivity {
         beerDesc = findViewById(R.id.textView7) ;
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
+        b = findViewById(R.id.img) ;
+
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         DatabaseReference current_user = database.getReference("Users").child(mAuth.getUid());
@@ -59,11 +67,15 @@ public class Activity_Beer extends AppCompatActivity {
         String name = getIntent().getStringExtra("ListViewClickedName");
         String desc = getIntent().getStringExtra("ListViewClickedDesc");
         String gr = getIntent().getStringExtra("ListViewClickedGr");
+        String v = getIntent().getStringExtra("url");
+
 
         // Setting up received value into EditText.
         beerName.setText(name);
         beerDesc.setText(desc);
         gbrate.setText(gr);
+        //ve.setText(v) ;
+        Picasso.with(this).load(String.valueOf(v)).into(b);
         rate = new Rating();
 
         // check if beer already rated

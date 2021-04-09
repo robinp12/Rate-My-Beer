@@ -79,12 +79,15 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
                 Log.e("main activity", "beer clicked");
                 String TempListViewClickedName = currentBeer.getName();
                 String TempListViewClickedDesc = currentBeer.getDescription();
+                String img = currentBeer.getImg() ;
 
                 Intent intent = new Intent(context.getApplicationContext(), Activity_Beer.class);
 
                 // Sending value to another activity using intent.
                 intent.putExtra("ListViewClickedName", TempListViewClickedName);
                 intent.putExtra("ListViewClickedDesc", TempListViewClickedDesc);
+                intent.putExtra("url",urlImg) ;
+
 
                 context.startActivity(intent);
             }
