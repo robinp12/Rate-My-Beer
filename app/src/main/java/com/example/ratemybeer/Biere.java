@@ -7,7 +7,6 @@ public class Biere {
     private String alcohol ;
     private int rate_user;
     private String description;
-    private String urlImg;
 
     //constructeur par défaut
     public Biere(){}
@@ -37,8 +36,7 @@ public class Biere {
         return alcohol;
     }
     public int getRate_user(){return this.rate_user; }
-    public String getUrlImg() { return urlImg;}
-
+    public String getImg(){return this.image;}
 
     //setter
     public String getImage() {
@@ -56,6 +54,4 @@ public class Biere {
     public void setDescription(String description) {
         this.description = description;
     }
-    public void setUrlImg(String urlImg) { this.urlImg = urlImg;}
-
 }

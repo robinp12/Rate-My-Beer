@@ -60,7 +60,7 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
         view = inflater.inflate(R.layout.beer_element, null);
 
         Biere currentBeer = getItem(position);
-        String urlImg = currentBeer.getUrlImg();
+        String urlImg = currentBeer.getImg();
 
         //String beerName = currentBeer.getName();
         //String beerAlcohol = currentBeer.getAlcohol();
