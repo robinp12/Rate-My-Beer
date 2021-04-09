@@ -133,6 +133,10 @@ public class Activity_AddBeer extends AppCompatActivity {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference("Beers");
+        if(url==null){
+            url="https://firebasestorage.googleapis.com/v0/b/rate-my-beer-8566e.appspot.com" +
+                    "/o/images%2FbiereSimple.JPEG?alt=media&token=d21c359e-ee6c-4288-828d-77e2acb7d19c";
+        }
         Biere beer = new Biere(name, origin,alcohol,description, url);
         DatabaseReference newBeer = ref.push();
         newBeer.setValue(beer);

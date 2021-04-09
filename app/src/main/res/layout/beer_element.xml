@@ -35,6 +35,6 @@
         android:clickable="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/maes2" />
+        app:srcCompat="@drawable/bieresimple" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
