@@ -3,7 +3,7 @@ package com.example.ratemybeer;
 import java.util.HashMap;
 
 public class User {
-    public String fullName, age, email, password ;
+    public String fullName, age, email, password,pseudo ;
     public HashMap<String,String> rated_beers;
 
     public String getFullName() {
@@ -38,6 +38,14 @@ public class User {
         this.password = password;
     }
 
+    public String getPseudo() {
+        return pseudo;
+    }
+
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
+    }
+
     public HashMap<String, String> getRated_beers() {
         return rated_beers;
     }
@@ -51,11 +59,12 @@ public class User {
 
     }
 
-    public User(String fullName, String age , String email, String password) {
+    public User(String fullName, String age , String email, String password,String pseudo) {
         this.fullName=fullName;
         this.age=age;
         this.email=email ;
         this.password=password ;
+        this.pseudo=pseudo ;
         rated_beers = new HashMap<>();
     }
 }

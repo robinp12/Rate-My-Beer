@@ -22,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Activity_Register extends AppCompatActivity implements View.OnClickListener {
     private FirebaseAuth mAuth;
     private TextView banner, registerUser ;
-    private EditText editTextFullName, editTextAge ,editTextEmail, editTextPassword ;
+    private EditText editTextFullName, editTextAge ,editTextEmail, editTextPassword, editTextPseudo ;
     private ProgressBar progressBar ;
 
     @Override
@@ -41,6 +41,7 @@ public class Activity_Register extends AppCompatActivity implements View.OnClick
         editTextAge = (EditText) findViewById(R.id.age) ;
         editTextEmail = (EditText) findViewById(R.id.email) ;
         editTextPassword = (EditText) findViewById(R.id.password) ;
+        editTextPseudo = (EditText) findViewById(R.id.pseudo) ;
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar) ;
     }
@@ -62,6 +63,7 @@ public class Activity_Register extends AppCompatActivity implements View.OnClick
         String password = editTextPassword.getText().toString().trim() ;
         String fullname = editTextFullName.getText().toString().trim() ;
         String age = editTextAge.getText().toString().trim() ;
+        String Pseudo = editTextPseudo.getText().toString().trim() ;
 
         if (fullname.isEmpty()){
             editTextFullName.setError("Full name is required");
@@ -93,6 +95,11 @@ public class Activity_Register extends AppCompatActivity implements View.OnClick
             editTextPassword.requestFocus();
             return ;
         }
+        if (Pseudo.isEmpty()){
+            editTextFullName.setError("Pseudo is required");
+            editTextFullName.requestFocus();
+            return;
+        }
 
         progressBar.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(email,password)
@@ -100,7 +107,7 @@ public class Activity_Register extends AppCompatActivity implements View.OnClick
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                        User user = new User (fullname,age,email,password);
+                        User user = new User (fullname,age,email,password,Pseudo);
                         FirebaseDatabase.getInstance().getReference("Users")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(user)
