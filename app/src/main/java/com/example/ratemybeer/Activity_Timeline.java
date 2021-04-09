@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -41,7 +42,7 @@ public class Activity_Timeline extends AppCompatActivity {
 
         //ArrayAdapter
         ArrayList<Biere> beerList = new ArrayList<>();
-        // ArrayAdapter<Biere> adapter = new ArrayAdapter<>(this, R.layout.beer_element, R.id.beer_info, beerList);
+        ArrayAdapter<Biere> adapter = new ArrayAdapter<>(this, R.layout.beer_element, R.id.beer_info, beerList);
 
         //Query
         DatabaseReference database = FirebaseDatabase.getInstance().getReference();
@@ -82,7 +83,9 @@ public class Activity_Timeline extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                // Coder ici pour la recherche
+                customAdapter.getFilter().filter(newText);
+                allBeerlistView.setAdapter(customAdapter);
+
                 return false;
             }
         });
