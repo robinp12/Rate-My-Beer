@@ -58,7 +58,7 @@ public class Activity_Login extends AppCompatActivity implements View.OnClickLis
         String checkbox = preferences.getString("remember","");
 
         if(checkbox.equals("true")){
-            Intent intent = new Intent(Activity_Login.this, Activity_Home.class);
+            Intent intent = new Intent(Activity_Login.this, Activity_Timeline.class);
             startActivity(intent);
         }else if(checkbox.equals("false")){
             Toast.makeText(this,"Veuillez-vous connecter", Toast.LENGTH_SHORT).show();
@@ -132,7 +132,7 @@ public class Activity_Login extends AppCompatActivity implements View.OnClickLis
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
  ;                  if(user.isEmailVerified()){
-                        startActivity(new Intent(Activity_Login.this, Activity_Home.class));
+                        startActivity(new Intent(Activity_Login.this, Activity_Timeline.class));
                     }
                     else {
                         user.sendEmailVerification();

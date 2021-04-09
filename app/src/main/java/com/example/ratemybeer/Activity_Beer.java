@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -29,6 +31,8 @@ public class Activity_Beer extends AppCompatActivity {
     RatingBar ratingStar;
     TextView gbrate;
     Rating rate ;
+    BottomNavigationView bottomNavigationView;
+
 
     private FirebaseAuth mAuth;
 
@@ -44,8 +48,8 @@ public class Activity_Beer extends AppCompatActivity {
         gbrate = findViewById(R.id.gr);
         beerName = findViewById(R.id.textView3) ;
         beerDesc = findViewById(R.id.textView7) ;
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        final Button retour=findViewById(R.id.buttonRetourFromBeerActivity);
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         DatabaseReference current_user = database.getReference("Users").child(mAuth.getUid());
@@ -81,15 +85,6 @@ public class Activity_Beer extends AppCompatActivity {
             }
         });
 
-        retour.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent otherActivity=new Intent(getApplicationContext(), Activity_Timeline.class);
-                startActivity(otherActivity);
-                finish();
-            }
-        });
-
         ratingStar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
@@ -111,5 +106,28 @@ public class Activity_Beer extends AppCompatActivity {
 
             }
         });
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
+
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent = null;
+                switch (item.getItemId()) {
+                    case R.id.home:
+                        intent = new Intent(getApplicationContext(), Activity_Timeline.class);
+                        break;
+                    case R.id.add:
+                        intent = new Intent(getApplicationContext(), Activity_AddBeer.class);
+                        break;
+                    case R.id.favorite:
+                        //intent = new Intent(getApplicationContext(), Activity_Informations.class);
+                        return true;
+                }
+                startActivity(intent);
+                finish();
+                return true;
+            }
+        });
+
     }
 }

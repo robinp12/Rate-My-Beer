@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,8 +13,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,55 +28,38 @@ import java.util.ArrayList;
 public class Activity_Timeline extends AppCompatActivity {
     ListView allBeerlistView;;
     SearchView searchView;
+    BottomNavigationView bottomNavigationView;
     Biere beer;
-
+    Spinner spinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
 
         //Button and ListView
-        final Button retour = findViewById(R.id.button3);
-        final Button searchButton = findViewById(R.id.button);
         allBeerlistView = findViewById(R.id.listView);
         searchView = findViewById(R.id.search);
-
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
         beer = new Biere();
+
+        /*
+         Dropdown menu filter beer
+        */
+        spinner = findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.beer, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
 
         //ArrayAdapter
         ArrayList<Biere> beerList = new ArrayList<>();
-        ArrayAdapter<Biere> adapter = new ArrayAdapter<>(this, R.layout.beer_element, R.id.beer_info, beerList);
 
         //Query
         DatabaseReference database = FirebaseDatabase.getInstance().getReference();
         DatabaseReference dataBeers = database.child("Beers");
 
-        retour.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent otherActivity = new Intent(getApplicationContext(), Activity_Home.class);
-                startActivity(otherActivity);
-                finish();
-            }
-        });
         BeerAdapter customAdapter = new BeerAdapter(Activity_Timeline.this, beerList);
-
-        searchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                searchView.setVisibility(View.VISIBLE);
-                searchButton.setVisibility(View.GONE);
-            }
-        });
-        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
-
-            public boolean onClose() {
-                searchView.setVisibility(SearchView.GONE);
-                searchButton.setVisibility(View.VISIBLE);
-
-                return true;
-            }
-        });
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -99,7 +85,7 @@ public class Activity_Timeline extends AppCompatActivity {
                     //beerName.add(beer.getName());
                     beerList.add(beer);
                 }
-                allBeerlistView.setAdapter(new BeerAdapter(Activity_Timeline.this, beerList));
+                allBeerlistView.setAdapter(customAdapter);
             }
 
             @Override
@@ -118,12 +104,36 @@ public class Activity_Timeline extends AppCompatActivity {
                 String TempListViewClickedDesc = beerList.get(position).getDescription();
 
                 Intent intent = new Intent(getApplicationContext(), Activity_Beer.class);
+                Toast.makeText(Activity_Timeline.this, "Click",Toast.LENGTH_LONG).show();
 
                 // Sending value to another activity using intent.
                 intent.putExtra("ListViewClickedName", TempListViewClickedName);
                 intent.putExtra("ListViewClickedDesc", TempListViewClickedDesc);
 
                 startActivity(intent);
+                finish();
+            }
+        });
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
+
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent = null;
+                switch (item.getItemId()) {
+                    case R.id.home:
+                        intent = new Intent(getApplicationContext(), Activity_Timeline.class);
+                        break;
+                    case R.id.add:
+                        intent = new Intent(getApplicationContext(), Activity_AddBeer.class);
+                        break;
+                    case R.id.favorite:
+                     //   intent = new Intent(getApplicationContext(), Activity_Informations.class);
+                        return true;
+                }
+                startActivity(intent);
+                finish();
+                return true;
             }
         });
     }

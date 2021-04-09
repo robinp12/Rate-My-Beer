@@ -8,6 +8,21 @@
     tools:context=".Activity_Register"
     tools:layout_editor_absoluteY="25dp">
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="16dp"
+        android:background="?attr/colorPrimary"
+        app:itemIconTint="@android:color/white"
+        app:itemTextColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addBeer"
+        app:menu="@menu/bottom_menu" />
+
     <TextView
         android:id="@+id/banner"
         android:layout_width="match_parent"
@@ -109,27 +124,12 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/turn"
-        android:layout_width="165dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginBottom="27dp"
-        android:text="Retour"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:icon="@android:drawable/ic_menu_revert"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <Button
         android:id="@+id/addBeer"
         android:layout_width="141dp"
         android:layout_height="60dp"
 
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="27dp"
+        android:layout_marginEnd="128dp"
+        android:layout_marginBottom="72dp"
         android:text="Add beer"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -138,24 +138,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="MissingConstraints" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageView
         android:id="@+id/image"
         android:layout_width="0dp"
         android:layout_height="109dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="37dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="13dp"
         app:layout_constraintEnd_toStartOf="@+id/textView2"
         app:layout_constraintStart_toStartOf="parent"
@@ -168,16 +156,16 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
-        android:layout_marginTop="73dp"
+        android:layout_marginTop="31dp"
+
+
         android:layout_marginEnd="51dp"
-        android:layout_marginBottom="77dp"
-
-
+        android:layout_marginBottom="107dp"
         android:text="Upload image of your beer"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@+id/turn"
+        app:layout_constraintBottom_toTopOf="@+id/addBeer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/image"
         app:layout_constraintTop_toBottomOf="@+id/description"

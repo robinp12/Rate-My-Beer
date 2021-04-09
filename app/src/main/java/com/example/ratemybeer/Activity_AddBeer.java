@@ -9,6 +9,7 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -37,6 +39,8 @@ public class Activity_AddBeer extends AppCompatActivity {
     private FirebaseStorage storage ;
     private StorageReference storageReference ;
     private String url;
+    BottomNavigationView bottomNavigationView;
+
 
     // Pour addbeer:
 
@@ -47,16 +51,8 @@ public class Activity_AddBeer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_beer);
-        final Button retour=findViewById(R.id.turn );
         final Button add=findViewById(R.id.addBeer);
-        retour.setOnClickListener(new View.OnClickListener() {
-            @Override
-           public void onClick(View v) {
-                Intent otherActivity=new Intent(getApplicationContext(), Activity_Home.class);
-                startActivity(otherActivity);
-                finish();
-            }
-        });
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         //creer les inputs de la biere
         editTextname = (EditText) findViewById(R.id.name) ;
@@ -80,6 +76,28 @@ public class Activity_AddBeer extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 choosePicture() ;
+            }
+        });
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
+
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent = null;
+                switch (item.getItemId()) {
+                    case R.id.home:
+                        intent = new Intent(getApplicationContext(), Activity_Timeline.class);
+                        break;
+                    case R.id.add:
+                        intent = new Intent(getApplicationContext(), Activity_AddBeer.class);
+                        break;
+                    case R.id.favorite:
+                        //intent = new Intent(getApplicationContext(), Activity_Informations.class);
+                        return true;
+                }
+                startActivity(intent);
+                finish();
+                return true;
             }
         });
     }
@@ -110,8 +128,6 @@ public class Activity_AddBeer extends AppCompatActivity {
             editTextdescription.requestFocus();
             return;
         }
-
-        //progressBar.setVisibility(View.VISIBLE);
 
         Toast.makeText(getApplicationContext(), "Beer added successfully .", Toast.LENGTH_LONG).show();
 

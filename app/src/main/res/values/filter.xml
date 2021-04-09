@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="beer">
+        <item>Nom</item>
+        <item>Degré</item>
+        <item>Region</item>
+        <item>Note</item>
+    </string-array>
+</resources>
