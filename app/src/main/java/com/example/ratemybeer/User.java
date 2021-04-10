@@ -3,15 +3,23 @@ package com.example.ratemybeer;
 import java.util.HashMap;
 
 public class User {
-    public String fullName, age, email, password,pseudo ;
+    public String firstName, lastName, age, email, pseudo;
     public HashMap<String,String> rated_beers;
 
-    public String getFullName() {
-        return fullName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getAge() {
@@ -30,14 +38,6 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getPseudo() {
         return pseudo;
     }
@@ -54,17 +54,12 @@ public class User {
         this.rated_beers = rated_beers;
     }
 
-
-    public User(){
-
-    }
-
-    public User(String fullName, String age , String email, String password,String pseudo) {
-        this.fullName=fullName;
+    public User(String firstName, String lastName, String age , String email,String pseudo) {
+        this.firstName=firstName;
+        this.lastName=lastName;
+        this.pseudo=pseudo ;
         this.age=age;
         this.email=email ;
-        this.password=password ;
-        this.pseudo=pseudo ;
         rated_beers = new HashMap<>();
     }
 }

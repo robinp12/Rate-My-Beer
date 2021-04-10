@@ -34,6 +34,7 @@ public class Activity_Timeline extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     Biere beer;
     Spinner spinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -24,7 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Activity_Register extends AppCompatActivity implements View.OnClickListener {
     private FirebaseAuth mAuth;
     private TextView banner, registerUser ;
-    private EditText editTextFullName, editTextAge ,editTextEmail, editTextPassword, editTextPseudo ;
+    private EditText editTextFirstName, editTextLastName, editTextAge ,editTextEmail, editTextPassword, editTextPseudo ;
     private ProgressBar progressBar ;
 
     @Override
@@ -39,11 +39,12 @@ public class Activity_Register extends AppCompatActivity implements View.OnClick
         registerUser = (Button) findViewById(R.id.registerUser) ;
         registerUser.setOnClickListener(this);
 
-        editTextFullName = (EditText) findViewById(R.id.fullname) ;
-        editTextAge = (EditText) findViewById(R.id.age) ;
-        editTextEmail = (EditText) findViewById(R.id.email) ;
-        editTextPassword = (EditText) findViewById(R.id.password) ;
-        editTextPseudo = (EditText) findViewById(R.id.pseudo) ;
+        editTextFirstName = findViewById(R.id.fullname) ;
+        editTextLastName = findViewById(R.id.fullname2) ;
+        editTextPseudo = findViewById(R.id.pseudo) ;
+        editTextAge = findViewById(R.id.age) ;
+        editTextEmail = findViewById(R.id.email) ;
+        editTextPassword = findViewById(R.id.password) ;
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar) ;
     }
@@ -61,15 +62,21 @@ public class Activity_Register extends AppCompatActivity implements View.OnClick
     }
 
     private void registerUser() {
+        String firstname = editTextFirstName.getText().toString().trim() ;
+        String lastname = editTextLastName.getText().toString().trim() ;
+        String Pseudo = editTextPseudo.getText().toString().trim() ;
+        String age = editTextAge.getText().toString().trim() ;
         String email = editTextEmail.getText().toString().trim() ;
         String password = editTextPassword.getText().toString().trim() ;
-        String fullname = editTextFullName.getText().toString().trim() ;
-        String age = editTextAge.getText().toString().trim() ;
-        String Pseudo = editTextPseudo.getText().toString().trim() ;
 
-        if (fullname.isEmpty()){
-            editTextFullName.setError("Nom requis");
-            editTextFullName.requestFocus();
+        if (firstname.isEmpty()){
+            editTextFirstName.setError("Prénom requis");
+            editTextFirstName.requestFocus();
+            return;
+        }
+        if (lastname.isEmpty()){
+            editTextLastName.setError("Nom requis");
+            editTextLastName.requestFocus();
             return;
         }
         if (password.isEmpty()){
@@ -98,8 +105,8 @@ public class Activity_Register extends AppCompatActivity implements View.OnClick
             return ;
         }
         if (Pseudo.isEmpty()){
-            editTextFullName.setError("Pseudo requis");
-            editTextFullName.requestFocus();
+            editTextPseudo.setError("Pseudo requis");
+            editTextPseudo.requestFocus();
             return;
         }
 
@@ -109,7 +116,7 @@ public class Activity_Register extends AppCompatActivity implements View.OnClick
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                        User user = new User (fullname,age,email,password,Pseudo);
+                        User user = new User (firstname,lastname,age,email,Pseudo);
                         FirebaseDatabase.getInstance().getReference("Users")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(user)
@@ -126,6 +133,9 @@ public class Activity_Register extends AppCompatActivity implements View.OnClick
                                     }
                                 }
                             });
+                        FirebaseUser userr = FirebaseAuth.getInstance().getCurrentUser();
+                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(lastname + " " + firstname).build();
+                        userr.updateProfile(profileUpdates);
                     }
                     else {
                         Toast.makeText(Activity_Register.this, "Erreur d'inscription! Veuillez ressayer.",Toast.LENGTH_LONG).show();

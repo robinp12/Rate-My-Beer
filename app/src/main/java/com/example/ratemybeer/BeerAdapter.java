@@ -96,8 +96,6 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
         return view;
     }
 
-
-
     @Override
     public Filter getFilter() {
         Filter filter = new Filter() {

@@ -35,36 +35,37 @@ public class Activity_Login extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        register = (TextView) findViewById(R.id.register);
+        register = findViewById(R.id.register);
         register.setOnClickListener(this);
 
-
-        signIn =(Button) findViewById(R.id.signIn) ;
+        signIn = findViewById(R.id.signIn) ;
         signIn.setOnClickListener(this);
 
-        editTextEmail = (EditText) findViewById(R.id.email);
-        editTextPassword = (EditText) findViewById(R.id.password);
+        forgotPassword = findViewById(R.id.forgotPassword);
+        forgotPassword.setOnClickListener(this);
 
+        editTextEmail = findViewById(R.id.email);
+        editTextPassword = findViewById(R.id.password);
         checkBox = findViewById(R.id.checkBox);
-
-        progressBar =(ProgressBar) findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progressBar);
 
         mAuth = FirebaseAuth.getInstance();
-
-        forgotPassword = (TextView) findViewById(R.id.forgotPassword);
-        forgotPassword.setOnClickListener(this);
 
         SharedPreferences preferences = getSharedPreferences("checkbox",MODE_PRIVATE);
         String checkbox = preferences.getString("remember","");
 
         if(checkbox.equals("true")){
-            Intent intent = new Intent(Activity_Login.this, Activity_Timeline.class);
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            Toast.makeText(Activity_Login.this,user.getEmail(),Toast.LENGTH_LONG).show();
 
-            startActivity(intent);
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if(user != null){
+                Intent intent = new Intent(Activity_Login.this, Activity_Timeline.class);
+                startActivity(intent);
+                finish();
+                Toast.makeText(Activity_Login.this,"Utilisateur : " + user.getDisplayName(),Toast.LENGTH_LONG).show();
+                Toast.makeText(Activity_Login.this,"Identifiant utilisateur : " + user.getUid(),Toast.LENGTH_LONG).show();
+            }
         }else if(checkbox.equals("false")){
-            Toast.makeText(this,"Veuillez-vous connecter", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Veuillez vous connecter", Toast.LENGTH_SHORT).show();
         }
 
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -106,19 +107,19 @@ public class Activity_Login extends AppCompatActivity implements View.OnClickLis
         String password = editTextPassword.getText().toString().trim();
 
         if(email.isEmpty()){
-            editTextEmail.setError("Email is required!");
+            editTextEmail.setError("Email requis");
             editTextEmail.requestFocus();
             return;
         }
 
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            editTextEmail.setError("Please enter a valid email!");
+            editTextEmail.setError("Veuillez entrer un mail valide");
             editTextEmail.requestFocus() ;
             return ;
         }
 
-        if(password.length()<6){
-            editTextPassword.setError("Min password length is 6 characters!");
+        if(password.length() < 6){
+            editTextPassword.setError("Taille minimum de 6 charactères");
             editTextPassword.requestFocus();
             return;
         }
