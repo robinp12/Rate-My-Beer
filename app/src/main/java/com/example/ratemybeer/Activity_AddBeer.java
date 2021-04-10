@@ -125,7 +125,7 @@ public class Activity_AddBeer extends AppCompatActivity {
             editTextorigin.requestFocus();
             return;
         }
-        if (alcohol.isEmpty() || (Integer.parseInt(alcohol) > 60) || (Integer.parseInt(alcohol) < 0) ){
+        if (alcohol.isEmpty() || (Integer.parseInt(alcohol) > 71) || (Integer.parseInt(alcohol) < 0) ){
             editTextalcohol.setError("Degré d'alcool incorrect");
             editTextalcohol.requestFocus();
             return;
