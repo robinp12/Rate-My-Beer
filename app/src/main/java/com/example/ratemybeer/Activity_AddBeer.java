@@ -43,8 +43,6 @@ public class Activity_AddBeer extends AppCompatActivity {
     private String url;
     BottomNavigationView bottomNavigationView;
 
-    private static final String[]COUNTRIES = new String[]{"Antoine","Lara","Pedro","Robin","Badr"};
-    private static final String[]DEGREE = new String[]{"1°","1.5°","2°","2.5°","3°","4°","5°","6°","7°","8°","9°","10°"};
     // Pour addbeer:
 
     private EditText editTextname, editTextorigin ,editTextalcohol, editTextdescription ;
@@ -57,19 +55,10 @@ public class Activity_AddBeer extends AppCompatActivity {
         final Button add=findViewById(R.id.addBeer);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         AutoCompleteTextView ediText = findViewById(R.id.origin) ;
-        AutoCompleteTextView degre = findViewById(R.id.alcohol);
         //countries
         String[] countries = getResources().getStringArray(R.array.countries);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,countries);
         ediText.setAdapter(adapter);
-
-        //Alchool
-
-        String[] degree = getResources().getStringArray(R.array.degree);
-        ArrayAdapter<String> ada = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,degree);
-        degre.setAdapter(ada);
-
-
 
         //creer les inputs de la biere
         editTextname = (EditText) findViewById(R.id.name) ;
@@ -127,27 +116,27 @@ public class Activity_AddBeer extends AppCompatActivity {
         String description = editTextdescription.getText().toString().trim() ;
 
         if (name.isEmpty()){
-            editTextname.setError("Name is required");
+            editTextname.setError("Nom requis");
             editTextname.requestFocus();
             return;
         }
         if (origin.isEmpty()){
-            editTextorigin.setError("Origin is required");
+            editTextorigin.setError("Origine requis");
             editTextorigin.requestFocus();
             return;
         }
-        if (alcohol.isEmpty()){
-            editTextalcohol.setError("Alcohol per cent is required");
+        if (alcohol.isEmpty() || (Integer.parseInt(alcohol) > 60) || (Integer.parseInt(alcohol) < 0) ){
+            editTextalcohol.setError("Degré d'alcool incorrect");
             editTextalcohol.requestFocus();
             return;
         }
         if (description.isEmpty()){
-            editTextdescription.setError("Description is required");
+            editTextdescription.setError("Description requis");
             editTextdescription.requestFocus();
             return;
         }
 
-        Toast.makeText(getApplicationContext(), "Beer added successfully .", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Bière ajoutée avec succès", Toast.LENGTH_LONG).show();
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference("Beers");

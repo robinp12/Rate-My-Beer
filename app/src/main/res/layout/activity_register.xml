@@ -61,7 +61,7 @@
         android:ems="10"
 
         android:hint="Age"
-        android:inputType="text"
+        android:inputType="number"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -77,7 +77,7 @@
         android:ems="10"
 
         android:hint="Email"
-        android:inputType="text"
+        android:inputType="textEmailAddress"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

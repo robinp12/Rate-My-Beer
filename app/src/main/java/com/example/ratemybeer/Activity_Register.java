@@ -17,6 +17,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class Activity_Register extends AppCompatActivity implements View.OnClickListener {
@@ -66,37 +68,37 @@ public class Activity_Register extends AppCompatActivity implements View.OnClick
         String Pseudo = editTextPseudo.getText().toString().trim() ;
 
         if (fullname.isEmpty()){
-            editTextFullName.setError("Full name is required");
+            editTextFullName.setError("Nom requis");
             editTextFullName.requestFocus();
             return;
         }
         if (password.isEmpty()){
-            editTextPassword.setError("password is required");
+            editTextPassword.setError("Mot de passe requis");
             editTextPassword.requestFocus();
             return;
         }
-        if (age.isEmpty()){
-            editTextAge.setError("Age is required");
+        if (age.isEmpty() || Integer.parseInt(age) < 16 ){
+            editTextAge.setError("Age requis ou incorrect");
             editTextAge.requestFocus();
             return;
         }
         if (email.isEmpty()){
-            editTextEmail.setError("Email is required");
+            editTextEmail.setError("Email requis");
             editTextEmail.requestFocus();
             return;
         }
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            editTextEmail.setError("Please provide valid email !");
+            editTextEmail.setError("Email incorrect !");
             editTextEmail.requestFocus() ;
             return ;
         }
         if(password.length()<6){
-            editTextPassword.setError("Min password length should be 6 charachters!");
+            editTextPassword.setError("Longueur minimum de 6 charactères!");
             editTextPassword.requestFocus();
             return ;
         }
         if (Pseudo.isEmpty()){
-            editTextFullName.setError("Pseudo is required");
+            editTextFullName.setError("Pseudo requis");
             editTextFullName.requestFocus();
             return;
         }
@@ -115,18 +117,18 @@ public class Activity_Register extends AppCompatActivity implements View.OnClick
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
-                                        Toast.makeText(Activity_Register.this, "User has been registred successfully!",Toast.LENGTH_LONG).show();
+                                        Toast.makeText(Activity_Register.this, "Inscrit avec succès!",Toast.LENGTH_LONG).show();
                                         startActivity(new Intent(Activity_Register.this, Activity_Login.class));
                                     }
                                     else {
-                                        Toast.makeText(Activity_Register.this, "Failed to register! Try again.",Toast.LENGTH_LONG).show();
+                                        Toast.makeText(Activity_Register.this, "Erreur d'inscription! Veuillez ressayer.",Toast.LENGTH_LONG).show();
                                         progressBar.setVisibility(View.GONE);
                                     }
                                 }
                             });
                     }
                     else {
-                        Toast.makeText(Activity_Register.this, "Failed to register! Try again.",Toast.LENGTH_LONG).show();
+                        Toast.makeText(Activity_Register.this, "Erreur d'inscription! Veuillez ressayer.",Toast.LENGTH_LONG).show();
                         progressBar.setVisibility(View.GONE);
                     }
                 }

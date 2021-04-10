@@ -17,6 +17,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -91,29 +94,6 @@ public class Activity_Timeline extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
-
-        allBeerlistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // TODO Auto-generated method stub
-
-                // Getting listview click value into String variable.
-                String TempListViewClickedName = beerList.get(position).getName();
-                String TempListViewClickedDesc = beerList.get(position).getDescription();
-
-
-                Intent intent = new Intent(getApplicationContext(), Activity_Beer.class);
-                Toast.makeText(Activity_Timeline.this, "Click",Toast.LENGTH_LONG).show();
-
-                // Sending value to another activity using intent.
-                intent.putExtra("ListViewClickedName", TempListViewClickedName);
-                intent.putExtra("ListViewClickedDesc", TempListViewClickedDesc);
-                intent.putExtra("urlImg",beer.getImg()) ;
-
-                startActivity(intent);
-                finish();
             }
         });
 

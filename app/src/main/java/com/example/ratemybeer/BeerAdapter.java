@@ -70,7 +70,7 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
         ImageView beerPicture = view.findViewById(R.id.imageView4);
 
         beerNameView.setText(currentBeer.getName());
-        beerAlcoholView.setText(currentBeer.getAlcohol());
+        beerAlcoholView.setText(currentBeer.getAlcohol()+"°");
         Glide.with(beerPicture.getContext()).load(urlImg).placeholder(R.drawable.bieresimple).into(beerPicture);
 
         view.setOnClickListener(new View.OnClickListener() {

@@ -59,6 +59,9 @@ public class Activity_Login extends AppCompatActivity implements View.OnClickLis
 
         if(checkbox.equals("true")){
             Intent intent = new Intent(Activity_Login.this, Activity_Timeline.class);
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            Toast.makeText(Activity_Login.this,user.getEmail(),Toast.LENGTH_LONG).show();
+
             startActivity(intent);
         }else if(checkbox.equals("false")){
             Toast.makeText(this,"Veuillez-vous connecter", Toast.LENGTH_SHORT).show();
@@ -73,13 +76,11 @@ public class Activity_Login extends AppCompatActivity implements View.OnClickLis
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putString("remember","true");
                     editor.apply();
-                    Toast.makeText(Activity_Login.this,"Checked", Toast.LENGTH_SHORT).show();
                 }else if(!buttonView.isChecked()){
                     SharedPreferences preferences = getSharedPreferences("checkbox",MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putString("remember","false");
                     editor.apply();
-                    Toast.makeText(Activity_Login.this,"Unchecked", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -117,7 +118,7 @@ public class Activity_Login extends AppCompatActivity implements View.OnClickLis
         }
 
         if(password.length()<6){
-            editTextPassword.setError("Min paswword length is 6 charcacters!");
+            editTextPassword.setError("Min password length is 6 characters!");
             editTextPassword.requestFocus();
             return;
         }
