@@ -69,13 +69,13 @@ public class Activity_Register extends AppCompatActivity implements View.OnClick
         String email = editTextEmail.getText().toString().trim() ;
         String password = editTextPassword.getText().toString().trim() ;
 
-        if (firstname.isEmpty()){
-            editTextFirstName.setError("Prénom requis");
+        if (firstname.isEmpty() || (firstname.length() < 3)){
+            editTextFirstName.setError("Prénom requis ou trop court");
             editTextFirstName.requestFocus();
             return;
         }
-        if (lastname.isEmpty()){
-            editTextLastName.setError("Nom requis");
+        if (lastname.isEmpty() || (lastname.length() < 3)){
+            editTextLastName.setError("Nom requis ou trop court");
             editTextLastName.requestFocus();
             return;
         }
@@ -84,7 +84,7 @@ public class Activity_Register extends AppCompatActivity implements View.OnClick
             editTextPassword.requestFocus();
             return;
         }
-        if (age.isEmpty() || Integer.parseInt(age) < 16 ){
+        if (age.isEmpty() || Integer.parseInt(age) < 16 || Integer.parseInt(age) > 120){
             editTextAge.setError("Age requis ou incorrect");
             editTextAge.requestFocus();
             return;
@@ -99,13 +99,13 @@ public class Activity_Register extends AppCompatActivity implements View.OnClick
             editTextEmail.requestFocus() ;
             return ;
         }
-        if(password.length()<6){
+        if(password.length() < 6){
             editTextPassword.setError("Longueur minimum de 6 charactères!");
             editTextPassword.requestFocus();
             return ;
         }
-        if (Pseudo.isEmpty()){
-            editTextPseudo.setError("Pseudo requis");
+        if (Pseudo.isEmpty() || (Pseudo.length() < 5)){
+            editTextPseudo.setError("Pseudo requis ou trop court");
             editTextPseudo.requestFocus();
             return;
         }
