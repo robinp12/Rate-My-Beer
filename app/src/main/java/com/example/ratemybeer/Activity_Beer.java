@@ -35,8 +35,8 @@ public class Activity_Beer extends AppCompatActivity  {
     RatingBar ratingStar;
     TextView gbrate;
     Rating rate ;
-    TextView ve ;
-    ImageView b ;
+    TextView ve ; // la ou on stock l url
+    ImageView b ; /// L'image
     BottomNavigationView bottomNavigationView;
 
 
@@ -67,7 +67,7 @@ public class Activity_Beer extends AppCompatActivity  {
         String name = getIntent().getStringExtra("ListViewClickedName");
         String desc = getIntent().getStringExtra("ListViewClickedDesc");
         String gr = getIntent().getStringExtra("ListViewClickedGr");
-        String v = getIntent().getStringExtra("url");
+        String v = getIntent().getStringExtra("url"); // variable contient l'url
 
 
         // Setting up received value into EditText.
@@ -75,7 +75,7 @@ public class Activity_Beer extends AppCompatActivity  {
         beerDesc.setText(desc);
         gbrate.setText(gr);
         //ve.setText(v) ;
-        Picasso.with(this).load(String.valueOf(v)).into(b);
+        Picasso.with(this).load(String.valueOf(v)).into(b); // Convert the Url to image
         rate = new Rating();
 
         // check if beer already rated
