@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -41,7 +43,8 @@ public class Activity_AddBeer extends AppCompatActivity {
     private String url;
     BottomNavigationView bottomNavigationView;
 
-
+    private static final String[]COUNTRIES = new String[]{"Antoine","Lara","Pedro","Robin","Badr"};
+    private static final String[]DEGREE = new String[]{"1°","1.5°","2°","2.5°","3°","4°","5°","6°","7°","8°","9°","10°"};
     // Pour addbeer:
 
     private EditText editTextname, editTextorigin ,editTextalcohol, editTextdescription ;
@@ -53,10 +56,25 @@ public class Activity_AddBeer extends AppCompatActivity {
         setContentView(R.layout.activity_add_beer);
         final Button add=findViewById(R.id.addBeer);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+        AutoCompleteTextView ediText = findViewById(R.id.origin) ;
+        AutoCompleteTextView degre = findViewById(R.id.alcohol);
+        //countries
+        String[] countries = getResources().getStringArray(R.array.countries);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,countries);
+        ediText.setAdapter(adapter);
+
+        //Alchool
+
+        String[] degree = getResources().getStringArray(R.array.degree);
+        ArrayAdapter<String> ada = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,degree);
+        degre.setAdapter(ada);
+
+
 
         //creer les inputs de la biere
         editTextname = (EditText) findViewById(R.id.name) ;
         editTextorigin = (EditText) findViewById(R.id.origin) ;
+
         editTextalcohol = (EditText) findViewById(R.id.alcohol) ;
         editTextdescription = (EditText) findViewById(R.id.description) ;
         progressBar = (ProgressBar) findViewById(R.id.progressBar) ;

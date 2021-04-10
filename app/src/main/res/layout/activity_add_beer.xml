@@ -68,14 +68,16 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/alcohol" />
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/alcohol"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:ems="10"
         android:fontFamily="sans-serif-black"
-        android:hint="Alcohol %"
+        android:hint="Alcohol °"
+        android:completionThreshold="1"
+        android:completionHint="Select a degree"
         android:inputType="text"
         android:paddingLeft="10dp"
         android:textSize="24sp"
@@ -86,23 +88,29 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/origin" />
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/origin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:fontFamily="sans-serif-black"
-        android:hint="Origin"
+        android:hint="Select a country"
+        android:completionThreshold="1"
+        android:completionHint="Select a country"
         android:inputType="text"
         android:paddingLeft="10dp"
         android:textSize="24sp"
         android:textStyle="bold"
+
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
 
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/name" />
+
+
+
 
     <EditText
         android:id="@+id/name"
