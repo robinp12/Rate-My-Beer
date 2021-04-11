@@ -111,13 +111,13 @@ public class Activity_Beer extends AppCompatActivity  {
                 //if beer
                 current_user.child("user_rated_beers").updateChildren(new_rate);
 
-                DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-                DatabaseReference mRatingBarCh = rootRef.child("ratings");
+                //DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+                //DatabaseReference mRatingBarCh = rootRef.child("ratings");
 
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                Rating rating1 = new Rating(rating,name) ;
-                DatabaseReference newrate = mRatingBarCh.push();
-                newrate.setValue(rating1) ;
+                //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                //Rating rating1 = new Rating(rating,name) ;
+                //DatabaseReference newrate = mRatingBarCh.push();
+                //newrate.setValue(rating1) ;
 
             }
         });
