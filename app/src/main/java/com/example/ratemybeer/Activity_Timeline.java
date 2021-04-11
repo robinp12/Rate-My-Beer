@@ -118,7 +118,7 @@ public class Activity_Timeline extends AppCompatActivity {
                     });
                 }
                 else if (selection.toString().equals("Region")){
-                    onDegFilter.addValueEventListener(new ValueEventListener() {
+                    onRegionFilter.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             beerList.clear();
