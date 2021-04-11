@@ -116,7 +116,7 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
                     String searchStr = constraint.toString().toLowerCase();
 
                     for (Biere beer : originalBeers) {
-                        if (beer.getName().toLowerCase().contains(searchStr)) {
+                        if (beer.getName().toLowerCase().contains(searchStr) || beer.getOrigin().toLowerCase().contains(searchStr) || beer.getAlcohol().toLowerCase().contains(searchStr)) {
                             resultBiere.add(beer);
                         }
                         filterResults.count = resultBiere.size();

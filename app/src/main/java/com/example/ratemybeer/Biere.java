@@ -32,7 +32,10 @@ public class Biere {
     public String getOrigin(){
         return origin;
     }
-    public float getAlcohol(){
+    public String getAlcohol(){
+        return String.valueOf(alcohol);
+    }
+    public Float getDegree(){
         return alcohol;
     }
     public int getRate_user(){return this.rate_user; }
