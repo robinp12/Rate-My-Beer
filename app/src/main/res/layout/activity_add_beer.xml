@@ -77,7 +77,7 @@
         android:fontFamily="sans-serif-black"
         android:hint="Alcool °"
         android:digits="0123456789,"
-        android:inputType="number|numberDecimal"
+        android:inputType="numberDecimal"
         android:paddingLeft="10dp"
         android:textSize="24sp"
         android:textStyle="bold"

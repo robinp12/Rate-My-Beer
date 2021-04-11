@@ -74,8 +74,7 @@ public class Activity_Timeline extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Object selection = parent.getItemAtPosition(position);
-                Toast.makeText(getApplicationContext(), selection.toString(), Toast.LENGTH_LONG).show();
-
+                //Toast.makeText(getApplicationContext(), selection.toString(), Toast.LENGTH_LONG).show();
 
                 if(selection.toString().equals("Nom")){
                     //Toast.makeText(getApplicationContext(), "Nom clicked", Toast.LENGTH_LONG).show();

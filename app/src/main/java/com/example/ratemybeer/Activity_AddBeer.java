@@ -112,7 +112,8 @@ public class Activity_AddBeer extends AppCompatActivity {
         String name = editTextname.getText().toString().trim() ;
         String origin = editTextorigin.getText().toString().trim() ;
         String alcohol = editTextalcohol.getText().toString().trim();
-        float degree = Float.parseFloat(editTextalcohol.getText().toString().trim()) ;
+        alcohol = alcohol.replaceAll(",",".");
+        float degree = Float.parseFloat(alcohol) ;
         String description = editTextdescription.getText().toString().trim() ;
 
         if (name.isEmpty()){
@@ -125,7 +126,7 @@ public class Activity_AddBeer extends AppCompatActivity {
             editTextorigin.requestFocus();
             return;
         }
-        if (alcohol.isEmpty() || (degree > 71) || (degree < 0) ){
+        if ((degree > 71.0) || (degree < 0.0) ){
             editTextalcohol.setError("Degré d'alcool incorrect");
             editTextalcohol.requestFocus();
             return;

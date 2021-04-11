@@ -72,7 +72,7 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
 
         beerNameView.setText(currentBeer.getName());
         beerAlcoholView.setText(currentBeer.getDegree()+"°");
-        beerOrigin.setText("Pays d'origine : "+currentBeer.getOrigin());
+        beerOrigin.setText("Origine : "+currentBeer.getOrigin());
 
         Glide.with(beerPicture.getContext()).load(urlImg).placeholder(R.drawable.bieresimple).into(beerPicture);
 
