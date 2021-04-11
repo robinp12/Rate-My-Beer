@@ -4,7 +4,7 @@ public class Biere {
     private String image;
     private String name;
     private String origin ;
-    private float alcohol ;
+    private float degree ;
     private int rate_user;
     private String description;
 
@@ -15,14 +15,14 @@ public class Biere {
     public Biere(String name, int rate_user, float alcohol){
         this.name = name;
         this.rate_user = rate_user;
-        this.alcohol = alcohol;
+        this.degree = alcohol;
     }
     //constructeur ajout de bière
     public Biere(String name, String origin, float alcohol, String description, String image){
         this.name=name;
         this.description=description;
         this.origin = origin;
-        this.alcohol=alcohol ;
+        this.degree=alcohol ;
         this.image = image ;
     }
     //getter
@@ -33,10 +33,10 @@ public class Biere {
         return origin;
     }
     public String getAlcohol(){
-        return String.valueOf(alcohol);
+        return String.valueOf(degree);
     }
     public Float getDegree(){
-        return alcohol;
+        return degree;
     }
     public int getRate_user(){return this.rate_user; }
     public String getImg(){return this.image;}

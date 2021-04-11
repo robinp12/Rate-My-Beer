@@ -57,7 +57,7 @@ public class Activity_Timeline extends AppCompatActivity {
         DatabaseReference database = FirebaseDatabase.getInstance().getReference();
         DatabaseReference dataBeers = database.child("Beers");
         Query onNameFilter = dataBeers.orderByChild("name");
-        Query onDegFilter = dataBeers.orderByChild("alcohol");
+        Query onDegFilter = dataBeers.orderByChild("degree");
         Query onRegionFilter = dataBeers.orderByChild("origin");
 
         BeerAdapter customAdapter = new BeerAdapter(Activity_Timeline.this, beerList);
@@ -136,26 +136,6 @@ public class Activity_Timeline extends AppCompatActivity {
                         }
                     });
                 }
-                else if (selection.toString().equals("Region")){
-                    onRegionFilter.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            beerList.clear();
-                            for(DataSnapshot ds : snapshot.getChildren()){
-                                beer = ds.getValue(Biere.class);
-                                //beerName.add(beer.getName());
-                                beerList.add(beer);
-                            }
-                            allBeerlistView.setAdapter(customAdapter);
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-                }
-
             }
 
             @Override
