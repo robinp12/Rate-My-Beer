@@ -31,7 +31,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
 
 import java.util.UUID;
 
@@ -112,7 +111,8 @@ public class Activity_AddBeer extends AppCompatActivity {
     private void addBeer() {
         String name = editTextname.getText().toString().trim() ;
         String origin = editTextorigin.getText().toString().trim() ;
-        String alcohol = editTextalcohol.getText().toString().trim() ;
+        String alcohol = editTextalcohol.getText().toString().trim();
+        float degree = Float.parseFloat(editTextalcohol.getText().toString().trim()) ;
         String description = editTextdescription.getText().toString().trim() ;
 
         if (name.isEmpty()){
@@ -125,7 +125,7 @@ public class Activity_AddBeer extends AppCompatActivity {
             editTextorigin.requestFocus();
             return;
         }
-        if (alcohol.isEmpty() || (Integer.parseInt(alcohol) > 71) || (Integer.parseInt(alcohol) < 0) ){
+        if (alcohol.isEmpty() || (degree > 71) || (degree < 0) ){
             editTextalcohol.setError("Degré d'alcool incorrect");
             editTextalcohol.requestFocus();
             return;
@@ -144,7 +144,7 @@ public class Activity_AddBeer extends AppCompatActivity {
             url="https://firebasestorage.googleapis.com/v0/b/rate-my-beer-8566e.appspot.com" +
                     "/o/images%2FbiereSimple.JPEG?alt=media&token=d21c359e-ee6c-4288-828d-77e2acb7d19c";
         }
-        Biere beer = new Biere(name, origin,alcohol,description, url);
+        Biere beer = new Biere(name, origin,degree,description, url);
         DatabaseReference newBeer = ref.push();
         newBeer.setValue(beer);
 
@@ -176,7 +176,7 @@ public class Activity_AddBeer extends AppCompatActivity {
 
     private void uploadPicture() {
         final ProgressDialog pd = new ProgressDialog(this);
-        final String randomKey = UUID.randomUUID().toString();
+        final String randomKey = editTextname.getText().toString().trim();
 
         pd.setTitle("Uploading Image...");
         pd.show();

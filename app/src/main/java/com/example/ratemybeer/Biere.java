@@ -4,7 +4,7 @@ public class Biere {
     private String image;
     private String name;
     private String origin ;
-    private String alcohol ;
+    private float alcohol ;
     private int rate_user;
     private String description;
 
@@ -12,13 +12,13 @@ public class Biere {
     public Biere(){}
 
     //constructeur liste de bière
-    public Biere(String name, int rate_user, String alcohol){
+    public Biere(String name, int rate_user, float alcohol){
         this.name = name;
         this.rate_user = rate_user;
         this.alcohol = alcohol;
     }
     //constructeur ajout de bière
-    public Biere(String name, String origin, String alcohol, String description, String image){
+    public Biere(String name, String origin, float alcohol, String description, String image){
         this.name=name;
         this.description=description;
         this.origin = origin;
@@ -32,7 +32,7 @@ public class Biere {
     public String getOrigin(){
         return origin;
     }
-    public String getAlcohol(){
+    public float getAlcohol(){
         return alcohol;
     }
     public int getRate_user(){return this.rate_user; }

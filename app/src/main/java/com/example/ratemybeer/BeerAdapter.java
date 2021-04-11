@@ -68,9 +68,12 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
         TextView beerNameView = view.findViewById(R.id.beer_info);
         TextView beerAlcoholView = view.findViewById(R.id.textView);
         ImageView beerPicture = view.findViewById(R.id.imageView4);
+        TextView beerOrigin = view.findViewById(R.id.textView8);
 
         beerNameView.setText(currentBeer.getName());
         beerAlcoholView.setText(currentBeer.getAlcohol()+"°");
+        beerOrigin.setText("Pays d'origine : "+currentBeer.getOrigin());
+
         Glide.with(beerPicture.getContext()).load(urlImg).placeholder(R.drawable.bieresimple).into(beerPicture);
 
         view.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +81,7 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
             public void onClick(View v) {
                 Log.e("main activity", "beer clicked");
                 String TempListViewClickedName = currentBeer.getName();
+                String TempListViewClickedRegion = currentBeer.getOrigin();
                 String TempListViewClickedDesc = currentBeer.getDescription();
                 String img = currentBeer.getImg() ;
 
@@ -87,6 +91,7 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
                 intent.putExtra("ListViewClickedName", TempListViewClickedName);
                 intent.putExtra("ListViewClickedDesc", TempListViewClickedDesc);
                 intent.putExtra("url",urlImg) ;
+                intent.putExtra("ListViewClickedRegion",TempListViewClickedRegion);
 
 
                 context.startActivity(intent);

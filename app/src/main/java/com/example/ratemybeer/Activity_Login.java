@@ -61,8 +61,8 @@ public class Activity_Login extends AppCompatActivity implements View.OnClickLis
                 Intent intent = new Intent(Activity_Login.this, Activity_Timeline.class);
                 startActivity(intent);
                 finish();
-                Toast.makeText(Activity_Login.this,"Utilisateur : " + user.getDisplayName(),Toast.LENGTH_LONG).show();
-                Toast.makeText(Activity_Login.this,"Identifiant utilisateur : " + user.getUid(),Toast.LENGTH_LONG).show();
+                //Toast.makeText(Activity_Login.this,"Utilisateur : " + user.getDisplayName(),Toast.LENGTH_LONG).show();
+                //Toast.makeText(Activity_Login.this,"Identifiant utilisateur : " + user.getUid(),Toast.LENGTH_LONG).show();
             }
         }else if(checkbox.equals("false")){
             Toast.makeText(this,"Veuillez vous connecter", Toast.LENGTH_SHORT).show();

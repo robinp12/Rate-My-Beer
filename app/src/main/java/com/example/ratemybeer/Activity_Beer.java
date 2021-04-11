@@ -31,6 +31,7 @@ public class Activity_Beer extends AppCompatActivity  {
     TextView ratingText;
     TextView beerName ;
     TextView beerDesc ;
+    TextView origin;
 
     RatingBar ratingStar;
     TextView gbrate;
@@ -55,6 +56,7 @@ public class Activity_Beer extends AppCompatActivity  {
         beerName = findViewById(R.id.textView3) ;
         beerDesc = findViewById(R.id.textView7) ;
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+        origin = findViewById(R.id.region);
 
         b = findViewById(R.id.img) ;
 
@@ -68,12 +70,14 @@ public class Activity_Beer extends AppCompatActivity  {
         String desc = getIntent().getStringExtra("ListViewClickedDesc");
         String gr = getIntent().getStringExtra("ListViewClickedGr");
         String v = getIntent().getStringExtra("url"); // variable contient l'url
+        String region = getIntent().getStringExtra("ListViewClickedRegion");
 
 
         // Setting up received value into EditText.
         beerName.setText(name);
         beerDesc.setText(desc);
         gbrate.setText(gr);
+        origin.setText(region);
         //ve.setText(v) ;
         Picasso.with(this).load(String.valueOf(v)).into(b); // Convert the Url to image
         rate = new Rating();
@@ -87,7 +91,7 @@ public class Activity_Beer extends AppCompatActivity  {
                     ratingStar.setRating(Float.parseFloat(rate_beer));
                     }
                 else{
-                    Toast.makeText(getApplicationContext(),"Tu n'as pas encore voté cette bière !", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),"Tu n'as pas encore voté cette bière !", Toast.LENGTH_SHORT).show();
                 }
             }
 
