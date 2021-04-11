@@ -91,7 +91,7 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
                 intent.putExtra("ListViewClickedName", TempListViewClickedName);
                 intent.putExtra("ListViewClickedDesc", TempListViewClickedDesc);
                 intent.putExtra("url",urlImg) ;
-                intent.putExtra("ListViewClickedRegion",TempListViewClickedRegion);
+                //intent.putExtra("ListViewClickedRegion",TempListViewClickedRegion);
 
 
                 context.startActivity(intent);
