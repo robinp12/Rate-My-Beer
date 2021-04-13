@@ -48,7 +48,7 @@ public class Activity_Timeline extends AppCompatActivity {
         allBeerlistView = findViewById(R.id.listView);
         searchView = findViewById(R.id.search);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-        beer = new Biere();
+        //beer = new Biere();
 
         //ArrayAdapter
         ArrayList<Biere> beerList = new ArrayList<>();

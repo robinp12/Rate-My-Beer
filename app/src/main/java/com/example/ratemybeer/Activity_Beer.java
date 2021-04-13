@@ -25,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Request;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Activity_Beer extends AppCompatActivity  {
@@ -64,6 +65,7 @@ public class Activity_Beer extends AppCompatActivity  {
 
         DatabaseReference current_user = database.getReference("Users").child(mAuth.getUid());
         String username = current_user.child("fullName").toString();
+        DatabaseReference users=database.getReference("Users");
 
         // Receiving value into activity using intent.
         String name = getIntent().getStringExtra("ListViewClickedName");
@@ -85,9 +87,11 @@ public class Activity_Beer extends AppCompatActivity  {
         current_user.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 if (snapshot.child("user_rated_beers").hasChild(name)){
                     String  rate_beer = snapshot.child("user_rated_beers").child(name).getValue().toString();
                     ratingStar.setRating(Float.parseFloat(rate_beer));
+
                     }
                 else{
                     //Toast.makeText(getApplicationContext(),"Tu n'as pas encore voté cette bière !", Toast.LENGTH_SHORT).show();
@@ -100,10 +104,13 @@ public class Activity_Beer extends AppCompatActivity  {
             }
         });
 
+
+
         ratingStar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                ratingText.setText("Your rating is : "+rating);
+
+                //ratingText.setText("Your rating is : "+rating);
 
                 HashMap<String,Object> new_rate = new HashMap<>();
                 new_rate.put(name,Float.toString(rating));
@@ -118,6 +125,34 @@ public class Activity_Beer extends AppCompatActivity  {
                 //Rating rating1 = new Rating(rating,name) ;
                 //DatabaseReference newrate = mRatingBarCh.push();
                 //newrate.setValue(rating1) ;
+
+            }
+        });
+        users.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ArrayList<Float>globalRating=new ArrayList<>();
+                for(DataSnapshot ds:snapshot.getChildren()){
+                    if(ds.child("user_rated_beers").hasChild(name)){
+                        String rate_beer=ds.child("user_rated_beers").child(name).getValue().toString();
+                        globalRating.add(Float.parseFloat(rate_beer));
+
+                    }
+                }
+                float moyenne=0;
+                for(Float runner:globalRating){
+                    moyenne+=runner;
+                }
+                moyenne=moyenne/globalRating.size();
+                ratingText.setText("La note moyenne est "+moyenne);
+
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
