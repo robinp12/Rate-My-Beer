@@ -109,6 +109,8 @@ public class Activity_AddBeer extends AppCompatActivity {
     }
 
     private void addBeer() {
+
+
         String name = editTextname.getText().toString().trim() ;
         String origin = editTextorigin.getText().toString().trim() ;
         String alcohol = editTextalcohol.getText().toString().trim();

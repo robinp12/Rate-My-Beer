@@ -21,6 +21,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Request;
@@ -73,6 +74,9 @@ public class Activity_Beer extends AppCompatActivity  {
         String gr = getIntent().getStringExtra("ListViewClickedGr");
         String v = getIntent().getStringExtra("url"); // variable contient l'url
         //String region = getIntent().getStringExtra("ListViewClickedRegion");
+        Query current_Beer = database.getReference("Beers").orderByChild("Beers").equalTo(name).limitToFirst(1);
+
+        //Toast.makeText(getApplicationContext(), current_Beer.g, Toast.LENGTH_LONG).show();
 
 
         // Setting up received value into EditText.
@@ -144,11 +148,12 @@ public class Activity_Beer extends AppCompatActivity  {
                     moyenne+=runner;
                 }
                 moyenne=moyenne/globalRating.size();
-                ratingText.setText("La note moyenne est "+moyenne);
-
-
-
-
+                if(Float.isNaN(moyenne)){
+                    ratingText.setText("Personne n'a encore voté cette bière !");
+                }
+                else {
+                    ratingText.setText("La note moyenne est " + moyenne);
+                }
             }
 
             @Override
