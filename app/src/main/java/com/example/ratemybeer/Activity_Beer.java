@@ -74,8 +74,7 @@ public class Activity_Beer extends AppCompatActivity  {
         String gr = getIntent().getStringExtra("ListViewClickedGr");
         String v = getIntent().getStringExtra("url"); // variable contient l'url
         //String region = getIntent().getStringExtra("ListViewClickedRegion");
-        Query current_Beer = database.getReference("Beers").orderByChild("Beers").equalTo(name).limitToFirst(1);
-
+        Query current_Beer = database.getReference("Beers").orderByChild("name").equalTo(name).limitToFirst(1).getRef();
         //Toast.makeText(getApplicationContext(), current_Beer.g, Toast.LENGTH_LONG).show();
 
 
@@ -154,6 +153,18 @@ public class Activity_Beer extends AppCompatActivity  {
                 else {
                     ratingText.setText("La note moyenne est " + moyenne);
                 }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        current_Beer.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
             }
 
             @Override

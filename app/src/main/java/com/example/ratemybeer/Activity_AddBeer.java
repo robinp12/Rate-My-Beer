@@ -110,7 +110,6 @@ public class Activity_AddBeer extends AppCompatActivity {
 
     private void addBeer() {
 
-
         String name = editTextname.getText().toString().trim() ;
         String origin = editTextorigin.getText().toString().trim() ;
         String alcohol = editTextalcohol.getText().toString().trim();
@@ -142,14 +141,14 @@ public class Activity_AddBeer extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Bière ajoutée avec succès", Toast.LENGTH_LONG).show();
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference("Beers");
+        DatabaseReference ref = database.getReference();
         if(url==null){
             url="https://firebasestorage.googleapis.com/v0/b/rate-my-beer-8566e.appspot.com" +
                     "/o/images%2FbiereSimple.JPEG?alt=media&token=d21c359e-ee6c-4288-828d-77e2acb7d19c";
         }
         Biere beer = new Biere(name, origin,degree,description, url);
-        DatabaseReference newBeer = ref.push();
-        newBeer.setValue(beer);
+        ref.child("Beers").child(name).setValue(beer);
+        //newBeer.setValue(beer);
 
     }
 

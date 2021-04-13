@@ -31,6 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.EventListener;
+import java.util.HashMap;
 
 public class Activity_Timeline extends AppCompatActivity {
     ListView allBeerlistView;;
@@ -38,6 +39,7 @@ public class Activity_Timeline extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     Biere beer;
     Spinner spinner;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,12 +55,29 @@ public class Activity_Timeline extends AppCompatActivity {
         //ArrayAdapter
         ArrayList<Biere> beerList = new ArrayList<>();
 
-        //Query
         DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+
+        //Query
         DatabaseReference dataBeers = database.child("Beers");
         Query onNameFilter = dataBeers.orderByChild("name");
         Query onDegFilter = dataBeers.orderByChild("degree");
         Query onRegionFilter = dataBeers.orderByChild("origin");
+
+        /*DatabaseReference current_user = FirebaseDatabase.getInstance().getReference("Users").child(mAuth.getUid());
+        current_user.addValueEventListener(new ValueEventListener() {
+            HashMap<String , Float> liste_rate;
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot user_rate:snapshot.getChildren()){
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });*/
 
         BeerAdapter customAdapter = new BeerAdapter(Activity_Timeline.this, beerList);
 

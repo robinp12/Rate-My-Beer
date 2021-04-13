@@ -1,21 +1,25 @@
 package com.example.ratemybeer;
 
-import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.bumptech.glide.Glide;
-import com.example.ratemybeer.Biere;
-import com.example.ratemybeer.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +41,7 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
 
         this.filteredBeers = listeBiere;
         this.originalBeers = listeBiere;
+
     }
 
     @Override
@@ -69,10 +74,12 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
         TextView beerAlcoholView = view.findViewById(R.id.textView);
         ImageView beerPicture = view.findViewById(R.id.imageView4);
         TextView beerOrigin = view.findViewById(R.id.textView8);
+        //TextView rateUser = view.findViewById(R.id.user_rate);
 
         beerNameView.setText(currentBeer.getName());
         beerAlcoholView.setText(currentBeer.getDegree()+"°");
         beerOrigin.setText("Origine : "+currentBeer.getOrigin());
+
 
         Glide.with(beerPicture.getContext()).load(urlImg).placeholder(R.drawable.bieresimple).into(beerPicture);
 
