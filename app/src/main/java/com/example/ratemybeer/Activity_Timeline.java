@@ -66,22 +66,6 @@ public class Activity_Timeline extends AppCompatActivity {
         Query onRegionFilter = dataBeers.orderByChild("origin");
         Query onGrating = dataBeers.orderByChild("global_rating");
 
-        /*DatabaseReference current_user = FirebaseDatabase.getInstance().getReference("Users").child(mAuth.getUid());
-        current_user.addValueEventListener(new ValueEventListener() {
-            HashMap<String , Float> liste_rate;
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot user_rate:snapshot.getChildren()){
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });*/
-
         BeerAdapter customAdapter = new BeerAdapter(Activity_Timeline.this, beerList);
 
         /*
@@ -94,11 +78,6 @@ public class Activity_Timeline extends AppCompatActivity {
 
         final boolean[] isNameFilterDescending = {false};
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            DatabaseReference dataBeers = database.child("Beers");
-            Query onNameFilter = dataBeers.orderByChild("name");
-            Query onDegFilter = dataBeers.orderByChild("degree");
-            Query onRegionFilter = dataBeers.orderByChild("origin");
-            Query onGrating = dataBeers.orderByChild("global_rating");
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Object selection = parent.getItemAtPosition(position);

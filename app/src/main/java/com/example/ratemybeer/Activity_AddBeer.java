@@ -25,6 +25,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -45,7 +47,6 @@ public class Activity_AddBeer extends AppCompatActivity {
     // Pour addbeer:
 
     private EditText editTextname, editTextorigin ,editTextalcohol, editTextdescription ;
-    private ProgressBar progressBar ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +66,6 @@ public class Activity_AddBeer extends AppCompatActivity {
 
         editTextalcohol = (EditText) findViewById(R.id.alcohol) ;
         editTextdescription = (EditText) findViewById(R.id.description) ;
-        progressBar = (ProgressBar) findViewById(R.id.progressBar) ;
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,14 +142,14 @@ public class Activity_AddBeer extends AppCompatActivity {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
         if(url==null){
             url="https://firebasestorage.googleapis.com/v0/b/rate-my-beer-8566e.appspot.com" +
                     "/o/images%2FbiereSimple.JPEG?alt=media&token=d21c359e-ee6c-4288-828d-77e2acb7d19c";
         }
-        Biere beer = new Biere(name, origin,degree,description, url);
+        Biere beer = new Biere(name, origin,degree,description, url, user.getUid());
         ref.child("Beers").child(name).setValue(beer);
-        //newBeer.setValue(beer);
-
     }
 
 

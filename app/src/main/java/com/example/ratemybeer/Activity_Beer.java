@@ -56,11 +56,12 @@ public class Activity_Beer extends AppCompatActivity  {
     // Variable for comment
     EditText com ;
     Button add ;
+    Button modifyBeer ;
+    EditText modifyBeerDesc ;
     ImageView imgU ;
     RecyclerView RvComment ;
     CommentAdapter commentAdapter;
     List<Comment> listComment;
-
 
     FirebaseAuth mAuth;
     FirebaseUser firebaseUser;
@@ -70,7 +71,6 @@ public class Activity_Beer extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beer);
-
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -83,25 +83,61 @@ public class Activity_Beer extends AppCompatActivity  {
         origin = findViewById(R.id.region);
         String name = getIntent().getStringExtra("ListViewClickedName");
         b = findViewById(R.id.img) ;
-// comment
+        modifyBeer = findViewById(R.id.button);
+        modifyBeerDesc = findViewById(R.id.editTextTextMultiLine);
+
+        // comment
         RvComment = findViewById(R.id.rv);
         add = findViewById(R.id.Add);
         com = findViewById(R.id.comment) ;
         imgU = findViewById(R.id.imageU) ;
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        firebaseUser = firebaseAuth.getCurrentUser();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference postedBy = firebaseDatabase.getReference().child("Beers").child(name).child("postedBy");
+        DatabaseReference isAdmin = firebaseDatabase.getReference().child("Users").child(firebaseUser.getUid()).child("isAdmin");
 
-        // Query current_Beer = database.getReference("Beers").orderByChild("name").equalTo(name).limitToFirst(1).getRef();
-
+        isAdmin.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.getValue().equals(true)){
+                    Toast.makeText(getApplicationContext(),"Admin", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"Pas Admin", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+        postedBy.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.getValue().toString().equals(firebaseUser.getUid())){
+                    modifyBeer.setVisibility(View.VISIBLE);
+                }
+                else{
+                    modifyBeer.setVisibility(View.GONE);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+        modifyBeer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //beerDesc.setVisibility(View.GONE);
+                //modifyBeerDesc.setVisibility(View.VISIBLE);
+            }
+        });
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 add.setVisibility(View.INVISIBLE);
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference ref = database.getReference().child("Comment").child(name).push();
+                DatabaseReference ref = firebaseDatabase.getReference().child("Comment").child(name).push();
                 String comment_content = com.getText().toString();
                 String uid = firebaseUser.getUid();
                 String uname = firebaseUser.getDisplayName();
@@ -128,67 +164,45 @@ public class Activity_Beer extends AppCompatActivity  {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         listComment = new ArrayList<>();
                         for (DataSnapshot snap:dataSnapshot.getChildren()) {
-
                             Comment commente = snap.getValue(Comment.class);
                             listComment.add(commente) ;
-
                         }
-
                         commentAdapter = new CommentAdapter(getApplicationContext(),listComment);
                         RvComment.setAdapter(commentAdapter);
-
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-
                     }
                 });
             }
         });
 
             RvComment.setLayoutManager(new LinearLayoutManager(this));
-
             DatabaseReference commentRef = firebaseDatabase.getReference("Comment").child(name);
             commentRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     listComment = new ArrayList<>();
                     for (DataSnapshot snap:dataSnapshot.getChildren()) {
-
                         Comment comment = snap.getValue(Comment.class);
                         listComment.add(comment) ;
-
                     }
                     commentAdapter = new CommentAdapter(getApplicationContext(),listComment);
                     RvComment.setAdapter(commentAdapter);
-
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-
                 }
             });
 
-       //RvComment.setLayoutManager(new LinearLayoutManager(this));
-
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-
-        DatabaseReference current_user = database.getReference("Users").child(mAuth.getUid());
+        DatabaseReference current_user = firebaseDatabase.getReference("Users").child(mAuth.getUid());
         String username = current_user.child("fullName").toString();
-        DatabaseReference users=database.getReference("Users");
+        DatabaseReference users = firebaseDatabase.getReference("Users");
 
         // Receiving value into activity using intent.
-
         String desc = getIntent().getStringExtra("ListViewClickedDesc");
         String gr = getIntent().getStringExtra("ListViewClickedGr");
         String v = getIntent().getStringExtra("url"); // variable contient l'url
-        //String region = getIntent().getStringExtra("ListViewClickedRegion");
-
-        //Query current_Beer = database.getReference("Beers").orderByChild("name").equalTo(name).limitToFirst(1).getRef();
-        //Toast.makeText(getApplicationContext(), current_Beer.g, Toast.LENGTH_LONG).show();
-
 
         // Setting up received value into EditText.
         beerName.setText(name);
@@ -202,11 +216,9 @@ public class Activity_Beer extends AppCompatActivity  {
         current_user.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                 if (snapshot.child("user_rated_beers").hasChild(name)){
                     String  rate_beer = snapshot.child("user_rated_beers").child(name).getValue().toString();
                     ratingStar.setRating(Float.parseFloat(rate_beer));
-
                 }
                 else{
                     //Toast.makeText(getApplicationContext(),"Tu n'as pas encore voté cette bière !", Toast.LENGTH_SHORT).show();
@@ -215,30 +227,17 @@ public class Activity_Beer extends AppCompatActivity  {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
 
         ratingStar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-
-                //ratingText.setText("Your rating is : "+rating);
-
                 HashMap<String,Object> new_rate = new HashMap<>();
                 new_rate.put(name,Float.toString(rating));
 
                 //if beer
                 current_user.child("user_rated_beers").updateChildren(new_rate);
-
-                //DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-                //DatabaseReference mRatingBarCh = rootRef.child("ratings");
-
-                //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                //Rating rating1 = new Rating(rating,name) ;
-                //DatabaseReference newrate = mRatingBarCh.push();
-                //newrate.setValue(rating1) ;
-
             }
         });
         users.addValueEventListener(new ValueEventListener() {
@@ -249,7 +248,6 @@ public class Activity_Beer extends AppCompatActivity  {
                     if(ds.child("user_rated_beers").hasChild(name)){
                         String rate_beer=ds.child("user_rated_beers").child(name).getValue().toString();
                         globalRating.add(Float.parseFloat(rate_beer));
-
                     }
                 }
                 float moyenne=0;
@@ -262,28 +260,13 @@ public class Activity_Beer extends AppCompatActivity  {
                 }
                 else {
                     ratingText.setText("La note moyenne est " + moyenne);
-                    database.getReference().child("Beers").child(name).child("global_rating").setValue(moyenne);
-
+                    firebaseDatabase.getReference().child("Beers").child(name).child("global_rating").setValue(moyenne);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
-
-        /*current_Beer.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });*/
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
 
@@ -309,18 +292,15 @@ public class Activity_Beer extends AppCompatActivity  {
 
     }
     private void showMessage(String message) {
-
         Toast.makeText(this,message,Toast.LENGTH_LONG).show();
 
     }
 
     private String timestampToString(long time) {
-
         Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
         calendar.setTimeInMillis(time);
         String date = DateFormat.format("dd-MM-yyyy",calendar).toString();
         return date;
-
     }
 
 }

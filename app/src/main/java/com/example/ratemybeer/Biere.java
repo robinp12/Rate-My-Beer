@@ -9,6 +9,7 @@ public class Biere {
     private String description;
     private float global_rating;
     private String urlFirebase;
+    private String postedBy;
 
     //constructeur par défaut
     public Biere(){}
@@ -20,13 +21,15 @@ public class Biere {
         this.degree = alcohol;
     }
     //constructeur ajout de bière
-    public Biere(String name, String origin, float alcohol, String description, String image){
+    public Biere(String name, String origin, float alcohol, String description, String image, String postedBy){
         this.name=name;
         this.description=description;
         this.origin = origin;
         this.degree=alcohol ;
         this.image = image ;
+        this.postedBy = postedBy ;
     }
+
     //getter
     public String getDescription() {
         return description;
@@ -50,6 +53,9 @@ public class Biere {
     public String getImg(){return this.image;}
     public String getUrlFirebase(){return this.urlFirebase;}
     public float getGlobal_rating(){return this.global_rating;}
+    public String getPostedBy() {
+        return postedBy;
+    }
 
     //setter
 
@@ -61,5 +67,8 @@ public class Biere {
     }
     public void setDescription(String description) {
         this.description = description;
+    }
+    public void setPostedBy(String postedBy) {
+        this.postedBy = postedBy;
     }
 }
