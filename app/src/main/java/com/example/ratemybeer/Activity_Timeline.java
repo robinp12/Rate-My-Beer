@@ -30,6 +30,8 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.EventListener;
 import java.util.HashMap;
 
@@ -90,6 +92,7 @@ public class Activity_Timeline extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
+        final boolean[] isNameFilterDescending = {false};
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -164,7 +167,9 @@ public class Activity_Timeline extends AppCompatActivity {
                                 beer = ds.getValue(Biere.class);
                                 //beerName.add(beer.getName());
                                 beerList.add(beer);
+                                Collections.reverse(beerList);
                             }
+                            Collections.reverse(beerList);
                             allBeerlistView.setAdapter(customAdapter);
                         }
 
