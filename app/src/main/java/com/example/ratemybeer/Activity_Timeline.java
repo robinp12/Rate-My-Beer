@@ -94,6 +94,11 @@ public class Activity_Timeline extends AppCompatActivity {
 
         final boolean[] isNameFilterDescending = {false};
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            DatabaseReference dataBeers = database.child("Beers");
+            Query onNameFilter = dataBeers.orderByChild("name");
+            Query onDegFilter = dataBeers.orderByChild("degree");
+            Query onRegionFilter = dataBeers.orderByChild("origin");
+            Query onGrating = dataBeers.orderByChild("global_rating");
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Object selection = parent.getItemAtPosition(position);
@@ -167,7 +172,6 @@ public class Activity_Timeline extends AppCompatActivity {
                                 beer = ds.getValue(Biere.class);
                                 //beerName.add(beer.getName());
                                 beerList.add(beer);
-                                Collections.reverse(beerList);
                             }
                             Collections.reverse(beerList);
                             allBeerlistView.setAdapter(customAdapter);
