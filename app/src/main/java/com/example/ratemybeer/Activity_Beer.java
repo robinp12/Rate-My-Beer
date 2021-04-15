@@ -94,6 +94,8 @@
         firebaseUser = firebaseAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
+        // Query current_Beer = database.getReference("Beers").orderByChild("name").equalTo(name).limitToFirst(1).getRef();
+
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,8 +107,7 @@
                 String comment_content = com.getText().toString();
                 String uid = firebaseUser.getUid();
                 String uname = firebaseUser.getDisplayName();
-               //String uimg = firebaseUser.getPhotoUrl().toString();
-               // Query current_Beer = database.getReference("Beers").orderByChild("name").equalTo(name).limitToFirst(1).getRef();
+                //String uimg = firebaseUser.getPhotoUrl().toString();
                 Comment comment = new Comment(comment_content,uid,null,uname);
 
                 ref.setValue(comment).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -130,8 +131,8 @@
                         listComment = new ArrayList<>();
                         for (DataSnapshot snap:dataSnapshot.getChildren()) {
 
-                            Comment comment = snap.getValue(Comment.class);
-                            listComment.add(comment) ;
+                            Comment commente = snap.getValue(Comment.class);
+                            listComment.add(commente) ;
 
                         }
 

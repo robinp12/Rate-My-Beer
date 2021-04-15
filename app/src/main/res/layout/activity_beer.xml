@@ -59,7 +59,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"
-        android:layout_width="409dp"
+        android:layout_width="0dp"
         android:layout_height="210dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="5dp"
@@ -150,7 +150,7 @@
         android:id="@+id/imageU"
         android:layout_width="47dp"
         android:layout_height="43dp"
-        android:layout_marginStart="39dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
@@ -181,7 +181,7 @@
         android:id="@+id/Add"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="12dp"
         android:layout_marginBottom="80dp"
         android:background="@drawable/edittext_button_style_rounded"
         android:text="Add"
@@ -189,8 +189,9 @@
         android:textSize="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/comment"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/comment"
         app:layout_constraintTop_toTopOf="@+id/comment"
-        app:layout_constraintVertical_bias="0.025" />
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
