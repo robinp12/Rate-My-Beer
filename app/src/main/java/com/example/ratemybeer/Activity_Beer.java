@@ -1,8 +1,6 @@
+package com.example.ratemybeer;
 
-
-        package com.example.ratemybeer;
-
-        import androidx.annotation.NonNull;
+import androidx.annotation.NonNull;
         import androidx.appcompat.app.AppCompatActivity;
         import androidx.recyclerview.widget.LinearLayoutManager;
         import androidx.recyclerview.widget.RecyclerView;
@@ -42,7 +40,7 @@
         import java.util.List;
         import java.util.Locale;
 
-        public class Activity_Beer extends AppCompatActivity  {
+public class Activity_Beer extends AppCompatActivity  {
     TextView ratingText;
     TextView beerName ;
     TextView beerDesc ;
@@ -139,7 +137,6 @@
                         commentAdapter = new CommentAdapter(getApplicationContext(),listComment);
                         RvComment.setAdapter(commentAdapter);
 
-
                     }
 
                     @Override
@@ -147,12 +144,8 @@
 
                     }
                 });
-
-
             }
         });
-
-
 
             RvComment.setLayoutManager(new LinearLayoutManager(this));
 
@@ -167,10 +160,8 @@
                         listComment.add(comment) ;
 
                     }
-
                     commentAdapter = new CommentAdapter(getApplicationContext(),listComment);
                     RvComment.setAdapter(commentAdapter);
-
 
                 }
 
@@ -180,21 +171,7 @@
                 }
             });
 
-
-
-
-
-
-
        //RvComment.setLayoutManager(new LinearLayoutManager(this));
-
-
-
-
-
-
-
-
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
@@ -209,7 +186,7 @@
         String v = getIntent().getStringExtra("url"); // variable contient l'url
         //String region = getIntent().getStringExtra("ListViewClickedRegion");
 
-        Query current_Beer = database.getReference("Beers").orderByChild("name").equalTo(name).limitToFirst(1).getRef();
+        //Query current_Beer = database.getReference("Beers").orderByChild("name").equalTo(name).limitToFirst(1).getRef();
         //Toast.makeText(getApplicationContext(), current_Beer.g, Toast.LENGTH_LONG).show();
 
 
@@ -241,8 +218,6 @@
 
             }
         });
-
-
 
         ratingStar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
@@ -287,6 +262,8 @@
                 }
                 else {
                     ratingText.setText("La note moyenne est " + moyenne);
+                    database.getReference().child("Beers").child(name).child("global_rating").setValue(moyenne);
+
                 }
             }
 
@@ -296,7 +273,7 @@
             }
         });
 
-        current_Beer.addListenerForSingleValueEvent(new ValueEventListener() {
+        /*current_Beer.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -306,7 +283,7 @@
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        });*/
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
 
@@ -331,24 +308,19 @@
         });
 
     }
-            private void showMessage(String message) {
+    private void showMessage(String message) {
 
-                Toast.makeText(this,message,Toast.LENGTH_LONG).show();
+        Toast.makeText(this,message,Toast.LENGTH_LONG).show();
 
-            }
+    }
 
-            private String timestampToString(long time) {
+    private String timestampToString(long time) {
 
-                Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
-                calendar.setTimeInMillis(time);
-                String date = DateFormat.format("dd-MM-yyyy",calendar).toString();
-                return date;
+        Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
+        calendar.setTimeInMillis(time);
+        String date = DateFormat.format("dd-MM-yyyy",calendar).toString();
+        return date;
 
-
-            }
-
-
-
-
+    }
 
 }

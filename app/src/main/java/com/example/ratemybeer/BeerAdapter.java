@@ -74,11 +74,12 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
         TextView beerAlcoholView = view.findViewById(R.id.textView);
         ImageView beerPicture = view.findViewById(R.id.imageView4);
         TextView beerOrigin = view.findViewById(R.id.textView8);
-        //TextView rateUser = view.findViewById(R.id.user_rate);
+        TextView global_rating = view.findViewById(R.id.Grating);
 
         beerNameView.setText(currentBeer.getName());
         beerAlcoholView.setText(currentBeer.getDegree()+"°");
         beerOrigin.setText("Origine : "+currentBeer.getOrigin());
+        global_rating.setText("Note globale : "+currentBeer.getGlobal_rating());
 
 
         Glide.with(beerPicture.getContext()).load(urlImg).placeholder(R.drawable.bieresimple).into(beerPicture);
