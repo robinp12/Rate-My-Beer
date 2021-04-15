@@ -60,14 +60,15 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="0dp"
-        android:layout_height="210dp"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
+
         android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageU"
+        app:layout_constraintTop_toBottomOf="@+id/comment"
         tools:ignore="MissingConstraints" />
 
     <ImageView
