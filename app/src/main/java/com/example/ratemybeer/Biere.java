@@ -5,7 +5,6 @@ public class Biere {
     private String name;
     private String origin ;
     private float degree ;
-    private int rate_user;
     private String description;
     private float global_rating;
     private String urlFirebase;
@@ -15,11 +14,11 @@ public class Biere {
     public Biere(){}
 
     //constructeur liste de bière
-    public Biere(String name, int rate_user, float alcohol){
+    /*public Biere(String name, int rate_user, float alcohol){
         this.name = name;
         this.rate_user = rate_user;
         this.degree = alcohol;
-    }
+    }*/
     //constructeur ajout de bière
     public Biere(String name, String origin, float alcohol, String description, String image, String postedBy){
         this.name=name;
@@ -49,7 +48,6 @@ public class Biere {
     public String getName() {
         return this.name;
     }
-    public int getRate_user(){return this.rate_user; }
     public String getImg(){return this.image;}
     public String getUrlFirebase(){return this.urlFirebase;}
     public float getGlobal_rating(){return this.global_rating;}

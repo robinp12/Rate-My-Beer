@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -19,10 +20,13 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.auth.FirebaseUser;
+
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class BeerAdapter extends BaseAdapter implements Filterable {
 
@@ -38,6 +42,7 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
         this.context = context;
         this.listeBiere = listeBiere;
         this.inflater = LayoutInflater.from(context);
+        FirebaseAuth mAuth;
 
         this.filteredBeers = listeBiere;
         this.originalBeers = listeBiere;
@@ -63,23 +68,56 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
     public View getView(int position, View view, ViewGroup parent) {
 
         view = inflater.inflate(R.layout.beer_element, null);
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         Biere currentBeer = getItem(position);
         String urlImg = currentBeer.getImg();
 
-        //String beerName = currentBeer.getName();
-        //String beerAlcohol = currentBeer.getAlcohol();
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+
+        DatabaseReference isAdmin = database.child("Users").child(firebaseUser.getUid()).child("isAdmin");
 
         TextView beerNameView = view.findViewById(R.id.beer_info);
         TextView beerAlcoholView = view.findViewById(R.id.textView);
         ImageView beerPicture = view.findViewById(R.id.imageView4);
         TextView beerOrigin = view.findViewById(R.id.textView8);
         TextView global_rating = view.findViewById(R.id.Grating);
+        Button delButton = view.findViewById(R.id.deletebutton);
+        Button editButton = view.findViewById(R.id.editButton);
 
         beerNameView.setText(currentBeer.getName());
         beerAlcoholView.setText(currentBeer.getDegree()+"°");
         beerOrigin.setText("Origine : "+currentBeer.getOrigin());
         global_rating.setText("Note globale : "+currentBeer.getGlobal_rating());
+
+        delButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                database.child("Beers").child(currentBeer.getName()).removeValue();
+            }
+        });
+
+        isAdmin.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.getValue().toString().equals("true")){
+                    delButton.setVisibility(View.VISIBLE);
+                    editButton.setVisibility(View.VISIBLE);
+
+                }
+                else{
+                    delButton.setVisibility(View.GONE);
+                    editButton.setVisibility(View.GONE);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
         Glide.with(beerPicture.getContext()).load(urlImg).placeholder(R.drawable.bieresimple).into(beerPicture);

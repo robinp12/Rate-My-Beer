@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 public class User {
     public String firstName, lastName, age, email, pseudo;
+    private Boolean isAdmin;
     public HashMap<String,String> rated_beers;
 
     public String getFirstName() {
@@ -45,6 +46,10 @@ public class User {
     public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
     }
+
+    public Boolean getAdmin() { return isAdmin; }
+
+    public void setAdmin(Boolean admin) { isAdmin = admin; }
 
     public HashMap<String, String> getRated_beers() {
         return rated_beers;
