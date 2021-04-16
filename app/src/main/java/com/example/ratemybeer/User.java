@@ -65,6 +65,7 @@ public class User {
         this.pseudo=pseudo ;
         this.age=age;
         this.email=email ;
+        this.isAdmin = false;
         rated_beers = new HashMap<>();
     }
 }
