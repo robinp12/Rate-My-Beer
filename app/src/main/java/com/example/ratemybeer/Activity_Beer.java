@@ -2,11 +2,13 @@ package com.example.ratemybeer;
 
 import androidx.annotation.NonNull;
         import androidx.appcompat.app.AppCompatActivity;
-        import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
         import androidx.recyclerview.widget.RecyclerView;
 
         import android.content.Intent;
-        import android.os.Bundle;
+import android.gesture.GestureOverlayView;
+import android.os.Bundle;
         import android.text.format.DateFormat;
         import android.view.MenuItem;
         import android.view.View;
@@ -86,6 +88,9 @@ public class Activity_Beer extends AppCompatActivity  {
         modifyBeer = findViewById(R.id.button);
         modifyBeerDesc = findViewById(R.id.editTextTextMultiLine);
 
+
+
+        
         // comment
         RvComment = findViewById(R.id.rv);
         add = findViewById(R.id.Add);

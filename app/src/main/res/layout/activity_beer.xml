@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back"
+android:background="@drawable/back"
     tools:context=".Activity_Beer">
 
 
@@ -44,10 +44,10 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="242dp"
+        android:layout_width="0dp"
         android:layout_height="37dp"
 
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="52dp"
         android:layout_marginEnd="10dp"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -61,14 +61,16 @@
         android:id="@+id/rv"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="5dp"
-
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:background="@drawable/back"
         android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/comment"
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintVertical_bias="2.0"
+        android:dividerHeight="8dp"
         tools:ignore="MissingConstraints" />
 
     <ImageView
@@ -81,23 +83,23 @@
         android:layout_marginBottom="36dp"
         app:layout_constraintBottom_toTopOf="@+id/textView6"
         app:layout_constraintEnd_toStartOf="@+id/rb"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/jupiler" />
 
     <RatingBar
         android:id="@+id/rb"
-        android:layout_width="234dp"
+        android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="8dp"
         android:background="#00FFFFFF"
         android:backgroundTint="#FFFFFF"
-        android:foregroundTint="#DFDFDF"
+        android:foregroundTint="#FFC107"
         android:indeterminateTint="#74FFFFFF"
         android:numStars="5"
-        android:progressTint="#F4F4F4"
+        android:progressTint="#FFEB3B"
         android:scaleX=".5"
         android:scaleY=".5"
 
@@ -137,8 +139,8 @@
         android:id="@+id/textView6"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
         android:fontFamily="sans-serif-light"
         android:text="Description : "
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -152,11 +154,12 @@
         android:layout_width="47dp"
         android:layout_height="43dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/textView9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7"
-        app:srcCompat="@drawable/ic_launcher_background"
+        app:srcCompat="@drawable/nnn"
         tools:ignore="MissingConstraints"
         tools:srcCompat="@tools:sample/avatars" />
 
@@ -169,7 +172,7 @@
 
         android:background="@drawable/edittext_button_style_rounded"
         android:ems="10"
-        android:hint="  Write Comment"
+        android:hint="  Ajoutez votre avis"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/imageU"
         app:layout_constraintEnd_toStartOf="@+id/add"
@@ -219,6 +222,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="0dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="287dp"
+        android:text="Avis"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageU" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
