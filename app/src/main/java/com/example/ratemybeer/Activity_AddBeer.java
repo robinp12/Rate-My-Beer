@@ -113,9 +113,16 @@ public class Activity_AddBeer extends AppCompatActivity {
         String name = editTextname.getText().toString().trim() ;
         String origin = editTextorigin.getText().toString().trim() ;
         String alcohol = editTextalcohol.getText().toString().trim();
+        String description = editTextdescription.getText().toString().trim() ;
+
+
+        if (alcohol.isEmpty()){
+            editTextalcohol.setError("degré d'alcool requis");
+            editTextalcohol.requestFocus();
+            return;
+        }
         alcohol = alcohol.replaceAll(",",".");
         float degree = Float.parseFloat(alcohol) ;
-        String description = editTextdescription.getText().toString().trim() ;
 
         if (name.isEmpty()){
             editTextname.setError("Nom requis");
