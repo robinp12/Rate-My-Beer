@@ -1,7 +1,6 @@
 package com.example.ratemybeer;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,18 +9,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,28 +23,28 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.EventListener;
-import java.util.HashMap;
 
-public class Activity_Timeline extends AppCompatActivity {
-    ListView allBeerlistView;;
-    SearchView searchView;
-    BottomNavigationView bottomNavigationView;
+public class activity_favoris extends AppCompatActivity {
+    ListView allBeerlistView1;
+    ;
+    SearchView searchView1;
+    BottomNavigationView bottomNavigationView1;
     Biere beer;
-    Spinner spinner;
+    Spinner spinner1;
     private FirebaseAuth mAuth;
+    FirebaseDatabase firebaseDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_timeline);
-
+        setContentView(R.layout.activity_favoris);
+        mAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
         //Button and ListView
-        allBeerlistView = findViewById(R.id.listView);
-        searchView = findViewById(R.id.search);
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        allBeerlistView1 = findViewById(R.id.listView1);
+        searchView1 = findViewById(R.id.search1);
+        bottomNavigationView1 = findViewById(R.id.bottom_navigation1);
         //beer = new Biere();
 
         //ArrayAdapter
@@ -60,24 +53,24 @@ public class Activity_Timeline extends AppCompatActivity {
         DatabaseReference database = FirebaseDatabase.getInstance().getReference();
 
         //Query
-        DatabaseReference dataBeers = database.child("Beers");
-        Query onNameFilter = dataBeers.orderByChild("name");
-        Query onDegFilter = dataBeers.orderByChild("degree");
-        Query onRegionFilter = dataBeers.orderByChild("origin");
-        Query onGrating = dataBeers.orderByChild("global_rating");
+        DatabaseReference ref = firebaseDatabase.getReference("Users").child(mAuth.getUid()).child("Favoris");
+        Query onNameFilter1 = ref.orderByChild("name");
+        Query onDegFilter1 = ref.orderByChild("degree");
+        Query onRegionFilter1 = ref.orderByChild("origin");
+        Query onGrating1 = ref.orderByChild("global_rating");
 
-        BeerAdapter customAdapter = new BeerAdapter(Activity_Timeline.this, beerList);
+        Adapter customAdapter = new Adapter(activity_favoris.this, beerList);
 
         /*
          Dropdown menu filter beer
         */
-        spinner = findViewById(R.id.spinner);
+        spinner1 = findViewById(R.id.spinner1);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.beer, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        spinner1.setAdapter(adapter);
 
         final boolean[] isNameFilterDescending = {false};
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Object selection = parent.getItemAtPosition(position);
@@ -85,7 +78,7 @@ public class Activity_Timeline extends AppCompatActivity {
 
                 if(selection.toString().equals("Nom")){
                     //Toast.makeText(getApplicationContext(), "Nom clicked", Toast.LENGTH_LONG).show();
-                    onNameFilter.addValueEventListener(new ValueEventListener() {
+                    onNameFilter1.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             beerList.clear();
@@ -94,7 +87,7 @@ public class Activity_Timeline extends AppCompatActivity {
                                 //beerName.add(beer.getName());
                                 beerList.add(beer);
                             }
-                            allBeerlistView.setAdapter(customAdapter);
+                            allBeerlistView1.setAdapter(customAdapter);
                         }
 
                         @Override
@@ -105,7 +98,7 @@ public class Activity_Timeline extends AppCompatActivity {
                 }
 
                 else if (selection.toString().equals("Degré")){
-                    onDegFilter.addValueEventListener(new ValueEventListener() {
+                    onDegFilter1.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             beerList.clear();
@@ -114,7 +107,7 @@ public class Activity_Timeline extends AppCompatActivity {
                                 //beerName.add(beer.getName());
                                 beerList.add(beer);
                             }
-                            allBeerlistView.setAdapter(customAdapter);
+                            allBeerlistView1.setAdapter(customAdapter);
                         }
 
                         @Override
@@ -124,7 +117,7 @@ public class Activity_Timeline extends AppCompatActivity {
                     });
                 }
                 else if (selection.toString().equals("Region")){
-                    onRegionFilter.addValueEventListener(new ValueEventListener() {
+                    onRegionFilter1.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             beerList.clear();
@@ -133,7 +126,7 @@ public class Activity_Timeline extends AppCompatActivity {
                                 //beerName.add(beer.getName());
                                 beerList.add(beer);
                             }
-                            allBeerlistView.setAdapter(customAdapter);
+                            allBeerlistView1.setAdapter(customAdapter);
                         }
 
                         @Override
@@ -143,7 +136,7 @@ public class Activity_Timeline extends AppCompatActivity {
                     });
                 }
                 else if (selection.toString().equals("Note")){
-                    onGrating.addValueEventListener(new ValueEventListener() {
+                    onGrating1.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             beerList.clear();
@@ -153,7 +146,7 @@ public class Activity_Timeline extends AppCompatActivity {
                                 beerList.add(beer);
                             }
                             Collections.reverse(beerList);
-                            allBeerlistView.setAdapter(customAdapter);
+                            allBeerlistView1.setAdapter(customAdapter);
                         }
 
                         @Override
@@ -166,7 +159,7 @@ public class Activity_Timeline extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                dataBeers.addValueEventListener(new ValueEventListener() {
+                ref.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         beerList.clear();
@@ -175,7 +168,7 @@ public class Activity_Timeline extends AppCompatActivity {
                             //beerName.add(beer.getName());
                             beerList.add(beer);
                         }
-                        allBeerlistView.setAdapter(customAdapter);
+                        allBeerlistView1.setAdapter(customAdapter);
                     }
 
                     @Override
@@ -187,7 +180,7 @@ public class Activity_Timeline extends AppCompatActivity {
             }
         });
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        searchView1.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 return false;
@@ -196,13 +189,13 @@ public class Activity_Timeline extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 customAdapter.getFilter().filter(newText);
-                allBeerlistView.setAdapter(customAdapter);
+                allBeerlistView1.setAdapter(customAdapter);
 
                 return false;
             }
         });
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
+        bottomNavigationView1.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
 
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -217,7 +210,6 @@ public class Activity_Timeline extends AppCompatActivity {
                     case R.id.favorite:
                         intent = new Intent(getApplicationContext(), activity_favoris.class);
                         break;
-
                 }
                 startActivity(intent);
                 finish();
@@ -230,4 +222,4 @@ public class Activity_Timeline extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
     }
-}
+    }

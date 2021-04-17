@@ -16,21 +16,17 @@ import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.auth.FirebaseUser;
-
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-public class BeerAdapter extends BaseAdapter implements Filterable {
-
-    private Activity_Timeline context;
+public class Adapter extends BaseAdapter implements Filterable {
     private activity_favoris con ;
 
     private List<Biere> listeBiere;
@@ -38,9 +34,10 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
 
     private List<Biere> originalBeers = null;
     private List<Biere> filteredBeers = null;
+    Button addfav ;
 
     //constructeur
-    public BeerAdapter(activity_favoris con , List<Biere> listeBiere) {
+    public Adapter(activity_favoris con , List<Biere> listeBiere) {
         this.con = con;
         this.listeBiere = listeBiere;
         this.inflater = LayoutInflater.from(con);
@@ -50,17 +47,6 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
         this.originalBeers = listeBiere;
 
     }
-    public BeerAdapter(Activity_Timeline context, List<Biere> listeBiere) {
-        this.context = context;
-        this.listeBiere = listeBiere;
-        this.inflater = LayoutInflater.from(context);
-        FirebaseAuth mAuth;
-
-        this.filteredBeers = listeBiere;
-        this.originalBeers = listeBiere;
-
-    }
-
     @Override
     public int getCount() {
         return filteredBeers.size();
@@ -97,6 +83,7 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
         TextView global_rating = view.findViewById(R.id.Grating);
         Button delButton = view.findViewById(R.id.deletebutton);
         Button editButton = view.findViewById(R.id.editButton);
+
 
         beerNameView.setText(currentBeer.getName());
         beerAlcoholView.setText(currentBeer.getDegree()+"°");
@@ -143,7 +130,8 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
                 String TempListViewClickedDesc = currentBeer.getDescription();
                 String img = currentBeer.getImg() ;
 
-                Intent intent = new Intent(context.getApplicationContext(), Activity_Beer.class);
+                Intent intent = new Intent(con.getApplicationContext(), Activity_Beer.class);
+
 
                 // Sending value to another activity using intent.
                 intent.putExtra("ListViewClickedName", TempListViewClickedName);
@@ -151,8 +139,7 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
                 intent.putExtra("url",urlImg) ;
                 //intent.putExtra("ListViewClickedRegion",TempListViewClickedRegion);
 
-
-                context.startActivity(intent);
+                con.startActivity(intent);
 
             }
         });
@@ -195,3 +182,5 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
         return filter;
     }
 }
+
+

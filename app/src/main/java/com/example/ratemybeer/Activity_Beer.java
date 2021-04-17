@@ -16,7 +16,8 @@ import android.os.Bundle;
         import android.view.WindowManager;
         import android.widget.Button;
         import android.widget.EditText;
-        import android.widget.ImageView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
         import android.widget.RatingBar;
         import android.widget.TextView;
         import android.widget.Toast;
@@ -27,7 +28,8 @@ import android.os.Bundle;
         import com.google.android.material.bottomnavigation.BottomNavigationView;
         import com.google.firebase.auth.FirebaseAuth;
         import com.google.firebase.auth.FirebaseUser;
-        import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
         import com.google.firebase.database.DatabaseError;
         import com.google.firebase.database.DatabaseReference;
         import com.google.firebase.database.FirebaseDatabase;
@@ -57,14 +59,15 @@ public class Activity_Beer extends AppCompatActivity  {
 
     // Variable for comment
     EditText com ;
-    Button add ;
+    Button add;
+    ImageButton addFav ;
     Button modifyBeer ;
     EditText modifyBeerDesc ;
     ImageView imgU ;
     RecyclerView RvComment ;
     CommentAdapter commentAdapter;
     List<Comment> listComment;
-
+    Biere n ;
     FirebaseAuth mAuth;
     FirebaseUser firebaseUser;
     FirebaseDatabase firebaseDatabase;
@@ -84,9 +87,15 @@ public class Activity_Beer extends AppCompatActivity  {
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         origin = findViewById(R.id.region);
         String name = getIntent().getStringExtra("ListViewClickedName");
+        String desc = getIntent().getStringExtra("ListViewClickedDesc");
+        String gr = getIntent().getStringExtra("ListViewClickedGr");
+        String v = getIntent().getStringExtra("url");
+
         b = findViewById(R.id.img) ;
         modifyBeer = findViewById(R.id.button);
         modifyBeerDesc = findViewById(R.id.editTextTextMultiLine);
+        addFav = findViewById(R.id.fav) ;
+
 
 
 
@@ -108,7 +117,7 @@ public class Activity_Beer extends AppCompatActivity  {
                     Toast.makeText(getApplicationContext(),"Admin", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Toast.makeText(getApplicationContext(),"Pas Admin", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"", Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
@@ -136,6 +145,49 @@ public class Activity_Beer extends AppCompatActivity  {
                 //modifyBeerDesc.setVisibility(View.VISIBLE);
             }
         });
+
+        //add beer to favoris
+
+
+        addFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                DatabaseReference ref = firebaseDatabase.getReference("Users").child(mAuth.getUid()).child("Favoris").child(name);
+
+                final DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Beers").child(name);
+                reference.addValueEventListener(new ValueEventListener() {
+
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        addFav.setEnabled(false);
+                            n = snapshot.getValue(Biere.class); // n est une biere
+                        ref.setValue(n);
+
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    }
+                });
+            }
+        });
+
+        DatabaseReference database = firebaseDatabase.getReference("Users").child(mAuth.getUid());
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if(snapshot.child("Favoris").hasChild(name)){
+                    addFav.setImageResource(R.drawable.ic_staar);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+
+
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -205,9 +257,7 @@ public class Activity_Beer extends AppCompatActivity  {
         DatabaseReference users = firebaseDatabase.getReference("Users");
 
         // Receiving value into activity using intent.
-        String desc = getIntent().getStringExtra("ListViewClickedDesc");
-        String gr = getIntent().getStringExtra("ListViewClickedGr");
-        String v = getIntent().getStringExtra("url"); // variable contient l'url
+         // variable contient l'url
 
         // Setting up received value into EditText.
         beerName.setText(name);
@@ -286,8 +336,8 @@ public class Activity_Beer extends AppCompatActivity  {
                         intent = new Intent(getApplicationContext(), Activity_AddBeer.class);
                         break;
                     case R.id.favorite:
-                        //intent = new Intent(getApplicationContext(), Activity_Informations.class);
-                        return true;
+                        intent = new Intent(getApplicationContext(), activity_favoris.class);
+                        break;
                 }
                 startActivity(intent);
                 finish();

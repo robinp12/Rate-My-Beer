@@ -98,8 +98,8 @@ public class Activity_AddBeer extends AppCompatActivity {
                         intent = new Intent(getApplicationContext(), Activity_AddBeer.class);
                         break;
                     case R.id.favorite:
-                        //intent = new Intent(getApplicationContext(), Activity_Informations.class);
-                        return true;
+                        intent = new Intent(getApplicationContext(), activity_favoris.class);
+                        break;
                 }
                 startActivity(intent);
                 finish();
