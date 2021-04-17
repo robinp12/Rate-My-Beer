@@ -35,8 +35,6 @@ import com.google.firebase.database.DataSnapshot;
         import com.google.firebase.database.FirebaseDatabase;
         import com.google.firebase.database.Query;
         import com.google.firebase.database.ValueEventListener;
-        import com.squareup.picasso.Picasso;
-        import com.squareup.picasso.Request;
 
         import java.util.ArrayList;
         import java.util.Calendar;
@@ -54,7 +52,7 @@ public class Activity_Beer extends AppCompatActivity  {
     TextView gbrate;
     Rating rate ;
     TextView ve ; // la ou on stock l url
-    ImageView b ; /// L'image
+    ImageView vueimg ; /// L'image
     BottomNavigationView bottomNavigationView;
 
     // Variable for comment
@@ -89,9 +87,9 @@ public class Activity_Beer extends AppCompatActivity  {
         String name = getIntent().getStringExtra("ListViewClickedName");
         String desc = getIntent().getStringExtra("ListViewClickedDesc");
         String gr = getIntent().getStringExtra("ListViewClickedGr");
-        String v = getIntent().getStringExtra("url");
+        String utlImg = getIntent().getStringExtra("url");
 
-        b = findViewById(R.id.img) ;
+        vueimg = findViewById(R.id.img) ;
         modifyBeer = findViewById(R.id.button);
         modifyBeerDesc = findViewById(R.id.editTextTextMultiLine);
         addFav = findViewById(R.id.fav) ;
@@ -264,7 +262,8 @@ public class Activity_Beer extends AppCompatActivity  {
         beerDesc.setText(desc);
         gbrate.setText(gr);
         //ve.setText(v) ;
-        Picasso.with(this).load(String.valueOf(v)).into(b); // Convert the Url to image
+        Glide.with(vueimg.getContext()).load(utlImg).placeholder(R.drawable.bieresimple).into(vueimg);
+
         rate = new Rating();
 
         // check if beer already rated
