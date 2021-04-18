@@ -62,8 +62,8 @@ android:background="@drawable/back"
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="414dp"
+        android:layout_height="171dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
         android:background="@drawable/back"
@@ -73,7 +73,6 @@ android:background="@drawable/back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9"
-        app:layout_constraintVertical_bias="2.0"
         tools:ignore="MissingConstraints" />
 
     <ImageView
@@ -118,23 +117,13 @@ android:background="@drawable/back"
         android:id="@+id/vs"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="29dp"
+        android:layout_marginEnd="50dp"
         android:text="Rate"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/gr"
-        app:layout_constraintTop_toBottomOf="@+id/rb"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/gr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="4dp"
-        android:text="globaaaaal"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/img"
         app:layout_constraintTop_toBottomOf="@+id/rb"
         tools:ignore="MissingConstraints" />
 
@@ -156,10 +145,9 @@ android:background="@drawable/back"
         android:id="@+id/imageU"
         android:layout_width="47dp"
         android:layout_height="43dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/textView9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7"
         app:srcCompat="@drawable/nnn"
@@ -236,11 +224,14 @@ android:background="@drawable/back"
         android:layout_width="0dp"
         android:layout_height="26dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="287dp"
         android:text="Avis"
         android:textSize="18dp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/rv"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageU" />
 
@@ -283,6 +274,16 @@ android:background="@drawable/back"
         app:layout_constraintStart_toEndOf="@+id/fav"
         app:layout_constraintTop_toTopOf="@+id/fav"
         app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textStyle="bold"
+        android:text="date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

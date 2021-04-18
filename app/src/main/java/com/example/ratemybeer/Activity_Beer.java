@@ -48,9 +48,9 @@ public class Activity_Beer extends AppCompatActivity  {
     TextView beerName ;
     TextView beerDesc ;
     TextView origin;
+    TextView date;
 
     RatingBar ratingStar;
-    TextView gbrate;
     Rating rate ;
     TextView ve ; // la ou on stock l url
     ImageView vueimg ; /// L'image
@@ -70,6 +70,7 @@ public class Activity_Beer extends AppCompatActivity  {
     FirebaseAuth mAuth;
     FirebaseUser firebaseUser;
     FirebaseDatabase firebaseDatabase;
+    Long dateUpload;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,25 +81,24 @@ public class Activity_Beer extends AppCompatActivity  {
 
         ratingText = findViewById(R.id.vs) ;
         ratingStar = findViewById(R.id.rb) ;
-        gbrate = findViewById(R.id.gr);
+        ratingStar = findViewById(R.id.rb) ;
         beerName = findViewById(R.id.textView3) ;
         beerDesc = findViewById(R.id.textView7) ;
         beerDesc.setMovementMethod(new ScrollingMovementMethod());
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         origin = findViewById(R.id.region);
+        date = findViewById(R.id.date);
         String name = getIntent().getStringExtra("ListViewClickedName");
         String desc = getIntent().getStringExtra("ListViewClickedDesc");
-        String gr = getIntent().getStringExtra("ListViewClickedGr");
+        Long dateAjout = getIntent().getLongExtra("ListViewClickedTimestamp", 0);
         String utlImg = getIntent().getStringExtra("url");
+
 
         vueimg = findViewById(R.id.img) ;
         modifyBeer = findViewById(R.id.button);
         modifyBeerDesc = findViewById(R.id.editTextTextMultiLine);
         addFav = findViewById(R.id.fav) ;
         del=findViewById(R.id.del);
-
-
-
 
         
         // comment
@@ -110,6 +110,15 @@ public class Activity_Beer extends AppCompatActivity  {
         firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference postedBy = firebaseDatabase.getReference().child("Beers").child(name).child("postedBy");
         DatabaseReference isAdmin = firebaseDatabase.getReference().child("Users").child(firebaseUser.getUid()).child("isAdmin");
+
+        if(!dateAjout.equals(new Long(0))){
+            String dateToString = timestampToString(dateAjout);
+            date.setText("Dernière modification "+ dateToString);
+        }
+        else {
+            date.setText("");
+        }
+
 
         isAdmin.addValueEventListener(new ValueEventListener() {
             @Override
@@ -156,6 +165,8 @@ public class Activity_Beer extends AppCompatActivity  {
                 DatabaseReference ref = firebaseDatabase.getReference("Users").child(mAuth.getUid()).child("Favoris").child(name);
 
                 final DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Beers").child(name);
+                Toast.makeText(getApplicationContext(),"Vous avez ajoutez "+name+" à votre liste favoris !", Toast.LENGTH_SHORT).show();
+
                 reference.addValueEventListener(new ValueEventListener() {
 
                     @Override
@@ -164,18 +175,10 @@ public class Activity_Beer extends AppCompatActivity  {
                             addFav.setImageResource((R.drawable.ic_starout));
                             firebaseDatabase.getReference("Users").child(mAuth.getUid()).child("Favoris").child(name).removeValue();
 
-
                             addFav.setEnabled(true);
                             n = snapshot.getValue(Biere.class); // n est une biere
                             ref.setValue(n);
                             addFav.setImageResource((R.drawable.ic_staar));
-
-                            Toast.makeText(getApplicationContext(),"Vous avez ajoutez "+name+" à votre liste favoris !", Toast.LENGTH_SHORT).show();
-
-
-
-
-
 
                     }
                     @Override
@@ -193,15 +196,8 @@ public class Activity_Beer extends AppCompatActivity  {
                 firebaseDatabase.getReference("Users").child(mAuth.getUid()).child("Favoris").child(name).removeValue();
                 Toast.makeText(getApplicationContext(),"Vous avez supprimez "+name+" de votre liste favoris !", Toast.LENGTH_SHORT).show();
 
-
-
-
             }
         });
-
-
-
-
 
          // set button favoris
         DatabaseReference database = firebaseDatabase.getReference("Users").child(mAuth.getUid());
@@ -295,13 +291,12 @@ public class Activity_Beer extends AppCompatActivity  {
         DatabaseReference users = firebaseDatabase.getReference("Users");
 
         // Receiving value into activity using intent.
-         // variable contient l'url
+        // variable contient l'url
 
         // Setting up received value into EditText.
         beerName.setText(name);
         beerDesc.setText(desc);
-        gbrate.setText(gr);
-        //ve.setText(v) ;
+
         Glide.with(vueimg.getContext()).load(utlImg).placeholder(R.drawable.bieresimple).into(vueimg);
 
         rate = new Rating();
@@ -353,7 +348,8 @@ public class Activity_Beer extends AppCompatActivity  {
                     ratingText.setText("Personne n'a encore voté cette bière !");
                 }
                 else {
-                    ratingText.setText("La note moyenne est " + moyenne);
+                    String moy = String.format("%.3f",moyenne);
+                    ratingText.setText("Note moyenne : " + moy);
                     firebaseDatabase.getReference().child("Beers").child(name).child("global_rating").setValue(moyenne);
                 }
             }
@@ -389,12 +385,11 @@ public class Activity_Beer extends AppCompatActivity  {
         Toast.makeText(this,message,Toast.LENGTH_LONG).show();
 
     }
-
     private String timestampToString(long time) {
+
         Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
         calendar.setTimeInMillis(time);
-        String date = DateFormat.format("dd-MM-yyyy",calendar).toString();
+        String date = DateFormat.format("'le' dd/MM/yyyy 'à' HH:mm",calendar).toString();
         return date;
     }
-
 }

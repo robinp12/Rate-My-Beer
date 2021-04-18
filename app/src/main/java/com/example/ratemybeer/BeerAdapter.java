@@ -98,10 +98,13 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
         Button delButton = view.findViewById(R.id.deletebutton);
         Button editButton = view.findViewById(R.id.editButton);
 
+        String moy = String.format("%.3f",currentBeer.getGlobal_rating());
+
+
         beerNameView.setText(currentBeer.getName());
         beerAlcoholView.setText(currentBeer.getDegree()+"°");
         beerOrigin.setText("Origine : "+currentBeer.getOrigin());
-        global_rating.setText("Note globale : "+currentBeer.getGlobal_rating());
+        global_rating.setText("Note globale : "+moy);
 
         delButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,6 +144,7 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
                 String TempListViewClickedName = currentBeer.getName();
                 String TempListViewClickedRegion = currentBeer.getOrigin();
                 String TempListViewClickedDesc = currentBeer.getDescription();
+                String TempListViewClickedTimestamp = currentBeer.getTimestamp().toString();
                 String img = currentBeer.getImg() ;
 
                 Intent intent = new Intent(context.getApplicationContext(), Activity_Beer.class);
@@ -148,6 +152,7 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
                 // Sending value to another activity using intent.
                 intent.putExtra("ListViewClickedName", TempListViewClickedName);
                 intent.putExtra("ListViewClickedDesc", TempListViewClickedDesc);
+                intent.putExtra("ListViewClickedTimestamp", Long.valueOf(TempListViewClickedTimestamp));
                 intent.putExtra("url",urlImg) ;
                 //intent.putExtra("ListViewClickedRegion",TempListViewClickedRegion);
 

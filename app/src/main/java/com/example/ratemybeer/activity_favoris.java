@@ -39,20 +39,19 @@ public class activity_favoris extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favoris);
-        mAuth = FirebaseAuth.getInstance();
-        firebaseDatabase = FirebaseDatabase.getInstance();
+
         //Button and ListView
         allBeerlistView1 = findViewById(R.id.listView1);
         searchView1 = findViewById(R.id.search1);
         bottomNavigationView1 = findViewById(R.id.bottom_navigation1);
-        //beer = new Biere();
 
         //ArrayAdapter
         ArrayList<Biere> beerList = new ArrayList<>();
 
-        DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+        //Query & firebase
+        mAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
 
-        //Query
         DatabaseReference ref = firebaseDatabase.getReference("Users").child(mAuth.getUid()).child("Favoris");
         Query onNameFilter1 = ref.orderByChild("name");
         Query onDegFilter1 = ref.orderByChild("degree");
@@ -69,22 +68,18 @@ public class activity_favoris extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner1.setAdapter(adapter);
 
-        final boolean[] isNameFilterDescending = {false};
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Object selection = parent.getItemAtPosition(position);
-                //Toast.makeText(getApplicationContext(), selection.toString(), Toast.LENGTH_LONG).show();
 
                 if(selection.toString().equals("Nom")){
-                    //Toast.makeText(getApplicationContext(), "Nom clicked", Toast.LENGTH_LONG).show();
                     onNameFilter1.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             beerList.clear();
                             for(DataSnapshot ds : snapshot.getChildren()){
                                 beer = ds.getValue(Biere.class);
-                                //beerName.add(beer.getName());
                                 beerList.add(beer);
                             }
                             allBeerlistView1.setAdapter(customAdapter);
@@ -104,7 +99,6 @@ public class activity_favoris extends AppCompatActivity {
                             beerList.clear();
                             for(DataSnapshot ds : snapshot.getChildren()){
                                 beer = ds.getValue(Biere.class);
-                                //beerName.add(beer.getName());
                                 beerList.add(beer);
                             }
                             allBeerlistView1.setAdapter(customAdapter);
@@ -123,7 +117,6 @@ public class activity_favoris extends AppCompatActivity {
                             beerList.clear();
                             for(DataSnapshot ds : snapshot.getChildren()){
                                 beer = ds.getValue(Biere.class);
-                                //beerName.add(beer.getName());
                                 beerList.add(beer);
                             }
                             allBeerlistView1.setAdapter(customAdapter);
@@ -142,7 +135,6 @@ public class activity_favoris extends AppCompatActivity {
                             beerList.clear();
                             for(DataSnapshot ds : snapshot.getChildren()){
                                 beer = ds.getValue(Biere.class);
-                                //beerName.add(beer.getName());
                                 beerList.add(beer);
                             }
                             Collections.reverse(beerList);
@@ -165,7 +157,6 @@ public class activity_favoris extends AppCompatActivity {
                         beerList.clear();
                         for(DataSnapshot ds : snapshot.getChildren()){
                             beer = ds.getValue(Biere.class);
-                            //beerName.add(beer.getName());
                             beerList.add(beer);
                         }
                         allBeerlistView1.setAdapter(customAdapter);

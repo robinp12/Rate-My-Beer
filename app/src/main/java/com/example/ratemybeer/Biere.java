@@ -1,5 +1,7 @@
 package com.example.ratemybeer;
 
+import com.google.firebase.database.ServerValue;
+
 public class Biere {
     private String image;
     private String name;
@@ -9,6 +11,8 @@ public class Biere {
     private float global_rating;
     private String urlFirebase;
     private String postedBy;
+    private Object timestamp;
+
 
     //constructeur par défaut
     public Biere(){}
@@ -27,6 +31,7 @@ public class Biere {
         this.degree=alcohol ;
         this.image = image ;
         this.postedBy = postedBy ;
+        this.timestamp = ServerValue.TIMESTAMP;
     }
 
     //getter
@@ -54,6 +59,7 @@ public class Biere {
     public String getPostedBy() {
         return postedBy;
     }
+    public Object getTimestamp() { return timestamp; }
 
     //setter
 
@@ -69,4 +75,5 @@ public class Biere {
     public void setPostedBy(String postedBy) {
         this.postedBy = postedBy;
     }
+    public void setTimestamp(Object timestamp) { this.timestamp = timestamp; }
 }
