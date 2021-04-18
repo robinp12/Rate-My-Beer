@@ -10,7 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.gesture.GestureOverlayView;
 import android.os.Bundle;
         import android.text.format.DateFormat;
-        import android.view.MenuItem;
+import android.text.method.ScrollingMovementMethod;
+import android.view.MenuItem;
         import android.view.View;
         import android.view.Window;
         import android.view.WindowManager;
@@ -82,6 +83,7 @@ public class Activity_Beer extends AppCompatActivity  {
         gbrate = findViewById(R.id.gr);
         beerName = findViewById(R.id.textView3) ;
         beerDesc = findViewById(R.id.textView7) ;
+        beerDesc.setMovementMethod(new ScrollingMovementMethod());
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         origin = findViewById(R.id.region);
         String name = getIntent().getStringExtra("ListViewClickedName");
