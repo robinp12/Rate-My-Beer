@@ -62,17 +62,17 @@ android:background="@drawable/back"
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="168dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
         android:background="@drawable/back"
+        android:dividerHeight="8dp"
         android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9"
         app:layout_constraintVertical_bias="2.0"
-        android:dividerHeight="8dp"
         tools:ignore="MissingConstraints" />
 
     <ImageView
@@ -201,13 +201,18 @@ android:background="@drawable/back"
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_width="155dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="19dp"
-        android:text="Modifier"
-        android:visibility="gone"
+        android:text="Edit my beer"
+        android:textSize="10dp"
+        android:textColor="@color/black"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/img"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.024"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
@@ -240,15 +245,43 @@ android:background="@drawable/back"
 
     <ImageButton
         android:id="@+id/fav"
-        android:layout_width="42dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="32dp"
+        android:layout_width="28dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="10dp"
         android:background="@drawable/ic_starout"
         android:text="Add favoris"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toStartOf="@+id/del"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="63dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="204dp"
+        android:layout_marginEnd="21dp"
+        android:text="Favoris"
+        android:textSize="18dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintEnd_toStartOf="@+id/fav"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/del"
+        android:layout_width="26dp"
+        android:layout_height="27dp"
+
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="44dp"
+        android:background="@drawable/ic_del"
+        app:layout_constraintBottom_toBottomOf="@+id/fav"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/fav"
+        app:layout_constraintTop_toTopOf="@+id/fav"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

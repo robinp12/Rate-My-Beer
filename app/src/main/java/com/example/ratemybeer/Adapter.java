@@ -9,8 +9,10 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -31,10 +33,11 @@ public class Adapter extends BaseAdapter implements Filterable {
 
     private List<Biere> listeBiere;
     private LayoutInflater inflater;
+    ImageButton addfav;
 
     private List<Biere> originalBeers = null;
     private List<Biere> filteredBeers = null;
-    Button addfav ;
+
 
     //constructeur
     public Adapter(activity_favoris con , List<Biere> listeBiere) {
@@ -83,6 +86,7 @@ public class Adapter extends BaseAdapter implements Filterable {
         TextView global_rating = view.findViewById(R.id.Grating);
         Button delButton = view.findViewById(R.id.deletebutton);
         Button editButton = view.findViewById(R.id.editButton);
+        addfav = view.findViewById(R.id.fav) ;
 
 
         beerNameView.setText(currentBeer.getName());
@@ -93,8 +97,11 @@ public class Adapter extends BaseAdapter implements Filterable {
         delButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                database.child("Beers").child(currentBeer.getName()).removeValue();
+                database.child("Users").child(mAuth.getUid()).child("Favoris").child(currentBeer.getName()).removeValue();
+
+                Toast.makeText(con.getApplicationContext(),"Vous avez supprimé " +currentBeer.getName()+" de votre liste favoris !", Toast.LENGTH_SHORT).show();
             }
+
         });
 
         isAdmin.addValueEventListener(new ValueEventListener() {
@@ -102,11 +109,11 @@ public class Adapter extends BaseAdapter implements Filterable {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.getValue().toString().equals("true")){
                     delButton.setVisibility(View.VISIBLE);
-                    editButton.setVisibility(View.VISIBLE);
+                    editButton.setVisibility(View.GONE);
 
                 }
                 else{
-                    delButton.setVisibility(View.GONE);
+                    delButton.setVisibility(View.VISIBLE);
                     editButton.setVisibility(View.GONE);
 
                 }

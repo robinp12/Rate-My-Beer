@@ -119,8 +119,8 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
 
                 }
                 else{
-                    delButton.setVisibility(View.GONE);
-                    editButton.setVisibility(View.GONE);
+                    delButton.setVisibility(View.INVISIBLE);
+                    editButton.setVisibility(View.INVISIBLE);
 
                 }
             }

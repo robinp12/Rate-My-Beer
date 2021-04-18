@@ -58,7 +58,7 @@ public class Activity_Beer extends AppCompatActivity  {
     // Variable for comment
     EditText com ;
     Button add;
-    ImageButton addFav ;
+    ImageButton addFav ,del;
     Button modifyBeer ;
     EditText modifyBeerDesc ;
     ImageView imgU ;
@@ -93,6 +93,7 @@ public class Activity_Beer extends AppCompatActivity  {
         modifyBeer = findViewById(R.id.button);
         modifyBeerDesc = findViewById(R.id.editTextTextMultiLine);
         addFav = findViewById(R.id.fav) ;
+        del=findViewById(R.id.del);
 
 
 
@@ -114,9 +115,7 @@ public class Activity_Beer extends AppCompatActivity  {
                 if(snapshot.getValue().equals(true)){
                     Toast.makeText(getApplicationContext(),"Admin", Toast.LENGTH_SHORT).show();
                 }
-                else{
-                    Toast.makeText(getApplicationContext(),"", Toast.LENGTH_SHORT).show();
-                }
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -159,9 +158,22 @@ public class Activity_Beer extends AppCompatActivity  {
 
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        addFav.setEnabled(false);
+
+                            addFav.setImageResource((R.drawable.ic_starout));
+                            firebaseDatabase.getReference("Users").child(mAuth.getUid()).child("Favoris").child(name).removeValue();
+
+
+                            addFav.setEnabled(true);
                             n = snapshot.getValue(Biere.class); // n est une biere
-                        ref.setValue(n);
+                            ref.setValue(n);
+                            addFav.setImageResource((R.drawable.ic_staar));
+
+                            Toast.makeText(getApplicationContext(),"Vous avez ajoutez "+name+" à votre liste favoris !", Toast.LENGTH_SHORT).show();
+
+
+
+
+
 
                     }
                     @Override
@@ -170,7 +182,26 @@ public class Activity_Beer extends AppCompatActivity  {
                 });
             }
         });
+        del.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                addFav.setImageResource((R.drawable.ic_starout));
+                del.setVisibility(View.GONE);
+                firebaseDatabase.getReference("Users").child(mAuth.getUid()).child("Favoris").child(name).removeValue();
+                Toast.makeText(getApplicationContext(),"Vous avez supprimez "+name+" de votre liste favoris !", Toast.LENGTH_SHORT).show();
+
+
+
+
+            }
+        });
+
+
+
+
+
+         // set button favoris
         DatabaseReference database = firebaseDatabase.getReference("Users").child(mAuth.getUid());
         database.addValueEventListener(new ValueEventListener() {
             @Override
@@ -178,11 +209,18 @@ public class Activity_Beer extends AppCompatActivity  {
 
                 if(snapshot.child("Favoris").hasChild(name)){
                     addFav.setImageResource(R.drawable.ic_staar);
+                    del.setVisibility(View.VISIBLE);
                 }
+                else{
+                    del.setVisibility(View.GONE);
+                    addFav.setImageResource((R.drawable.ic_starout));
+                }
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
+
         });
 
 
