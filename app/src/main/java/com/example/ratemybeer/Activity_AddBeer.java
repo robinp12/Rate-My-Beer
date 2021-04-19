@@ -13,12 +13,14 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -43,7 +45,11 @@ public class Activity_AddBeer extends AppCompatActivity {
     private FirebaseStorage storage ;
     private StorageReference storageReference ;
     private String url;
+    String origine;
+
+
     BottomNavigationView bottomNavigationView;
+    AutoCompleteTextView autoCompleteTextView;
 
     // Pour addbeer:
 
@@ -55,23 +61,35 @@ public class Activity_AddBeer extends AppCompatActivity {
         setContentView(R.layout.activity_add_beer);
         final Button add=findViewById(R.id.addBeer);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-        AutoCompleteTextView ediText = findViewById(R.id.origin) ;
+
         //countries
+        autoCompleteTextView=findViewById(R.id.autocomplete);
         String[] countries = getResources().getStringArray(R.array.countries);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,countries);
-        ediText.setAdapter(adapter);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.countries_item,countries);
+
+        autoCompleteTextView.setAdapter(adapter);
+
+
 
         //creer les inputs de la biere
         editTextname = (EditText) findViewById(R.id.name) ;
-        editTextorigin = (EditText) findViewById(R.id.origin) ;
-
+        editTextorigin=(EditText)findViewById(R.id.autocomplete);
         editTextalcohol = (EditText) findViewById(R.id.alcohol) ;
         editTextdescription = (EditText) findViewById(R.id.description) ;
+
+
+
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               addBeer() ;
+               int result=addBeer() ;
+               if(result==1){
+                   Intent intent= new Intent(getApplicationContext(),Activity_Timeline.class);
+                   startActivity(intent);
+                   finish();
+               }
+
             }
         });
 
@@ -107,36 +125,38 @@ public class Activity_AddBeer extends AppCompatActivity {
                 return true;
             }
         });
+
+
     }
 
-    private void addBeer() {
+    private int  addBeer() {
 
         String name = editTextname.getText().toString().trim() ;
-        String origin = editTextorigin.getText().toString().trim() ;
+        String origin=editTextorigin.getText().toString().trim();
         String alcohol = editTextalcohol.getText().toString().trim();
         String description = editTextdescription.getText().toString().trim() ;
 
         if (name.isEmpty()){
             editTextname.setError("Nom requis");
             editTextname.requestFocus();
-            return;
+            return -1;
         }
         if (origin.isEmpty()){
             editTextorigin.setError("Origine requis");
             editTextorigin.requestFocus();
-            return;
+            return -1;
         }
 
         if (alcohol.isEmpty()){
             editTextalcohol.setError("degré d'alcool requis");
             editTextalcohol.requestFocus();
-            return;
+            return -1;
         }
 
         if (description.isEmpty()){
             editTextdescription.setError("Description requis");
             editTextdescription.requestFocus();
-            return;
+            return -1;
         }
         alcohol = alcohol.replaceAll(",",".");
         float degree = Float.parseFloat(alcohol) ;
@@ -144,7 +164,7 @@ public class Activity_AddBeer extends AppCompatActivity {
         if ((degree > 71.0) || (degree < 0.0) ){
             editTextalcohol.setError("Degré d'alcool incorrect");
             editTextalcohol.requestFocus();
-            return;
+            return -1;
         }
 
         Toast.makeText(getApplicationContext(), "Bière ajoutée avec succès", Toast.LENGTH_LONG).show();
@@ -159,6 +179,7 @@ public class Activity_AddBeer extends AppCompatActivity {
         }
         Biere beer = new Biere(name, origin,degree,description, url, user.getUid());
         ref.child("Beers").child(name).setValue(beer);
+        return 1;
     }
 
 

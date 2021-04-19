@@ -1,5 +1,6 @@
 <resources>
     <string-array name="countries">
+        
         <item>Afghanistan</item>
         <item>Albania</item>
         <item>Algeria</item>

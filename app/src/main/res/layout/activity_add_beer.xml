@@ -87,26 +87,37 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/origin" />
 
-    <AutoCompleteTextView
-        android:id="@+id/origin"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:fontFamily="sans-serif-black"
-        android:hint="Select a country"
-        android:completionThreshold="1"
-        android:completionHint="Select a country"
-        android:inputType="text"
-        android:paddingLeft="10dp"
+        android:hint="Select Origin"
+        android:id="@+id/origin"
         android:textSize="24sp"
         android:textStyle="bold"
-
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
 
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/name" />
+        app:layout_constraintTop_toBottomOf="@id/name"
+        app:startIconDrawable="@drawable/location"
+        >
+
+        <AutoCompleteTextView
+            android:id="@+id/autocomplete"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:enabled="false"
+            android:inputType="none"
+            android:textSize="24sp"
+            android:textStyle="bold"
+
+            />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
 
 
 
