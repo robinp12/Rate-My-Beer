@@ -33,7 +33,7 @@ public class Adapter extends BaseAdapter implements Filterable {
 
     private List<Biere> listeBiere;
     private LayoutInflater inflater;
-    ImageButton addfav;
+
 
     private List<Biere> originalBeers = null;
     private List<Biere> filteredBeers = null;
@@ -86,7 +86,7 @@ public class Adapter extends BaseAdapter implements Filterable {
         TextView global_rating = view.findViewById(R.id.Grating);
         Button delButton = view.findViewById(R.id.deletebutton);
         Button editButton = view.findViewById(R.id.editButton);
-        addfav = view.findViewById(R.id.fav) ;
+
 
 
         beerNameView.setText(currentBeer.getName());

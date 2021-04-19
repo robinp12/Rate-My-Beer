@@ -47,9 +47,9 @@ public class User {
         this.pseudo = pseudo;
     }
 
-    public Boolean getAdmin() { return isAdmin; }
+    public Boolean getIsAdmin() { return isAdmin; }
 
-    public void setAdmin(Boolean admin) { isAdmin = admin; }
+    public void setIsAdmin(Boolean isAdmin) { isAdmin = isAdmin; }
 
     public HashMap<String, String> getRated_beers() {
         return rated_beers;
@@ -59,7 +59,7 @@ public class User {
         this.rated_beers = rated_beers;
     }
 
-    public User(String firstName, String lastName, String age , String email,String pseudo) {
+    public User(String firstName, String lastName, String age , String email,String pseudo,boolean isAdmin) {
         this.firstName=firstName;
         this.lastName=lastName;
         this.pseudo=pseudo ;

@@ -116,7 +116,7 @@ public class Activity_Register extends AppCompatActivity implements View.OnClick
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                        User user = new User (firstname,lastname,age,email,Pseudo);
+                        User user = new User (firstname,lastname,age,email,Pseudo,false);
                         FirebaseDatabase.getInstance().getReference("Users")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(user)
