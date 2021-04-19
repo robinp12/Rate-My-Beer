@@ -98,7 +98,7 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
         Button delButton = view.findViewById(R.id.deletebutton);
         Button editButton = view.findViewById(R.id.editButton);
 
-        String moy = String.format("%.3f",currentBeer.getGlobal_rating());
+        String moy = String.format("%.1f",currentBeer.getGlobal_rating());
 
 
         beerNameView.setText(currentBeer.getName());

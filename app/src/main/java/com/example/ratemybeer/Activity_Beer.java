@@ -348,7 +348,7 @@ public class Activity_Beer extends AppCompatActivity  {
                     ratingText.setText("Personne n'a encore voté cette bière !");
                 }
                 else {
-                    String moy = String.format("%.3f",moyenne);
+                    String moy = String.format("%.1f",moyenne);
                     ratingText.setText("Note moyenne : " + moy);
                     firebaseDatabase.getReference().child("Beers").child(name).child("global_rating").setValue(moyenne);
                 }
