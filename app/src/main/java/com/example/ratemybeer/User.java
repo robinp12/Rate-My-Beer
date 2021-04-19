@@ -49,7 +49,7 @@ public class User {
 
     public Boolean getIsAdmin() { return isAdmin; }
 
-    public void setIsAdmin(Boolean isAdmin) { isAdmin = isAdmin; }
+    public void setIsAdmin(Boolean admin) { this.isAdmin = admin; }
 
     public HashMap<String, String> getRated_beers() {
         return rated_beers;
@@ -59,7 +59,7 @@ public class User {
         this.rated_beers = rated_beers;
     }
 
-    public User(String firstName, String lastName, String age , String email,String pseudo,boolean isAdmin) {
+    public User(String firstName, String lastName, String age , String email,String pseudo) {
         this.firstName=firstName;
         this.lastName=lastName;
         this.pseudo=pseudo ;

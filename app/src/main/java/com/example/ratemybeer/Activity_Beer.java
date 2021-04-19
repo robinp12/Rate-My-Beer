@@ -124,7 +124,7 @@ public class Activity_Beer extends AppCompatActivity  {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.getValue().equals(true)){
-                    Toast.makeText(getApplicationContext(),"Admin", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),"Admin", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -238,7 +238,7 @@ public class Activity_Beer extends AppCompatActivity  {
                 ref.setValue(comment).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        showMessage("comment added");
+                        //showMessage("comment added");
                         com.setText("");
                         add.setVisibility(View.VISIBLE);
                     }

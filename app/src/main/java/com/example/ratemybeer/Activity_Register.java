@@ -116,7 +116,7 @@ public class Activity_Register extends AppCompatActivity implements View.OnClick
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                        User user = new User (firstname,lastname,age,email,Pseudo,false);
+                        User user = new User (firstname,lastname,age,email,Pseudo);
                         FirebaseDatabase.getInstance().getReference("Users")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(user)
@@ -128,7 +128,7 @@ public class Activity_Register extends AppCompatActivity implements View.OnClick
                                         startActivity(new Intent(Activity_Register.this, Activity_Login.class));
                                     }
                                     else {
-                                        Toast.makeText(Activity_Register.this, "Erreur d'inscription! Veuillez ressayer.",Toast.LENGTH_LONG).show();
+                                        Toast.makeText(Activity_Register.this, "Erreur d'inscription! Veuillez réessayer.",Toast.LENGTH_LONG).show();
                                         progressBar.setVisibility(View.GONE);
                                     }
                                 }
@@ -138,7 +138,7 @@ public class Activity_Register extends AppCompatActivity implements View.OnClick
                         userr.updateProfile(profileUpdates);
                     }
                     else {
-                        Toast.makeText(Activity_Register.this, "Erreur d'inscription! Veuillez ressayer.",Toast.LENGTH_LONG).show();
+                        Toast.makeText(Activity_Register.this, "Erreur d'inscription! Veuillez réessayer.",Toast.LENGTH_LONG).show();
                         progressBar.setVisibility(View.GONE);
                     }
                 }
