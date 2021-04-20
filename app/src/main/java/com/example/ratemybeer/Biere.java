@@ -1,5 +1,7 @@
 package com.example.ratemybeer;
 
+import android.widget.TextView;
+
 import com.google.firebase.database.ServerValue;
 
 public class Biere {
@@ -12,17 +14,21 @@ public class Biere {
     private String urlFirebase;
     private String postedBy;
     private Object timestamp;
+    String dg;
 
 
     //constructeur par défaut
     public Biere(){}
 
     //constructeur liste de bière
-    /*public Biere(String name, int rate_user, float alcohol){
-        this.name = name;
-        this.rate_user = rate_user;
-        this.degree = alcohol;
-    }*/
+    public Biere(String name, String origin, String alcohol, String description, String image){
+        this.name=name;
+        this.description=description;
+        this.origin = origin;
+        this.dg=alcohol ;
+        this.image = image ;
+        this.timestamp = ServerValue.TIMESTAMP;
+    }
     //constructeur ajout de bière
     public Biere(String name, String origin, float alcohol, String description, String image, String postedBy){
         this.name=name;
@@ -33,6 +39,8 @@ public class Biere {
         this.postedBy = postedBy ;
         this.timestamp = ServerValue.TIMESTAMP;
     }
+
+
 
     //getter
     public String getDescription() {
@@ -56,10 +64,12 @@ public class Biere {
     public String getImg(){return this.image;}
     public String getUrlFirebase(){return this.urlFirebase;}
     public float getGlobal_rating(){return this.global_rating;}
+
     public String getPostedBy() {
         return postedBy;
     }
     public Object getTimestamp() { return timestamp; }
+
 
     //setter
 

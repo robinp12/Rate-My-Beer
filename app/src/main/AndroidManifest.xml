@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.RateMyBeer">
-        <activity android:name=".activity_favoris"></activity>
+        <activity android:name=".activity_favoris" />
         <activity android:name=".Activity_ResetPassword" />
         <activity android:name=".Activity_Register" />
         <activity

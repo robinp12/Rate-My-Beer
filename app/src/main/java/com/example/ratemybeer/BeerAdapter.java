@@ -40,16 +40,7 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
     private List<Biere> filteredBeers = null;
 
     //constructeur
-    public BeerAdapter(activity_favoris con , List<Biere> listeBiere) {
-        this.con = con;
-        this.listeBiere = listeBiere;
-        this.inflater = LayoutInflater.from(con);
-        FirebaseAuth mAuth;
 
-        this.filteredBeers = listeBiere;
-        this.originalBeers = listeBiere;
-
-    }
     public BeerAdapter(Activity_Timeline context, List<Biere> listeBiere) {
         this.context = context;
         this.listeBiere = listeBiere;
@@ -145,7 +136,9 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
                 String TempListViewClickedRegion = currentBeer.getOrigin();
                 String TempListViewClickedDesc = currentBeer.getDescription();
                 String TempListViewClickedTimestamp = currentBeer.getTimestamp().toString();
+                String deg = String.valueOf(currentBeer.getDegree());
                 String img = currentBeer.getImg() ;
+
 
                 Intent intent = new Intent(context.getApplicationContext(), Activity_Beer.class);
 
@@ -154,8 +147,8 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
                 intent.putExtra("ListViewClickedDesc", TempListViewClickedDesc);
                 intent.putExtra("ListViewClickedTimestamp", Long.valueOf(TempListViewClickedTimestamp));
                 intent.putExtra("url",urlImg) ;
-                //intent.putExtra("ListViewClickedRegion",TempListViewClickedRegion);
-
+                intent.putExtra("ListViewClickedRegion",TempListViewClickedRegion);
+                intent.putExtra("deg",deg);
 
                 context.startActivity(intent);
 

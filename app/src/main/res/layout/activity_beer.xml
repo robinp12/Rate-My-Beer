@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-android:background="@drawable/back"
+    android:background="@drawable/back"
     tools:context=".Activity_Beer">
 
 
@@ -35,12 +35,12 @@ android:background="@drawable/back"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="21dp"
         android:layout_marginBottom="8dp"
+        android:scrollbars="vertical"
         android:text="Description"
-        android:scrollbars = "vertical"
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/imageU"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
         tools:ignore="MissingConstraints" />
@@ -92,8 +92,8 @@ android:background="@drawable/back"
 
     <RatingBar
         android:id="@+id/rb"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
+        android:layout_width="245dp"
+        android:layout_height="41dp"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="8dp"
         android:background="#00FFFFFF"
@@ -123,6 +123,7 @@ android:background="@drawable/back"
         android:text="Rate"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/img"
         app:layout_constraintTop_toBottomOf="@+id/rb"
         tools:ignore="MissingConstraints" />
@@ -165,7 +166,7 @@ android:background="@drawable/back"
         android:ems="10"
         android:hint="  Ajoutez votre avis"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/imageU"
+        app:layout_constraintBottom_toTopOf="@+id/rv"
         app:layout_constraintEnd_toStartOf="@+id/add"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imageU"
@@ -283,10 +284,31 @@ android:background="@drawable/back"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="1dp"
         android:text="date"
+        android:textSize="12dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/imageU"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <TextView
+        android:id="@+id/org"
+        android:layout_width="0dp"
+        android:layout_height="19dp"
+        android:layout_marginEnd="16dp"
+        android:text="Belgium"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/deg"
+        app:layout_constraintTop_toBottomOf="@+id/vs" />
+
+    <TextView
+        android:id="@+id/deg"
+        android:layout_width="0dp"
+        android:layout_height="19dp"
+        android:layout_marginEnd="83dp"
+        android:textStyle="bold"
+        android:text="alcohol :  6°"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vs" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

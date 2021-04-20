@@ -72,6 +72,9 @@ public class Activity_Beer extends AppCompatActivity  {
     FirebaseDatabase firebaseDatabase;
     Long dateUpload;
 
+    TextView org,deg ;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,6 +95,8 @@ public class Activity_Beer extends AppCompatActivity  {
         String desc = getIntent().getStringExtra("ListViewClickedDesc");
         Long dateAjout = getIntent().getLongExtra("ListViewClickedTimestamp", 0);
         String utlImg = getIntent().getStringExtra("url");
+        String gbr = getIntent().getStringExtra("gb");
+        String pstb = getIntent().getStringExtra("pst");
 
 
         vueimg = findViewById(R.id.img) ;
@@ -99,6 +104,15 @@ public class Activity_Beer extends AppCompatActivity  {
         modifyBeerDesc = findViewById(R.id.editTextTextMultiLine);
         addFav = findViewById(R.id.fav) ;
         del=findViewById(R.id.del);
+        org= findViewById(R.id.org);
+        deg=findViewById(R.id.deg);
+
+        String or= getIntent().getStringExtra("ListViewClickedRegion");
+        String de = getIntent().getStringExtra("deg");
+        org.setText(or);
+        deg.setText("Alcohol: "+de+"°");
+
+
 
         
         // comment
@@ -110,6 +124,9 @@ public class Activity_Beer extends AppCompatActivity  {
         firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference postedBy = firebaseDatabase.getReference().child("Beers").child(name).child("postedBy");
         DatabaseReference isAdmin = firebaseDatabase.getReference().child("Users").child(firebaseUser.getUid()).child("isAdmin");
+        DatabaseReference info = firebaseDatabase.getReference().child("Beers").child(name).child("origin");
+
+
 
         if(!dateAjout.equals(new Long(0))){
             String dateToString = timestampToString(dateAjout);
@@ -157,6 +174,7 @@ public class Activity_Beer extends AppCompatActivity  {
         //add beer to favoris
 
 
+
         addFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -166,6 +184,7 @@ public class Activity_Beer extends AppCompatActivity  {
 
                 final DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Beers").child(name);
                 Toast.makeText(getApplicationContext(),"Vous avez ajoutez "+name+" à votre liste favoris !", Toast.LENGTH_SHORT).show();
+
 
                 reference.addValueEventListener(new ValueEventListener() {
 
@@ -177,6 +196,7 @@ public class Activity_Beer extends AppCompatActivity  {
 
                             addFav.setEnabled(true);
                             n = snapshot.getValue(Biere.class); // n est une biere
+
                             ref.setValue(n);
                             addFav.setImageResource((R.drawable.ic_staar));
 
@@ -227,12 +247,19 @@ public class Activity_Beer extends AppCompatActivity  {
             @Override
             public void onClick(View view) {
 
-                add.setVisibility(View.INVISIBLE);
+               // add.setVisibility(View.INVISIBLE);
                 DatabaseReference ref = firebaseDatabase.getReference().child("Comment").child(name).push();
                 String comment_content = com.getText().toString();
                 String uid = firebaseUser.getUid();
                 String uname = firebaseUser.getDisplayName();
                 //String uimg = firebaseUser.getPhotoUrl().toString();
+                String s = com.getText().toString().trim() ;
+                if(s.isEmpty()){
+                    com.setError("Vous n'avez rien écrit !");
+                    com.requestFocus();
+
+                    return;
+                }
                 Comment comment = new Comment(comment_content,uid,null,uname);
 
                 ref.setValue(comment).addOnSuccessListener(new OnSuccessListener<Void>() {

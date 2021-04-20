@@ -135,17 +135,20 @@ public class Adapter extends BaseAdapter implements Filterable {
                 String TempListViewClickedName = currentBeer.getName();
                 String TempListViewClickedRegion = currentBeer.getOrigin();
                 String TempListViewClickedDesc = currentBeer.getDescription();
+                String TempListViewClickedTimestamp = currentBeer.getTimestamp().toString();
+                String deg = String.valueOf(currentBeer.getDegree());
                 String img = currentBeer.getImg() ;
 
-                Intent intent = new Intent(con.getApplicationContext(), Activity_Beer.class);
 
+                Intent intent = new Intent(con.getApplicationContext(), Activity_Beer.class);
 
                 // Sending value to another activity using intent.
                 intent.putExtra("ListViewClickedName", TempListViewClickedName);
                 intent.putExtra("ListViewClickedDesc", TempListViewClickedDesc);
+                intent.putExtra("ListViewClickedTimestamp", Long.valueOf(TempListViewClickedTimestamp));
                 intent.putExtra("url",urlImg) ;
-                //intent.putExtra("ListViewClickedRegion",TempListViewClickedRegion);
-
+                intent.putExtra("ListViewClickedRegion",TempListViewClickedRegion);
+                intent.putExtra("deg",deg);
                 con.startActivity(intent);
 
             }
@@ -189,5 +192,3 @@ public class Adapter extends BaseAdapter implements Filterable {
         return filter;
     }
 }
-
-
