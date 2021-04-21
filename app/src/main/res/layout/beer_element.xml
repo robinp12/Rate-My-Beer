@@ -16,6 +16,7 @@
         android:layout_height="30dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
+        android:textColor="#555555"
         android:textSize="19sp"
         app:layout_constraintStart_toEndOf="@+id/imageView4"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,7 +27,7 @@
         android:layout_height="18dp"
         android:layout_marginStart="6dp"
         android:layout_marginTop="5dp"
-        android:textColor="#000000"
+        android:textColor="#555555"
         android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/beer_info"
         app:layout_constraintTop_toTopOf="@+id/beer_info" />
