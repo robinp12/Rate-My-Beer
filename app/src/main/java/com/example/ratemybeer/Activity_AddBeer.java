@@ -112,16 +112,17 @@ public class Activity_AddBeer extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.home:
                         intent = new Intent(getApplicationContext(), Activity_Timeline.class);
+                        startActivity(intent);
+                        finish();
                         break;
                     case R.id.add:
-                        intent = new Intent(getApplicationContext(), Activity_AddBeer.class);
                         break;
                     case R.id.favorite:
                         intent = new Intent(getApplicationContext(), activity_favoris.class);
+                        startActivity(intent);
+                        finish();
                         break;
                 }
-                startActivity(intent);
-                finish();
                 return true;
             }
         });

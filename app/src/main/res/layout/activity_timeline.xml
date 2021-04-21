@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:backgroundTint="#FFFFFF"
     tools:context=".Activity_Timeline">
 
 
@@ -14,6 +16,8 @@
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
         android:background="?attr/colorPrimary"
+        android:elevation="80dp"
+        app:elevation="80dp"
         app:itemIconTint="@android:color/white"
         app:itemTextColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -26,8 +30,8 @@
         android:id="@+id/listView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginBottom="3dp"
+        android:background="#FFFFFF"
+        android:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,26 +52,42 @@
 
     <SearchView
         android:id="@+id/search"
-        android:layout_width="209dp"
-        android:layout_height="37dp"
+        android:layout_width="270dp"
+        android:layout_height="40dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
+        android:queryHint="Chercher une bière"
         android:background="#FFFFFF"
-        android:queryHint="Rechercher"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
     </SearchView>
 
+
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="0dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/toolbar3"
-        app:layout_constraintStart_toEndOf="@+id/search"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="#00FFFFFF"
+        android:dropDownWidth="match_parent"
+        android:spinnerMode="dialog"
+        android:textAlignment="viewEnd"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:text="Trier :"
+        android:gravity="center_horizontal|center_vertical"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/spinner"
+        app:layout_constraintTop_toTopOf="@+id/toolbar3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

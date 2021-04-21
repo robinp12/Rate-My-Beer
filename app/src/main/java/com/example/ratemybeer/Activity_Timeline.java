@@ -4,8 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -209,18 +212,21 @@ public class Activity_Timeline extends AppCompatActivity {
                 Intent intent = null;
                 switch (item.getItemId()) {
                     case R.id.home:
-                        intent = new Intent(getApplicationContext(), Activity_Timeline.class);
                         break;
+
                     case R.id.add:
-                        intent = new Intent(getApplicationContext(), Activity_AddBeer.class);
+                            intent = new Intent(getApplicationContext(), Activity_AddBeer.class);
+                            startActivity(intent);
+                            finish();
                         break;
+
                     case R.id.favorite:
-                        intent = new Intent(getApplicationContext(), activity_favoris.class);
+                            intent = new Intent(getApplicationContext(), activity_favoris.class);
+                            startActivity(intent);
+                            finish();
                         break;
 
                 }
-                startActivity(intent);
-                finish();
                 return true;
             }
         });

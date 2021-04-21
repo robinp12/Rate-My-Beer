@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -86,8 +87,8 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
         ImageView beerPicture = view.findViewById(R.id.imageView4);
         TextView beerOrigin = view.findViewById(R.id.textView8);
         TextView global_rating = view.findViewById(R.id.Grating);
-        Button delButton = view.findViewById(R.id.deletebutton);
-        Button editButton = view.findViewById(R.id.editButton);
+        ImageButton delButton = view.findViewById(R.id.deletebutton);
+        ImageButton editButton = view.findViewById(R.id.editButton);
 
         String moy = String.format("%.1f",currentBeer.getGlobal_rating());
 
@@ -95,7 +96,7 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
         beerNameView.setText(currentBeer.getName());
         beerAlcoholView.setText(currentBeer.getDegree()+"°");
         beerOrigin.setText("Origine : "+currentBeer.getOrigin());
-        global_rating.setText("Note globale : "+moy);
+        global_rating.setText(moy + "/5");
 
         delButton.setOnClickListener(new View.OnClickListener() {
             @Override

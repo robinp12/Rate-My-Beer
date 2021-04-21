@@ -5,15 +5,18 @@
     android:id="@+id/region"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:clickable="true">
+    android:background="#FFFFFF"
+    android:clickable="true"
+    android:minHeight="120dp">
+
 
     <TextView
         android:id="@+id/beer_info"
         android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
-        android:textSize="18sp"
+        android:layout_height="30dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:textSize="19sp"
         app:layout_constraintStart_toEndOf="@+id/imageView4"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,6 +26,7 @@
         android:layout_height="18dp"
         android:layout_marginStart="6dp"
         android:layout_marginTop="5dp"
+        android:textColor="#000000"
         android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/beer_info"
         app:layout_constraintTop_toTopOf="@+id/beer_info" />
@@ -31,52 +35,65 @@
         android:id="@+id/imageView4"
         android:layout_width="60dp"
         android:layout_height="96dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="20dp"
-        android:clickable="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/bieresimple" />
+        app:srcCompat="@drawable/bieresimple"></ImageView>
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:textColor="#555555"
         app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/Grating"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="46dp"
+        android:layout_height="19dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="15dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <Button
-        android:id="@+id/deletebutton"
-        android:layout_width="42dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="55dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="19dp"
-        android:background="@android:drawable/ic_menu_delete"
+        android:textColor="#555555"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView" />
+
+    <ImageButton
+        android:id="@+id/deletebutton"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="10dp"
+        android:background="@android:drawable/ic_menu_delete"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <ImageButton
         android:id="@+id/editButton"
-        android:layout_width="37dp"
-        android:layout_height="42dp"
+        android:layout_width="27dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="5dp"
         android:background="@android:drawable/ic_menu_edit"
-        app:layout_constraintBottom_toBottomOf="@+id/deletebutton"
         app:layout_constraintEnd_toStartOf="@+id/deletebutton"
-        app:layout_constraintTop_toTopOf="@+id/deletebutton" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="20dp"
+        android:layout_height="19dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_star" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

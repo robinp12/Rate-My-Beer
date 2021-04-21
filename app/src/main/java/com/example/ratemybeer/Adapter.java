@@ -84,15 +84,13 @@ public class Adapter extends BaseAdapter implements Filterable {
         ImageView beerPicture = view.findViewById(R.id.imageView4);
         TextView beerOrigin = view.findViewById(R.id.textView8);
         TextView global_rating = view.findViewById(R.id.Grating);
-        Button delButton = view.findViewById(R.id.deletebutton);
-        Button editButton = view.findViewById(R.id.editButton);
-
-
+        ImageButton delButton = view.findViewById(R.id.deletebutton);
+        ImageButton editButton = view.findViewById(R.id.editButton);
 
         beerNameView.setText(currentBeer.getName());
         beerAlcoholView.setText(currentBeer.getDegree()+"°");
         beerOrigin.setText("Origine : "+currentBeer.getOrigin());
-        global_rating.setText("Note globale : "+currentBeer.getGlobal_rating());
+        global_rating.setText(currentBeer.getGlobal_rating()+ "/5");
 
         delButton.setOnClickListener(new View.OnClickListener() {
             @Override
