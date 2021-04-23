@@ -55,6 +55,7 @@
         android:background="#FFFFFF"
         android:queryHint="Rechercher"
         android:visibility="visible"
+        android:iconifiedByDefault="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
