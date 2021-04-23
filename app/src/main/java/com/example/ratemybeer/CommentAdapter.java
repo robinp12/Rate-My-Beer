@@ -71,7 +71,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
 
         Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
         calendar.setTimeInMillis(time);
-        String date = DateFormat.format("'le' dd/MM/yyyy 'à' HH:mm",calendar).toString();
+        String date = DateFormat.format("dd/MM/yyyy 'à' HH:mm",calendar).toString();
         return date;
     }
 

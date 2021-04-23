@@ -4,10 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/com"
-    android:layoutMode="opticalBounds"
-    android:backgroundTint="@color/purple_700"
-    android:backgroundTintMode="multiply"
     android:paddingTop="8dp">
 
 
@@ -18,7 +14,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="4dp"
         android:text="TextView"
-        android:textColor="#000000"
+        android:textColor="#3C3C3C"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/comment_content"
         app:layout_constraintStart_toStartOf="parent" />
@@ -26,12 +22,13 @@
     <TextView
         android:id="@+id/comment_content"
         android:layout_width="0dp"
-        android:layout_height="36dp"
 
-        android:layout_marginStart="28dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:layout_marginEnd="28dp"
+        android:layout_marginBottom="5dp"
         android:text="Text Comment Goes Here"
-        android:textColor="#000000"
+        android:textColor="#3C3C3C"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -40,25 +37,15 @@
         android:id="@+id/comment_date"
         android:layout_width="0dp"
         android:layout_height="23dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="16dp"
         android:text="10:20"
-        android:textColor="#000000"
+        android:textColor="#3C3C3C"
         android:textSize="12sp"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="-3dp" />
-
-    <androidx.constraintlayout.widget.Barrier
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="411dp"
-        android:background="#000000"
-        android:backgroundTint="@color/black"
-        android:backgroundTintMode="multiply"
-        app:barrierDirection="top"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

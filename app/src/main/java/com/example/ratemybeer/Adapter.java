@@ -89,7 +89,7 @@ public class Adapter extends BaseAdapter implements Filterable {
 
         beerNameView.setText(currentBeer.getName());
         beerAlcoholView.setText(currentBeer.getDegree()+"°");
-        beerOrigin.setText("Origine : "+currentBeer.getOrigin());
+        beerOrigin.setText(currentBeer.getOrigin());
         global_rating.setText(currentBeer.getGlobal_rating()+ "/5");
 
         delButton.setOnClickListener(new View.OnClickListener() {

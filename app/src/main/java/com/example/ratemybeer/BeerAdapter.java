@@ -95,7 +95,7 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
 
         beerNameView.setText(currentBeer.getName());
         beerAlcoholView.setText(currentBeer.getDegree()+"°");
-        beerOrigin.setText("Origine : "+currentBeer.getOrigin());
+        beerOrigin.setText(currentBeer.getOrigin());
         global_rating.setText(moy + "/5");
 
         delButton.setOnClickListener(new View.OnClickListener() {

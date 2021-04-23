@@ -14,8 +14,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
-        android:layout_marginTop="11dp"
-        android:layout_marginBottom="1dp"
         android:background="?attr/colorPrimary"
         app:itemIconTint="@android:color/white"
         app:itemTextColor="@android:color/white"
@@ -23,292 +21,239 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageU"
-        app:layout_constraintVertical_bias="1.0"
         app:menu="@menu/bottom_menu" />
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="0dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="21dp"
-        android:layout_marginBottom="8dp"
-        android:scrollbars="vertical"
-        android:text="Description"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageU"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="0dp"
-        android:layout_height="37dp"
-
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="10dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/img"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv"
+    <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        android:background="@drawable/back"
-        android:dividerHeight="8dp"
-        android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/img"
-        android:layout_width="0dp"
-        android:layout_height="115dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="36dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView6"
-        app:layout_constraintEnd_toStartOf="@+id/rb"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/jupiler" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <RatingBar
-        android:id="@+id/rb"
-        android:layout_width="245dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="8dp"
-        android:background="#00FFFFFF"
-        android:backgroundTint="#FFFFFF"
-        android:foregroundTint="#FFC107"
-        android:indeterminateTint="#74FFFFFF"
-        android:numStars="5"
-        android:progressTint="#FFEB3B"
-        android:scaleX=".5"
-        android:scaleY=".5"
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/jupiler" />
 
-        android:secondaryProgressTint="#00FFFFFF"
-        android:stepSize="0.5"
-        android:transformPivotX="0dp"
-        android:transformPivotY="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        tools:ignore="MissingConstraints" />
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-    <TextView
-        android:id="@+id/vs"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="50dp"
-        android:text="Rate"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/img"
-        app:layout_constraintTop_toBottomOf="@+id/rb"
-        tools:ignore="MissingConstraints" />
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@+id/img"
+                app:layout_constraintTop_toTopOf="@+id/img" />
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:fontFamily="sans-serif-light"
-        android:text="Description : "
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img"
-        tools:ignore="MissingConstraints" />
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="36dp"
+                android:text="Edit my beer"
+                android:textColor="@color/black"
+                android:textSize="10dp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fav" />
 
-    <ImageView
-        android:id="@+id/imageU"
-        android:layout_width="47dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
-        android:visibility="visible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7"
-        app:srcCompat="@drawable/nnn"
-        tools:ignore="MissingConstraints"
-        tools:srcCompat="@tools:sample/avatars" />
+            <ImageButton
+                android:id="@+id/fav"
+                android:layout_width="28dp"
+                android:layout_height="27dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="36dp"
+                android:background="@drawable/ic_starout"
+                android:backgroundTint="#4CAF50"
+                android:text="Add favoris"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/img" />
 
-    <EditText
-        android:id="@+id/comment"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
+            <ImageButton
+                android:id="@+id/del"
+                android:layout_width="26dp"
+                android:layout_height="27dp"
 
-        android:background="@drawable/edittext_button_style_rounded"
-        android:ems="10"
-        android:hint="  Ajoutez votre avis"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/rv"
-        app:layout_constraintEnd_toStartOf="@+id/add"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageU"
-        app:layout_constraintTop_toTopOf="@+id/imageU"
-        app:layout_constraintVertical_bias="0.0" />
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/ic_del"
+                android:backgroundTint="#F44336"
+                app:layout_constraintEnd_toStartOf="@+id/fav"
+                app:layout_constraintTop_toTopOf="@+id/img" />
 
-    <Button
-        android:id="@+id/Add"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="80dp"
-        android:background="@drawable/edittext_button_style_rounded"
-        android:text="Add"
-        android:textColor="@color/black"
-        android:textSize="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/comment"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/comment"
-        app:layout_constraintTop_toTopOf="@+id/comment"
-        app:layout_constraintVertical_bias="0.0" />
+            <TextView
+                android:id="@+id/org"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="2dp"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/img"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="155dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="19dp"
-        android:text="Edit my beer"
-        android:textSize="10dp"
-        android:textColor="@color/black"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/img"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.024"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/deg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="17dp"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintTop_toTopOf="@+id/img" />
 
-    <EditText
-        android:id="@+id/editTextTextMultiLine"
-        android:layout_width="371dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="21dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            <RatingBar
+                android:id="@+id/rb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="208dp"
+                android:layout_marginTop="76dp"
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="0dp"
-        android:layout_height="26dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="287dp"
-        android:text="Avis"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/rv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageU" />
+                android:background="#00FFFFFF"
+                android:backgroundTint="#FFFFFF"
+                android:foregroundTint="#FFC107"
+                android:indeterminateTint="#74FFFFFF"
+                android:progressTint="#FFEB3B"
+                android:scaleX=".5"
+                android:scaleY=".5"
+                android:secondaryProgressTint="#00FFFFFF"
+                android:stepSize="0.5"
+                app:layout_constraintStart_toStartOf="@+id/img"
+                app:layout_constraintTop_toTopOf="@+id/img" />
 
-    <ImageButton
-        android:id="@+id/fav"
-        android:layout_width="28dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="10dp"
-        android:background="@drawable/ic_starout"
-        android:text="Add favoris"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintEnd_toStartOf="@+id/del"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/textView4" />
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="sans-serif-light"
+                android:text="Description :"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="#3C3C3C"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="63dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="204dp"
-        android:layout_marginEnd="21dp"
-        android:text="Favoris"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
-        app:layout_constraintEnd_toStartOf="@+id/fav"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Description : "
+                android:textSize="13sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
-    <ImageButton
-        android:id="@+id/del"
-        android:layout_width="26dp"
-        android:layout_height="27dp"
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="19dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="10dp"
+                android:text="date"
+                android:textAllCaps="false"
+                android:textSize="12dp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="44dp"
-        android:background="@drawable/ic_del"
-        app:layout_constraintBottom_toBottomOf="@+id/fav"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/fav"
-        app:layout_constraintTop_toTopOf="@+id/fav"
-        app:layout_constraintVertical_bias="0.0" />
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="sans-serif-light"
+                android:text="Commentaires :"
+                android:textColor="#3C3C3C"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/date" />
 
-    <TextView
-        android:id="@+id/date"
-        android:layout_width="0dp"
-        android:layout_height="19dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="1dp"
-        android:text="date"
-        android:textSize="12dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageU"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv"
+                android:layout_width="413dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-    <TextView
-        android:id="@+id/org"
-        android:layout_width="0dp"
-        android:layout_height="19dp"
-        android:layout_marginEnd="16dp"
-        android:text="Belgium"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/deg"
-        app:layout_constraintTop_toBottomOf="@+id/vs" />
+            <Button
+                android:id="@+id/Add"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginEnd="10dp"
+                android:text="Envoyer"
+                android:textColor="#3C3C3C"
+                android:textSize="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/comment"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/comment" />
 
-    <TextView
-        android:id="@+id/deg"
-        android:layout_width="0dp"
-        android:layout_height="19dp"
-        android:layout_marginEnd="83dp"
-        android:textStyle="bold"
-        android:text="alcohol :  6°"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vs" />
+            <EditText
+                android:id="@+id/comment"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="?attr/popupMenuBackground"
+                android:hint="Ajoutez un commentaire ..."
+                android:inputType="textPersonName"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/Add"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rv" />
+
+            <TextView
+                android:id="@+id/vs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="65dp"
+                android:text="Rate"
+                android:textAlignment="textEnd"
+                app:layout_constraintBottom_toBottomOf="@+id/rb"
+                app:layout_constraintEnd_toEndOf="@+id/rb" />
+
+            <EditText
+                android:id="@+id/editTextTextMultiLine"
+                android:layout_width="371dp"
+                android:layout_height="130dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine"
+                android:visibility="gone" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
