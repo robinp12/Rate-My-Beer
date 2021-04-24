@@ -95,7 +95,7 @@ public class Adapter extends BaseAdapter implements Filterable {
         delButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                database.child("Users").child(mAuth.getUid()).child("Favoris").child(currentBeer.getName()).removeValue();
+                database.child("Users").child(firebaseUser.getUid()).child("Favoris").child(currentBeer.getName()).removeValue();
 
                 Toast.makeText(con.getApplicationContext(),"Vous avez supprimé " +currentBeer.getName()+" de votre liste favoris !", Toast.LENGTH_SHORT).show();
             }

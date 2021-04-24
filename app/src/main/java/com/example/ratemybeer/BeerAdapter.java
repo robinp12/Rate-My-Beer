@@ -102,6 +102,10 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
             @Override
             public void onClick(View v) {
                 database.child("Beers").child(currentBeer.getName()).removeValue();
+                //database.child("Comment").child(currentBeer.getName()).removeValue();
+                database.child("Users").child(firebaseUser.getUid()).child("Favoris").child(currentBeer.getName()).removeValue();
+                database.child("Users").child(firebaseUser.getUid()).child("user_rated_beers").child(currentBeer.getName()).removeValue();
+
             }
         });
 
