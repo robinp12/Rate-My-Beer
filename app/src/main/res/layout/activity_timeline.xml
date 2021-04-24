@@ -52,13 +52,14 @@
 
     <SearchView
         android:id="@+id/search"
-        android:layout_width="270dp"
+        android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
-        android:queryHint="Chercher une bière"
         android:background="#FFFFFF"
+        android:queryHint="Chercher une bière"
         android:visibility="visible"
+        app:layout_constraintEnd_toStartOf="@+id/textView10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
