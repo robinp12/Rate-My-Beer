@@ -110,7 +110,7 @@ public class Activity_Beer extends AppCompatActivity  {
         String or= getIntent().getStringExtra("ListViewClickedRegion");
         String de = getIntent().getStringExtra("deg");
         org.setText(or);
-        deg.setText("Alcohol: "+de+"°");
+        deg.setText(de+"°");
 
 
 
@@ -119,7 +119,6 @@ public class Activity_Beer extends AppCompatActivity  {
         RvComment = findViewById(R.id.rv);
         add = findViewById(R.id.Add);
         com = findViewById(R.id.comment) ;
-        imgU = findViewById(R.id.imageU) ;
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference postedBy = firebaseDatabase.getReference().child("Beers").child(name).child("postedBy");

@@ -6,6 +6,7 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -51,10 +52,11 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
         return mData.size();
     }
 
-    public class CommentViewHolder extends RecyclerView.ViewHolder{
+    public class CommentViewHolder extends RecyclerView.ViewHolder {
 
         ImageView img_user;
         TextView tv_name,tv_content,tv_date;
+        ImageButton tv_del;
 
         public CommentViewHolder(View itemView) {
             super(itemView);
@@ -62,6 +64,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
             tv_name = itemView.findViewById(R.id.comment_username);
             tv_content = itemView.findViewById(R.id.comment_content);
             tv_date = itemView.findViewById(R.id.comment_date);
+            tv_del = itemView.findViewById(R.id.delb);
         }
     }
 
@@ -71,7 +74,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
 
         Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
         calendar.setTimeInMillis(time);
-        String date = DateFormat.format("'le' dd/MM/yyyy 'à' HH:mm",calendar).toString();
+        String date = DateFormat.format("dd/MM/yyyy 'à' HH:mm",calendar).toString();
         return date;
     }
 
