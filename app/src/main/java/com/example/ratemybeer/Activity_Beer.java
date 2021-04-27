@@ -263,7 +263,7 @@ public class Activity_Beer extends AppCompatActivity  {
                 }
                 String timestampComment = String.valueOf(new Timestamp(System.currentTimeMillis()).getTime());
                 String idComment = uname+"_"+timestampComment;
-                Comment comment = new Comment(comment_content,uid,null,uname,name,timestampComment);
+                Comment comment = new Comment(comment_content,uid,null,uname,name,timestampComment, firebaseUser.getUid());
 
                 ref.child(idComment).setValue(comment).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

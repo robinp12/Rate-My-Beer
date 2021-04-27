@@ -1,5 +1,6 @@
 package com.example.ratemybeer;
 
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ServerValue;
 
 import java.sql.Timestamp;
@@ -8,12 +9,14 @@ public class Comment {
 
     private String content,uid,uimg,uname, id, beername;
     private String timestamp;
+    private String owner;
 
 
     public Comment() {
     }
 
-    public Comment(String content, String uid, String uimg, String uname, String Beername,String timestamp) {
+
+    public Comment(String content, String uid, String uimg, String uname, String Beername, String timestamp, String owner) {
         this.content = content;
         this.uid = uid;
         this.uimg = uimg;
@@ -21,6 +24,7 @@ public class Comment {
         this.timestamp = timestamp;
         this.id = uname+'_'+ timestamp;
         this.beername = Beername;
+        this.owner = owner;
 
     }
 /*
@@ -77,4 +81,9 @@ public class Comment {
     public String getBeername() { return beername; }
 
     public void setBeername(String beername) { this.beername = beername; }
+
+    public String getOwner() { return owner; }
+
+    public void setOwner(String owner) { this.owner = owner; }
+
 }

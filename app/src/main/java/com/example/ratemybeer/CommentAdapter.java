@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
@@ -43,7 +45,9 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
     @Override
     public void onBindViewHolder( CommentViewHolder holder, int position) {
 
+        FirebaseUser firebaseUser;
         DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         Comment currentComment =  mData.get(position);
 
@@ -55,6 +59,12 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
         String currentBeer = currentComment.getBeername();
         String idComment = currentComment.getId();
 
+        if(!firebaseUser.getUid().equals(currentComment.getOwner())){
+            holder.tv_del.setVisibility(View.INVISIBLE);
+        }
+        else {
+            holder.tv_del.setVisibility(View.VISIBLE);
+        }
 
         holder.tv_del.setOnClickListener(new View.OnClickListener() {
             @Override
