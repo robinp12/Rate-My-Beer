@@ -69,12 +69,12 @@ public class Activity_Register extends AppCompatActivity implements View.OnClick
         String email = editTextEmail.getText().toString().trim() ;
         String password = editTextPassword.getText().toString().trim() ;
 
-        if (firstname.isEmpty() || (firstname.length() < 3)){
+        if (firstname.isEmpty() || (firstname.length() < 2)){
             editTextFirstName.setError("Prénom requis ou trop court");
             editTextFirstName.requestFocus();
             return;
         }
-        if (lastname.isEmpty() || (lastname.length() < 3)){
+        if (lastname.isEmpty() || (lastname.length() < 2)){
             editTextLastName.setError("Nom requis ou trop court");
             editTextLastName.requestFocus();
             return;
