@@ -37,7 +37,8 @@ import com.google.firebase.database.DataSnapshot;
         import com.google.firebase.database.Query;
         import com.google.firebase.database.ValueEventListener;
 
-        import java.util.ArrayList;
+import java.sql.Timestamp;
+import java.util.ArrayList;
         import java.util.Calendar;
         import java.util.HashMap;
         import java.util.List;
@@ -71,6 +72,7 @@ public class Activity_Beer extends AppCompatActivity  {
     FirebaseUser firebaseUser;
     FirebaseDatabase firebaseDatabase;
     Long dateUpload;
+
 
     TextView org,deg ;
 
@@ -106,6 +108,7 @@ public class Activity_Beer extends AppCompatActivity  {
         del=findViewById(R.id.del);
         org= findViewById(R.id.org);
         deg=findViewById(R.id.deg);
+
 
         String or= getIntent().getStringExtra("ListViewClickedRegion");
         String de = getIntent().getStringExtra("deg");
@@ -241,13 +244,12 @@ public class Activity_Beer extends AppCompatActivity  {
         });
 
 
-
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                // add.setVisibility(View.INVISIBLE);
-                DatabaseReference ref = firebaseDatabase.getReference().child("Comment").child(name).push();
+                DatabaseReference ref = firebaseDatabase.getReference().child("Comment").child(name);
                 String comment_content = com.getText().toString();
                 String uid = firebaseUser.getUid();
                 String uname = firebaseUser.getDisplayName();
@@ -259,9 +261,11 @@ public class Activity_Beer extends AppCompatActivity  {
 
                     return;
                 }
-                Comment comment = new Comment(comment_content,uid,null,uname);
+                String timestampComment = String.valueOf(new Timestamp(System.currentTimeMillis()).getTime());
+                String idComment = uname+"_"+timestampComment;
+                Comment comment = new Comment(comment_content,uid,null,uname,name,timestampComment);
 
-                ref.setValue(comment).addOnSuccessListener(new OnSuccessListener<Void>() {
+                ref.child(idComment).setValue(comment).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         //showMessage("comment added");
@@ -275,7 +279,7 @@ public class Activity_Beer extends AppCompatActivity  {
                     }
                 });
 
-                DatabaseReference commentRef = firebaseDatabase.getReference().child("Comment").child(name).child(uid);
+                DatabaseReference commentRef = firebaseDatabase.getReference().child("Comment").child(name);
                 commentRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

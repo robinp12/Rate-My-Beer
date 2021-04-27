@@ -2,31 +2,35 @@ package com.example.ratemybeer;
 
 import com.google.firebase.database.ServerValue;
 
+import java.sql.Timestamp;
+
 public class Comment {
 
-    private String content,uid,uimg,uname;
-    private Object timestamp;
+    private String content,uid,uimg,uname, id, beername;
+    private String timestamp;
 
 
     public Comment() {
     }
 
-    public Comment(String content, String uid, String uimg, String uname) {
+    public Comment(String content, String uid, String uimg, String uname, String Beername,String timestamp) {
         this.content = content;
         this.uid = uid;
         this.uimg = uimg;
         this.uname = uname;
-        this.timestamp = ServerValue.TIMESTAMP;
+        this.timestamp = timestamp;
+        this.id = uname+'_'+ timestamp;
+        this.beername = Beername;
 
     }
-
+/*
     public Comment(String content, String uid, String uimg, String uname, Object timestamp) {
         this.content = content;
         this.uid = uid;
         this.uimg = uimg;
         this.uname = uname;
         this.timestamp = timestamp;
-    }
+    }*/
 
     public String getContent() {
         return content;
@@ -60,11 +64,17 @@ public class Comment {
         this.uname = uname;
     }
 
-    public Object getTimestamp() {
+    public String getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Object timestamp) {
-        this.timestamp = timestamp;
-    }
+    public void setTimestamp(String timestamp) { this.timestamp = timestamp; }
+
+    public String getId() { return id; }
+
+    public void setId(String id) { this.id = id; }
+
+    public String getBeername() { return beername; }
+
+    public void setBeername(String beername) { this.beername = beername; }
 }
