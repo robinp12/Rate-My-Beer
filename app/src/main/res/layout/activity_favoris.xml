@@ -58,7 +58,7 @@
         android:layout_marginTop="10dp"
         android:background="@color/black"
         android:textColor="@color/white"
-        android:queryHint="Rechercher"
+        android:queryHint="Chercher un favoris"
         android:visibility="visible"
         android:iconifiedByDefault="false"
         app:layout_constraintStart_toStartOf="parent"
