@@ -114,7 +114,7 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.getValue().toString().equals("true")){
                     delButton.setVisibility(View.VISIBLE);
-                    editButton.setVisibility(View.VISIBLE);
+                    editButton.setVisibility(View.INVISIBLE);
 
                 }
                 else{

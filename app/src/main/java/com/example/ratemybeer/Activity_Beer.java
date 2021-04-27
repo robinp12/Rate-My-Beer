@@ -151,7 +151,8 @@ public class Activity_Beer extends AppCompatActivity  {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
-        postedBy.addValueEventListener(new ValueEventListener() {
+        modifyBeer.setVisibility(View.INVISIBLE);
+        /*postedBy.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.getValue().toString().equals(firebaseUser.getUid())){
@@ -171,7 +172,7 @@ public class Activity_Beer extends AppCompatActivity  {
                 //beerDesc.setVisibility(View.GONE);
                 //modifyBeerDesc.setVisibility(View.VISIBLE);
             }
-        });
+        });*/
 
         //add beer to favoris
 
