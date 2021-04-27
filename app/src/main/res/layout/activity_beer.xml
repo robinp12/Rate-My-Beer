@@ -115,11 +115,12 @@
 
             <RatingBar
                 android:id="@+id/rb"
-                android:layout_width="240dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="208dp"
+                android:layout_marginStart="148dp"
                 android:layout_marginTop="76dp"
 
+                android:layout_marginEnd="13dp"
                 android:background="#00FFFFFF"
                 android:backgroundTint="#FFFFFF"
                 android:foregroundTint="#FFC107"
@@ -194,12 +195,10 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv"
                 android:layout_width="0dp"
-                android:layout_height="333dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="10dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                app:layout_constraintBottom_toTopOf="@+id/Add"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
@@ -224,14 +223,12 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="4dp"
                 android:background="?attr/popupMenuBackground"
                 android:hint="Ajoutez un commentaire ..."
                 android:inputType="textPersonName"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/Add"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rv" />
