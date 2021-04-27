@@ -59,6 +59,7 @@
         android:background="#FFFFFF"
         android:queryHint="Chercher une bière"
         android:visibility="visible"
+        android:iconifiedByDefault="false"
         app:layout_constraintEnd_toStartOf="@+id/textView10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
