@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -41,6 +42,7 @@ import java.util.UUID;
 
 public class Activity_AddBeer extends AppCompatActivity {
     private ImageView image ;
+    private Button boutonImage;
     public Uri imageUri;
     private FirebaseStorage storage ;
     private StorageReference storageReference ;
@@ -55,6 +57,7 @@ public class Activity_AddBeer extends AppCompatActivity {
 
     private EditText editTextname, editTextorigin ,editTextalcohol, editTextdescription ;
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,10 +97,11 @@ public class Activity_AddBeer extends AppCompatActivity {
         });
 
         //choose a picture
-        image = findViewById(R.id.image) ;
+        image = findViewById(R.id.image);
+        boutonImage = findViewById(R.id.btnImg) ;
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
-        image.setOnClickListener(new View.OnClickListener() {
+        boutonImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 choosePicture() ;

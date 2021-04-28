@@ -376,7 +376,9 @@ public class Activity_Beer extends AppCompatActivity  {
                 }
                 moyenne=moyenne/globalRating.size();
                 if(Float.isNaN(moyenne)){
-                    ratingText.setText("Personne n'a encore voté cette bière !");
+                    ratingText.setText("Aucun vote enregistré");
+
+
                 }
                 else {
                     String moy = String.format("%.1f",moyenne);
