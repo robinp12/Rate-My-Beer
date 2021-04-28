@@ -22,7 +22,7 @@ public class Comment {
         this.uimg = uimg;
         this.uname = uname;
         this.timestamp = timestamp;
-        this.id = uname+'_'+ timestamp;
+        this.id = timestamp+'_'+uname ;
         this.beername = Beername;
         this.owner = owner;
 
