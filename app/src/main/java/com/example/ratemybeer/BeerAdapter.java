@@ -101,10 +101,12 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
         delButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                database.child("Beers").child(currentBeer.getName()).removeValue();
+
                 //database.child("Comment").child(currentBeer.getName()).removeValue();
                 database.child("Users").child(firebaseUser.getUid()).child("Favoris").child(currentBeer.getName()).removeValue();
                 database.child("Users").child(firebaseUser.getUid()).child("user_rated_beers").child(currentBeer.getName()).removeValue();
+                database.child("Comment").child(currentBeer.getName()).removeValue();
+                database.child("Beers").child(currentBeer.getName()).removeValue();
 
             }
         });
@@ -114,14 +116,16 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.getValue().toString().equals("true")){
                     delButton.setVisibility(View.VISIBLE);
-                    editButton.setVisibility(View.INVISIBLE);
-
                 }
                 else{
-                    delButton.setVisibility(View.INVISIBLE);
-                    editButton.setVisibility(View.INVISIBLE);
-
+                    if(firebaseUser.getUid().equals(currentBeer.getPostedBy())){
+                        delButton.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        delButton.setVisibility(View.INVISIBLE);
+                    }
                 }
+                editButton.setVisibility(View.INVISIBLE);
             }
 
             @Override
