@@ -178,7 +178,7 @@ public class Activity_Beer extends AppCompatActivity  {
         DatabaseReference ref = firebaseDatabase.getReference("Users").child(mAuth.getUid()).child("Favoris").child(name);
         final DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Beers").child(name);
 
-        del.setVisibility(View.INVISIBLE);
+       // del.setVisibility(View.VISIBLE);
         addFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -195,7 +195,7 @@ public class Activity_Beer extends AppCompatActivity  {
                             n = snapshot.getValue(Biere.class); // n est une biere
                             ref.setValue(n);
 
-                        //del.setVisibility(View.VISIBLE);
+                        del.setVisibility(View.VISIBLE);
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -208,7 +208,7 @@ public class Activity_Beer extends AppCompatActivity  {
 
 
 
-    /*    del.setOnClickListener(new View.OnClickListener() {
+        del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -218,10 +218,29 @@ public class Activity_Beer extends AppCompatActivity  {
                 Toast.makeText(getApplicationContext(),"Vous avez supprimez "+name+" de votre liste favoris !", Toast.LENGTH_SHORT).show();
 
             }
-        });*/
+        });
 
          //set button favoris
+        DatabaseReference database = firebaseDatabase.getReference("Users").child(mAuth.getUid());
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                if(snapshot.child("Favoris").hasChild(name)){
+                    addFav.setImageResource(R.drawable.ic_staar);
+                    del.setVisibility(View.VISIBLE);
+                }
+                else{
+                    del.setVisibility(View.GONE);
+                    addFav.setImageResource((R.drawable.ic_starout));
+                }
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+
+        });
 
 
         add.setOnClickListener(new View.OnClickListener() {
