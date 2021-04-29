@@ -175,42 +175,40 @@ public class Activity_Beer extends AppCompatActivity  {
         });*/
 
         //add beer to favoris
+        DatabaseReference ref = firebaseDatabase.getReference("Users").child(mAuth.getUid()).child("Favoris").child(name);
+        final DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Beers").child(name);
 
-
-
+        del.setVisibility(View.INVISIBLE);
         addFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
 
-                DatabaseReference ref = firebaseDatabase.getReference("Users").child(mAuth.getUid()).child("Favoris").child(name);
-
-                final DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Beers").child(name);
+                addFav.setImageResource((R.drawable.ic_staar));
                 Toast.makeText(getApplicationContext(),"Vous avez ajoutez "+name+" à votre liste favoris !", Toast.LENGTH_SHORT).show();
 
-
+                addFav.setEnabled(true);
                 reference.addValueEventListener(new ValueEventListener() {
-
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                            addFav.setImageResource((R.drawable.ic_starout));
-                            firebaseDatabase.getReference("Users").child(mAuth.getUid()).child("Favoris").child(name).removeValue();
-
-                            addFav.setEnabled(true);
                             n = snapshot.getValue(Biere.class); // n est une biere
-
                             ref.setValue(n);
-                            addFav.setImageResource((R.drawable.ic_staar));
 
+                        //del.setVisibility(View.VISIBLE);
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                     }
                 });
+
+
             }
         });
-        del.setOnClickListener(new View.OnClickListener() {
+
+
+
+    /*    del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -220,9 +218,9 @@ public class Activity_Beer extends AppCompatActivity  {
                 Toast.makeText(getApplicationContext(),"Vous avez supprimez "+name+" de votre liste favoris !", Toast.LENGTH_SHORT).show();
 
             }
-        });
+        });*/
 
-         // set button favoris
+         //set button favoris
         DatabaseReference database = firebaseDatabase.getReference("Users").child(mAuth.getUid());
         database.addValueEventListener(new ValueEventListener() {
             @Override
@@ -230,7 +228,7 @@ public class Activity_Beer extends AppCompatActivity  {
 
                 if(snapshot.child("Favoris").hasChild(name)){
                     addFav.setImageResource(R.drawable.ic_staar);
-                    del.setVisibility(View.VISIBLE);
+                    //del.setVisibility(View.VISIBLE);
                 }
                 else{
                     del.setVisibility(View.GONE);
