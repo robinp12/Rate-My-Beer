@@ -221,26 +221,7 @@ public class Activity_Beer extends AppCompatActivity  {
         });*/
 
          //set button favoris
-        DatabaseReference database = firebaseDatabase.getReference("Users").child(mAuth.getUid());
-        database.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                if(snapshot.child("Favoris").hasChild(name)){
-                    addFav.setImageResource(R.drawable.ic_staar);
-                    //del.setVisibility(View.VISIBLE);
-                }
-                else{
-                    del.setVisibility(View.GONE);
-                    addFav.setImageResource((R.drawable.ic_starout));
-                }
-
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-
-        });
 
 
         add.setOnClickListener(new View.OnClickListener() {
