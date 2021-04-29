@@ -175,41 +175,39 @@ public class Activity_Beer extends AppCompatActivity  {
         });*/
 
         //add beer to favoris
+        DatabaseReference ref = firebaseDatabase.getReference("Users").child(mAuth.getUid()).child("Favoris").child(name);
+        final DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Beers").child(name);
 
-
-
+       // del.setVisibility(View.VISIBLE);
         addFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
 
-                DatabaseReference ref = firebaseDatabase.getReference("Users").child(mAuth.getUid()).child("Favoris").child(name);
-
-                final DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Beers").child(name);
+                addFav.setImageResource((R.drawable.ic_staar));
                 Toast.makeText(getApplicationContext(),"Vous avez ajoutez "+name+" à votre liste favoris !", Toast.LENGTH_SHORT).show();
 
-
+                addFav.setEnabled(true);
                 reference.addValueEventListener(new ValueEventListener() {
-
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                            addFav.setImageResource((R.drawable.ic_starout));
-                            firebaseDatabase.getReference("Users").child(mAuth.getUid()).child("Favoris").child(name).removeValue();
-
-                            addFav.setEnabled(true);
                             n = snapshot.getValue(Biere.class); // n est une biere
-
                             ref.setValue(n);
-                            addFav.setImageResource((R.drawable.ic_staar));
 
+                        del.setVisibility(View.VISIBLE);
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                     }
                 });
+
+
             }
         });
+
+
+
         del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -222,7 +220,7 @@ public class Activity_Beer extends AppCompatActivity  {
             }
         });
 
-         // set button favoris
+         //set button favoris
         DatabaseReference database = firebaseDatabase.getReference("Users").child(mAuth.getUid());
         database.addValueEventListener(new ValueEventListener() {
             @Override

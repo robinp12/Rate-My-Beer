@@ -37,6 +37,7 @@ public class Adapter extends BaseAdapter implements Filterable {
 
     private List<Biere> originalBeers = null;
     private List<Biere> filteredBeers = null;
+    ImageButton fav ;
 
 
     //constructeur
