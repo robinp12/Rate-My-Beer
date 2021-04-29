@@ -95,7 +95,10 @@ public class Activity_Timeline extends AppCompatActivity {
                             for(DataSnapshot ds : snapshot.getChildren()){
                                 beer = ds.getValue(Biere.class);
                                 //beerName.add(beer.getName());
-                                beerList.add(beer);
+                                if(beer.getName()!=null){
+                                    beerList.add(beer);
+                                }
+
                             }
                             allBeerlistView.setAdapter(customAdapter);
                         }
@@ -115,7 +118,9 @@ public class Activity_Timeline extends AppCompatActivity {
                             for(DataSnapshot ds : snapshot.getChildren()){
                                 beer = ds.getValue(Biere.class);
                                 //beerName.add(beer.getName());
-                                beerList.add(beer);
+                                if(beer.getName()!=null){
+                                    beerList.add(beer);
+                                }
                             }
                             allBeerlistView.setAdapter(customAdapter);
                         }
@@ -134,7 +139,9 @@ public class Activity_Timeline extends AppCompatActivity {
                             for(DataSnapshot ds : snapshot.getChildren()){
                                 beer = ds.getValue(Biere.class);
                                 //beerName.add(beer.getName());
-                                beerList.add(beer);
+                                if(beer.getName()!=null){
+                                    beerList.add(beer);
+                                }
                             }
                             allBeerlistView.setAdapter(customAdapter);
                         }
@@ -153,7 +160,9 @@ public class Activity_Timeline extends AppCompatActivity {
                             for(DataSnapshot ds : snapshot.getChildren()){
                                 beer = ds.getValue(Biere.class);
                                 //beerName.add(beer.getName());
-                                beerList.add(beer);
+                                if(beer.getName()!=null){
+                                    beerList.add(beer);
+                                }
                             }
                             Collections.reverse(beerList);
                             allBeerlistView.setAdapter(customAdapter);
@@ -176,7 +185,9 @@ public class Activity_Timeline extends AppCompatActivity {
                         for(DataSnapshot ds : snapshot.getChildren()){
                             beer = ds.getValue(Biere.class);
                             //beerName.add(beer.getName());
-                            beerList.add(beer);
+                            if(beer.getName()!=null){
+                                beerList.add(beer);
+                            }
                         }
                         allBeerlistView.setAdapter(customAdapter);
                     }

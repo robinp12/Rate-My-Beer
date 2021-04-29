@@ -80,7 +80,9 @@ public class activity_favoris extends AppCompatActivity {
                             beerList.clear();
                             for(DataSnapshot ds : snapshot.getChildren()){
                                 beer = ds.getValue(Biere.class);
-                                beerList.add(beer);
+                                if(beer.getName()!=null){
+                                    beerList.add(beer);
+                                }
                             }
                             allBeerlistView1.setAdapter(customAdapter);
                         }
@@ -99,7 +101,9 @@ public class activity_favoris extends AppCompatActivity {
                             beerList.clear();
                             for(DataSnapshot ds : snapshot.getChildren()){
                                 beer = ds.getValue(Biere.class);
-                                beerList.add(beer);
+                                if(beer.getName()!=null){
+                                    beerList.add(beer);
+                                }
                             }
                             allBeerlistView1.setAdapter(customAdapter);
                         }
@@ -117,7 +121,9 @@ public class activity_favoris extends AppCompatActivity {
                             beerList.clear();
                             for(DataSnapshot ds : snapshot.getChildren()){
                                 beer = ds.getValue(Biere.class);
-                                beerList.add(beer);
+                                if(beer.getName()!=null){
+                                    beerList.add(beer);
+                                }
                             }
                             allBeerlistView1.setAdapter(customAdapter);
                         }
@@ -135,7 +141,9 @@ public class activity_favoris extends AppCompatActivity {
                             beerList.clear();
                             for(DataSnapshot ds : snapshot.getChildren()){
                                 beer = ds.getValue(Biere.class);
-                                beerList.add(beer);
+                                if(beer.getName()!=null){
+                                    beerList.add(beer);
+                                }
                             }
                             Collections.reverse(beerList);
                             allBeerlistView1.setAdapter(customAdapter);
@@ -157,7 +165,9 @@ public class activity_favoris extends AppCompatActivity {
                         beerList.clear();
                         for(DataSnapshot ds : snapshot.getChildren()){
                             beer = ds.getValue(Biere.class);
-                            beerList.add(beer);
+                            if(beer.getName()!=null){
+                                beerList.add(beer);
+                            }
                         }
                         allBeerlistView1.setAdapter(customAdapter);
                     }
