@@ -84,6 +84,7 @@ public class Activity_Beer extends AppCompatActivity  {
 
         mAuth = FirebaseAuth.getInstance();
 
+
         ratingText = findViewById(R.id.vs) ;
         ratingStar = findViewById(R.id.rb) ;
         ratingStar = findViewById(R.id.rb) ;
@@ -175,8 +176,8 @@ public class Activity_Beer extends AppCompatActivity  {
         });*/
 
         //add beer to favoris
-        DatabaseReference ref = firebaseDatabase.getReference("Users").child(mAuth.getUid()).child("Favoris").child(name);
-        final DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Beers").child(name);
+         DatabaseReference ref = firebaseDatabase.getReference("Users").child(mAuth.getUid()).child("Favoris").child(name);
+         DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Beers");
 
        // del.setVisibility(View.VISIBLE);
         addFav.setOnClickListener(new View.OnClickListener() {
@@ -191,8 +192,8 @@ public class Activity_Beer extends AppCompatActivity  {
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                            n = snapshot.getValue(Biere.class); // n est une biere
+                            n= new Biere() ;
+                            n =  snapshot.child(name).getValue(Biere.class); // n est une biere
                             ref.setValue(n);
 
                         del.setVisibility(View.VISIBLE);
@@ -201,12 +202,8 @@ public class Activity_Beer extends AppCompatActivity  {
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                     }
                 });
-
-
             }
         });
-
-
 
         del.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -337,6 +334,7 @@ public class Activity_Beer extends AppCompatActivity  {
                 if (snapshot.child("user_rated_beers").hasChild(name)){
                     String  rate_beer = snapshot.child("user_rated_beers").child(name).getValue().toString();
                     ratingStar.setRating(Float.parseFloat(rate_beer));
+
                 }
                 else{
                     //Toast.makeText(getApplicationContext(),"Tu n'as pas encore voté cette bière !", Toast.LENGTH_SHORT).show();
@@ -382,6 +380,10 @@ public class Activity_Beer extends AppCompatActivity  {
                     String moy = String.format("%.1f",moyenne);
                     ratingText.setText("Note moyenne : " + moy);
                     firebaseDatabase.getReference().child("Beers").child(name).child("global_rating").setValue(moyenne);
+
+                }if(!snapshot.child(mAuth.getUid()).child("Favoris").hasChild(name)){
+                    firebaseDatabase.getReference("Users").child(mAuth.getUid()).child("Favoris").child(name).removeValue();
+
                 }
             }
             @Override

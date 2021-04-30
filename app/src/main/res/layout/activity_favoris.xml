@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:backgroundTint="#FFFFFF"
-    tools:context=".activity_favoris">
+    tools:context=".Activity_Timeline">
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -30,8 +30,8 @@
         android:id="@+id/listView1"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginBottom="3dp"
+        android:background="#FFFFFF"
+        android:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,8 +52,8 @@
 
     <SearchView
         android:id="@+id/search1"
-        android:layout_width="209dp"
-        android:layout_height="37dp"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:background="@color/ic_launcher_background"
@@ -61,19 +61,36 @@
         android:queryHint="Chercher un favoris"
         android:visibility="visible"
         android:iconifiedByDefault="false"
+        app:layout_constraintEnd_toStartOf="@+id/textView10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
     </SearchView>
 
+
     <Spinner
         android:id="@+id/spinner1"
-        android:layout_width="0dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/toolbar31"
-        app:layout_constraintStart_toEndOf="@+id/search1"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="#00FFFFFF"
+        android:dropDownWidth="match_parent"
+        android:spinnerMode="dialog"
+        android:textAlignment="viewEnd"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:text="Trier :"
+        android:gravity="center_horizontal|center_vertical"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/spinner1"
+        app:layout_constraintTop_toTopOf="@+id/toolbar31" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

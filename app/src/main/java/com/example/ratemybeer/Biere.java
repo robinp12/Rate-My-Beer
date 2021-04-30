@@ -8,9 +8,9 @@ public class Biere {
     private String image;
     private String name;
     private String origin ;
-    private float degree ;
+    public float degree ;
     private String description;
-    private float global_rating;
+    public float global_rating;
     private String urlFirebase;
     private String postedBy;
     private Object timestamp;

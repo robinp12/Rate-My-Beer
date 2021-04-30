@@ -24,10 +24,12 @@
 
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-26dp">
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -148,27 +150,30 @@
 
             <Button
                 android:id="@+id/addBeer"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="60dp"
 
-                android:layout_marginTop="28dp"
-                android:layout_marginEnd="40dp"
+                android:layout_marginEnd="44dp"
                 android:text="Add beer"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/btnImg"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image"
-                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintTop_toTopOf="@+id/btnImg"
                 tools:ignore="MissingConstraints" />
 
             <ImageView
                 android:id="@+id/image"
                 android:layout_width="0dp"
-                android:layout_height="109dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="267dp"
+                android:layout_marginBottom="13dp"
+                app:layout_constraintBottom_toTopOf="@+id/btnImg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/description"
                 tools:ignore="MissingConstraints"
@@ -176,13 +181,14 @@
 
             <Button
                 android:id="@+id/btnImg"
-                android:layout_width="167dp"
+                android:layout_width="0dp"
                 android:layout_height="51dp"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="13dp"
                 android:layout_marginEnd="71dp"
                 android:text="Ajouter image"
                 app:layout_constraintEnd_toStartOf="@+id/addBeer"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/image" />
 
