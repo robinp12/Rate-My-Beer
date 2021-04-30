@@ -7,13 +7,13 @@
     android:background="@drawable/back"
     tools:context=".Activity_Register"
     tools:layout_editor_absoluteY="25dp">
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
-        android:layout_marginTop="16dp"
         android:background="?attr/colorPrimary"
         app:itemIconTint="@android:color/white"
         app:itemTextColor="@android:color/white"
@@ -24,10 +24,11 @@
 
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-26dp">
+        android:layout_marginBottom="?actionBarSize"
+        tools:layout_editor_absoluteX="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -151,25 +152,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
 
-                android:layout_marginTop="28dp"
-                android:layout_marginEnd="40dp"
+                android:layout_marginStart="37dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
                 android:text="Add beer"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image"
-                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnImg"
                 tools:ignore="MissingConstraints" />
 
             <ImageView
                 android:id="@+id/image"
                 android:layout_width="0dp"
                 android:layout_height="109dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="600dp"
+                android:layout_marginTop="27dp"
+                android:layout_marginEnd="88dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/addBeer"
                 app:layout_constraintTop_toBottomOf="@+id/description"
                 tools:ignore="MissingConstraints"
                 tools:srcCompat="@tools:sample/avatars" />
@@ -179,12 +182,10 @@
                 android:layout_width="167dp"
                 android:layout_height="51dp"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="28dp"
-                android:layout_marginEnd="71dp"
+                android:layout_marginTop="10dp"
                 android:text="Ajouter image"
-                app:layout_constraintEnd_toStartOf="@+id/addBeer"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image" />
+                app:layout_constraintTop_toBottomOf="@+id/description" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
