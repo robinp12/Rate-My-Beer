@@ -6,10 +6,13 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,6 +31,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
 
     private Context mContext;
     private List<Comment> mData;
+    private Activity_Beer b ;
 
 
     public CommentAdapter(Context mContext, List<Comment> mData) {
@@ -69,8 +73,12 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
         holder.tv_del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                database.child("Comment").child(currentBeer).child(idComment).removeValue();
-            }
+                        database.child("Comment").child(currentBeer).child(idComment).removeValue();
+
+                    }
+
+
+
         });
 
     }

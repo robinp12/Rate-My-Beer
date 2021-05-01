@@ -1,7 +1,8 @@
 package com.example.ratemybeer;
 
 import androidx.annotation.NonNull;
-        import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
         import androidx.recyclerview.widget.RecyclerView;
@@ -175,6 +176,8 @@ public class Activity_Beer extends AppCompatActivity  {
             }
         });*/
 
+
+
         //add beer to favoris
          DatabaseReference ref = firebaseDatabase.getReference("Users").child(mAuth.getUid()).child("Favoris").child(name);
          DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Beers");
@@ -204,15 +207,33 @@ public class Activity_Beer extends AppCompatActivity  {
                 });
             }
         });
+        final AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle("Confirmation")
+                .setMessage("Voulez-vous supprimer "+name+" du favoris ?")
+                .setPositiveButton("Oui", null)
+                .setNegativeButton("Non", null).create();
+
+        //Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+
 
         del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                dialog.show();
+                Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                positiveButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        firebaseDatabase.getReference("Users").child(mAuth.getUid()).child("Favoris").child(name).removeValue();
+                        Toast.makeText(getApplicationContext(),"Vous avez supprimez "+name+" de votre liste favoris !", Toast.LENGTH_SHORT).show();
+                        addFav.setImageResource((R.drawable.ic_starout));
+                        del.setVisibility(View.GONE);
+                        dialog.dismiss();
+                    }
+                });
 
-                addFav.setImageResource((R.drawable.ic_starout));
-                del.setVisibility(View.GONE);
-                firebaseDatabase.getReference("Users").child(mAuth.getUid()).child("Favoris").child(name).removeValue();
-                Toast.makeText(getApplicationContext(),"Vous avez supprimez "+name+" de votre liste favoris !", Toast.LENGTH_SHORT).show();
+
+
 
             }
         });

@@ -1,11 +1,13 @@
 package com.example.ratemybeer;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ServerValue;
 
 import java.sql.Timestamp;
 
-public class Comment {
+public class Comment  {
 
     private String content,uid,uimg,uname, id, beername;
     private String timestamp;

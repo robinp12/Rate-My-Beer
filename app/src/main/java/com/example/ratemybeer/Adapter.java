@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,6 +41,7 @@ public class Adapter extends BaseAdapter implements Filterable {
     ImageButton fav ;
 
 
+
     //constructeur
     public Adapter(activity_favoris con , List<Biere> listeBiere) {
         this.con = con;
@@ -49,6 +51,7 @@ public class Adapter extends BaseAdapter implements Filterable {
 
         this.filteredBeers = listeBiere;
         this.originalBeers = listeBiere;
+
 
     }
     @Override
@@ -96,9 +99,24 @@ public class Adapter extends BaseAdapter implements Filterable {
         delButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                database.child("Users").child(firebaseUser.getUid()).child("Favoris").child(currentBeer.getName()).removeValue();
+                AlertDialog dialog = new AlertDialog.Builder(con)
+                        .setTitle("Confirmation")
+                        .setMessage("Voulez-vous supprimer du favoris ?")
+                        .setPositiveButton("Oui", null)
+                        .setNegativeButton("Non", null).create();
+                dialog.show();
+                Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                positiveButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        database.child("Users").child(firebaseUser.getUid()).child("Favoris").child(currentBeer.getName()).removeValue();
 
-                Toast.makeText(con.getApplicationContext(),"Vous avez supprimé " +currentBeer.getName()+" de votre liste favoris !", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(con.getApplicationContext(),"Vous avez supprimé " +currentBeer.getName()+" de votre liste favoris !", Toast.LENGTH_SHORT).show();
+
+                        dialog.dismiss();
+                    }
+                });
+
             }
 
         });

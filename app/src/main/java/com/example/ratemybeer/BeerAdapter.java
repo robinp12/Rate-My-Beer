@@ -12,8 +12,10 @@ import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -101,12 +103,26 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
         delButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AlertDialog dialog = new AlertDialog.Builder(context)
+                        .setTitle("Confirmation")
+                        .setMessage("Voulez-vous supprimer "+currentBeer.getName()+" ?")
+                        .setPositiveButton("Oui", null)
+                        .setNegativeButton("Non", null).create();
+                dialog.show();
+                Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                positiveButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        database.child("Users").child(firebaseUser.getUid()).child("Favoris").child(currentBeer.getName()).removeValue();
+                        database.child("Users").child(firebaseUser.getUid()).child("user_rated_beers").child(currentBeer.getName()).removeValue();
+                        database.child("Comment").child(currentBeer.getName()).removeValue();
+                        database.child("Beers").child(currentBeer.getName()).removeValue();
+                        dialog.dismiss();
+                    }
+                });
 
-                //database.child("Comment").child(currentBeer.getName()).removeValue();
-                database.child("Users").child(firebaseUser.getUid()).child("Favoris").child(currentBeer.getName()).removeValue();
-                database.child("Users").child(firebaseUser.getUid()).child("user_rated_beers").child(currentBeer.getName()).removeValue();
-                database.child("Comment").child(currentBeer.getName()).removeValue();
-                database.child("Beers").child(currentBeer.getName()).removeValue();
+
+
 
             }
         });
