@@ -88,22 +88,25 @@
 
         <Button
             android:id="@+id/signIn"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="98dp"
 
             android:layout_marginRight="16dp"
             android:text="Se connecter"
             android:textColor="#202020"
             android:textSize="18sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/checkBox"
             app:layout_constraintRight_toLeftOf="@id/guideline11"
-            app:layout_constraintTop_toBottomOf="@id/password"
+            app:layout_constraintStart_toEndOf="@+id/checkBox"
+            app:layout_constraintTop_toTopOf="@+id/checkBox"
+            app:layout_constraintVertical_bias="0.0"
             tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/forgotPassword"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
             android:layout_marginTop="42dp"
@@ -118,7 +121,7 @@
 
         <TextView
             android:id="@+id/register"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="80dp"
             android:layout_marginTop="42dp"
@@ -149,11 +152,13 @@
 
         <CheckBox
             android:id="@+id/checkBox"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="32dp"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="64dp"
             android:text="Rester connecté"
+            app:layout_constraintEnd_toStartOf="@+id/signIn"
             app:layout_constraintLeft_toRightOf="@id/guideline10"
             app:layout_constraintTop_toBottomOf="@+id/password" />
 
