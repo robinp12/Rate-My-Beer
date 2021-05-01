@@ -158,11 +158,6 @@ public class Activity_AddBeer extends AppCompatActivity {
             return -1;
         }
 
-        if (description.isEmpty()){
-            editTextdescription.setError("Description requis");
-            editTextdescription.requestFocus();
-            return -1;
-        }
         alcohol = alcohol.replaceAll(",",".");
         float degree = Float.parseFloat(alcohol) ;
 
@@ -172,6 +167,11 @@ public class Activity_AddBeer extends AppCompatActivity {
             return -1;
         }
 
+        if (description.isEmpty()){
+            editTextdescription.setError("Description requis");
+            editTextdescription.requestFocus();
+            return -1;
+        }
         Toast.makeText(getApplicationContext(), "Bière ajoutée avec succès", Toast.LENGTH_LONG).show();
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
