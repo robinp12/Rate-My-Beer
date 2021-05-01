@@ -90,7 +90,7 @@
             android:id="@+id/signIn"
             android:layout_width="0dp"
             android:layout_height="48dp"
-            android:layout_marginStart="45dp"
+            android:layout_marginStart="72dp"
 
             android:layout_marginRight="16dp"
             android:text="Se connecter"
@@ -109,12 +109,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="33dp"
+            android:layout_marginEnd="21dp"
+            android:layout_marginBottom="180dp"
             android:text="Mot de passe oublié ?"
             android:textAlignment="center"
             android:textColor="#202020"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/checkBox"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/register"
             app:layout_constraintStart_toStartOf="@+id/checkBox"
             app:layout_constraintTop_toBottomOf="@+id/checkBox" />
 
@@ -153,7 +156,9 @@
             android:layout_height="48dp"
             android:layout_marginLeft="32dp"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="12dp"
             android:text="Rester connecté"
+            app:layout_constraintEnd_toStartOf="@+id/signIn"
             app:layout_constraintLeft_toRightOf="@id/guideline10"
             app:layout_constraintTop_toBottomOf="@+id/password" />
 
