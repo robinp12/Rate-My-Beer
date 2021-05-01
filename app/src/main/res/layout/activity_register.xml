@@ -53,37 +53,39 @@
                 android:id="@+id/fullname"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
 
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
                 android:ems="10"
                 android:hint="Prénom"
                 android:inputType="text"
+
                 android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@+id/pseudo"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintLeft_toRightOf="@+id/guideline6"
-
-                app:layout_constraintRight_toLeftOf="@+id/guideline7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/fullname2" />
 
             <EditText
                 android:id="@+id/fullname2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
+                android:layout_marginStart="10dp"
 
+                android:layout_marginTop="35dp"
+                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
                 android:ems="10"
+
                 android:hint="Nom"
                 android:inputType="text"
 
                 android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@+id/fullname"
-                app:layout_constraintHorizontal_bias="0.0"
-
-                app:layout_constraintLeft_toRightOf="@+id/guideline6"
-                app:layout_constraintRight_toLeftOf="@+id/guideline7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bannerDescription" />
 
             <EditText
@@ -91,16 +93,17 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
 
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
                 android:ems="10"
                 android:hint="Age"
                 android:inputType="number"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@+id/password"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintLeft_toRightOf="@+id/guideline6"
-                app:layout_constraintRight_toLeftOf="@+id/guideline7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pseudo" />
 
             <EditText
@@ -108,16 +111,17 @@
                 android:layout_width="0dp"
                 android:layout_height="52dp"
 
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="37dp"
                 android:ems="10"
-                android:hint="Email"
+                android:hint="Adresse mail"
                 android:inputType="textEmailAddress"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@+id/registerUser"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintLeft_toRightOf="@+id/guideline6"
-                app:layout_constraintRight_toLeftOf="@+id/guideline7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/password" />
 
             <EditText
@@ -125,16 +129,17 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
 
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
                 android:ems="10"
-                android:hint="Password"
+                android:hint="Mot de passe"
                 android:inputType="textPassword"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@+id/email"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintLeft_toRightOf="@+id/guideline6"
-                app:layout_constraintRight_toLeftOf="@+id/guideline7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/age" />
 
             <EditText
@@ -142,29 +147,30 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
 
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
                 android:ems="10"
                 android:hint="Pseudo"
                 android:inputType="text"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@+id/age"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintLeft_toRightOf="@+id/guideline6"
-                app:layout_constraintRight_toLeftOf="@+id/guideline7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/fullname" />
 
             <Button
                 android:id="@+id/registerUser"
                 android:layout_width="0dp"
                 android:layout_height="64dp"
-                android:text="Register User"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="S'inscrire"
                 android:textSize="26sp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/guideline9"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintLeft_toRightOf="@+id/guideline6"
-                app:layout_constraintRight_toLeftOf="@+id/guideline7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="MissingConstraints" />
 
             <ProgressBar

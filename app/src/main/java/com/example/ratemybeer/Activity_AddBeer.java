@@ -153,7 +153,7 @@ public class Activity_AddBeer extends AppCompatActivity {
         }
 
         if (alcohol.isEmpty()){
-            editTextalcohol.setError("degré d'alcool requis");
+            editTextalcohol.setError("Degré d'alcool requis");
             editTextalcohol.requestFocus();
             return -1;
         }
@@ -215,7 +215,7 @@ public class Activity_AddBeer extends AppCompatActivity {
         final ProgressDialog pd = new ProgressDialog(this);
         final String randomKey = editTextname.getText().toString().trim();
 
-        pd.setTitle("Uploading Image...");
+        pd.setTitle("Upload de l'image en cours...");
         pd.show();
 
         StorageReference riversRef = storageReference.child("images/"+randomKey) ;
@@ -225,7 +225,7 @@ public class Activity_AddBeer extends AppCompatActivity {
                   @Override
                   public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                       pd.dismiss();
-                      Snackbar.make(findViewById(android.R.id.content), "Image uploaded.", Snackbar.LENGTH_LONG).show();
+                      Snackbar.make(findViewById(android.R.id.content), "Image uploadé", Snackbar.LENGTH_LONG).show();
                        taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                            @Override
                            public void onSuccess(Uri uri) {
@@ -240,14 +240,14 @@ public class Activity_AddBeer extends AppCompatActivity {
                   @Override
                   public void onFailure(@NonNull Exception e) {
                       pd.dismiss();
-                      Toast.makeText(getApplicationContext(), "Failed to uploaded.", Toast.LENGTH_LONG).show();
+                      Toast.makeText(getApplicationContext(), "Erreur lors du chargement de l'image", Toast.LENGTH_LONG).show();
                   }
               })
               .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                   @Override
                   public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
                       double progressPercent = (100.00* snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
-                      pd.setMessage("Progress: " + (int) progressPercent + "%");
+                      pd.setMessage("Chargement: " + (int) progressPercent + "%");
                   }
               });
     }

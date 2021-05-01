@@ -69,24 +69,29 @@ public class Activity_Register extends AppCompatActivity implements View.OnClick
         String email = editTextEmail.getText().toString().trim() ;
         String password = editTextPassword.getText().toString().trim() ;
 
-        if (firstname.isEmpty() || (firstname.length() < 2)){
-            editTextFirstName.setError("Prénom requis ou trop court");
-            editTextFirstName.requestFocus();
-            return;
-        }
         if (lastname.isEmpty() || (lastname.length() < 2)){
             editTextLastName.setError("Nom requis ou trop court");
             editTextLastName.requestFocus();
             return;
         }
-        if (password.isEmpty()){
-            editTextPassword.setError("Mot de passe requis");
-            editTextPassword.requestFocus();
+        if (firstname.isEmpty() || (firstname.length() < 2)){
+            editTextFirstName.setError("Prénom requis ou trop court");
+            editTextFirstName.requestFocus();
+            return;
+        }
+        if (Pseudo.isEmpty() || (Pseudo.length() < 5)){
+            editTextPseudo.setError("Pseudo requis ou trop court");
+            editTextPseudo.requestFocus();
             return;
         }
         if (age.isEmpty() || Integer.parseInt(age) < 16 || Integer.parseInt(age) > 120){
             editTextAge.setError("Age requis ou incorrect");
             editTextAge.requestFocus();
+            return;
+        }
+        if (password.isEmpty()){
+            editTextPassword.setError("Mot de passe requis");
+            editTextPassword.requestFocus();
             return;
         }
         if (email.isEmpty()){
@@ -104,11 +109,7 @@ public class Activity_Register extends AppCompatActivity implements View.OnClick
             editTextPassword.requestFocus();
             return ;
         }
-        if (Pseudo.isEmpty() || (Pseudo.length() < 5)){
-            editTextPseudo.setError("Pseudo requis ou trop court");
-            editTextPseudo.requestFocus();
-            return;
-        }
+
 
         progressBar.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(email,password)

@@ -44,7 +44,7 @@
 
                 android:layout_marginTop="28dp"
                 android:fontFamily="sans-serif-black"
-                android:text="Add Your Beer"
+                android:text="Ajoute Ta Bière"
                 android:textAlignment="center"
                 android:textSize="40sp"
                 android:textStyle="bold"
@@ -68,37 +68,39 @@
                 android:id="@+id/description"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="10dp"
                 android:ems="10"
                 android:fontFamily="sans-serif-black"
                 android:hint="Description"
                 android:inputType="text"
                 android:paddingLeft="10dp"
+
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintLeft_toLeftOf="parent"
-
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/alcohol" />
 
             <EditText
                 android:id="@+id/alcohol"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="24dp"
+                android:layout_marginEnd="10dp"
                 android:digits="0123456789,"
                 android:ems="10"
                 android:fontFamily="sans-serif-black"
-                android:hint="Alcool °"
+                android:hint="Degré °"
                 android:inputType="numberDecimal"
                 android:paddingLeft="10dp"
+
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintLeft_toLeftOf="parent"
-
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/origin" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -106,13 +108,15 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Select Origin"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:hint="Origine"
+
+                android:textColorHint="#68000000"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintLeft_toLeftOf="parent"
-
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/name"
                 app:startIconDrawable="@drawable/location">
 
@@ -122,10 +126,10 @@
                     android:layout_height="match_parent"
                     android:enabled="false"
                     android:inputType="none"
+                    android:textColor="#2F292929"
                     android:textSize="24sp"
-                    android:textStyle="bold"
 
-                    />
+                    android:textStyle="bold" />
 
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -135,17 +139,18 @@
                 android:id="@+id/name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="40dp"
+                android:layout_marginEnd="10dp"
+
                 android:ems="10"
                 android:fontFamily="sans-serif-black"
-
-                android:hint="Name"
+                android:hint="Nom"
                 android:inputType="text"
                 android:paddingLeft="10dp"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bannerDescription"
                 tools:ignore="MissingConstraints" />
@@ -155,13 +160,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
 
-                android:layout_marginStart="36dp"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
-                android:text="Add beer"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"
+                android:layout_marginEnd="15dp"
+                android:text="Ajouter"
+                android:textSize="14sp"
+                app:iconTint="#D8D8D8"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/image"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btnImg"
                 app:layout_constraintVertical_bias="1.0"
@@ -174,6 +180,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
+                android:background="#1D9A9A9A"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/btnImg"
                 app:layout_constraintTop_toBottomOf="@+id/description"
@@ -183,10 +190,11 @@
             <Button
                 android:id="@+id/btnImg"
                 android:layout_width="167dp"
-                android:layout_height="50dp"
+                android:layout_height="0dp"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:text="Ajouter image"
+                android:textColor="#555555"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/description" />
 

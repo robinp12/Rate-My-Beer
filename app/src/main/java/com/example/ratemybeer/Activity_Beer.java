@@ -292,7 +292,7 @@ public class Activity_Beer extends AppCompatActivity  {
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        showMessage("fail to add comment : "+e.getMessage());
+                        showMessage("Erreur lors de l'ajout d'un commentaire : "+e.getMessage());
                     }
                 });
 
@@ -393,7 +393,7 @@ public class Activity_Beer extends AppCompatActivity  {
                 }
                 moyenne=moyenne/globalRating.size();
                 if(Float.isNaN(moyenne)){
-                    ratingText.setText("Aucun vote enregistré");
+                    ratingText.setText("Aucun vote n'est enregistré");
 
 
                 }

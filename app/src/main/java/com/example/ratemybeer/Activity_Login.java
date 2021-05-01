@@ -113,7 +113,7 @@ public class Activity_Login extends AppCompatActivity implements View.OnClickLis
         }
 
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            editTextEmail.setError("Veuillez entrer un mail valide");
+            editTextEmail.setError("Veuillez entrer une adresse mail valide");
             editTextEmail.requestFocus() ;
             return ;
         }
@@ -138,11 +138,11 @@ public class Activity_Login extends AppCompatActivity implements View.OnClickLis
                     }
                     else {
                         user.sendEmailVerification();
-                        Toast.makeText(Activity_Login.this,"check your email to verify your account!",Toast.LENGTH_LONG).show();
+                        Toast.makeText(Activity_Login.this,"Veuillez vérifier vos mails pour confirmer l'inscription",Toast.LENGTH_LONG).show();
                     }
                 }
                 else {
-                    Toast.makeText(Activity_Login.this, "Failed to login, please check your credentials", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Activity_Login.this, "La connexion a échoué, veuillez vérifier vos identifiants", Toast.LENGTH_LONG).show();
                 }
             }
         });

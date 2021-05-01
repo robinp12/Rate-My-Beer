@@ -45,12 +45,12 @@ public class Activity_ResetPassword extends AppCompatActivity {
         String email = emailEditText.getText().toString().trim();
 
         if(email.isEmpty()){
-            emailEditText.setError("Email is required!");
+            emailEditText.setError("Email requis");
             emailEditText.requestFocus();
         }
 
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            emailEditText.setError("Please provide valid email!");
+            emailEditText.setError("Veuillez entrer une adresse valide");
             emailEditText.requestFocus();
             return ;
         }
@@ -59,10 +59,10 @@ public class Activity_ResetPassword extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(Activity_ResetPassword.this, "check your email to reset your password!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Activity_ResetPassword.this, "Un mail pour réinitialiser le mot de passe a été envoyé", Toast.LENGTH_LONG).show();
                 }
                 else{
-                    Toast.makeText(Activity_ResetPassword.this, "Try again, something wrong happened!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Activity_ResetPassword.this, "Veuillez réessayer, une erreur est survenue", Toast.LENGTH_LONG).show();
                 }
             }
         }) ;

@@ -23,7 +23,7 @@ public class Activity_Informations extends AppCompatActivity {
         sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                ratingValue.setText("Value is :" +progress);
+                ratingValue.setText("Valeur :" +progress);
             }
 
             @Override
@@ -39,7 +39,7 @@ public class Activity_Informations extends AppCompatActivity {
         rb.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                ratingText.setText("rating is : "+rating);
+                ratingText.setText("Note : "+rating);
             }
         });
 

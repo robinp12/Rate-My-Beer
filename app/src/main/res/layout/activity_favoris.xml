@@ -57,10 +57,10 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:background="@color/ic_launcher_background"
-        android:textColor="@color/white"
-        android:queryHint="Chercher un favoris"
-        android:visibility="visible"
         android:iconifiedByDefault="false"
+        android:queryHint="Chercher dans les favoris"
+        android:textColor="@color/white"
+        android:visibility="visible"
         app:layout_constraintEnd_toStartOf="@+id/textView10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
