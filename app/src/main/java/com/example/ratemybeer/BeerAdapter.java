@@ -105,7 +105,7 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
             public void onClick(View v) {
                 AlertDialog dialog = new AlertDialog.Builder(context)
                         .setTitle("Confirmation")
-                        .setMessage("Voulez-vous supprimer "+currentBeer.getName()+" ?")
+                        .setMessage("Voulez-vous supprimer \""+currentBeer.getName()+"\" définitivement ?")
                         .setPositiveButton("Oui", null)
                         .setNegativeButton("Non", null).create();
                 dialog.show();
@@ -120,10 +120,6 @@ public class BeerAdapter extends BaseAdapter implements Filterable {
                         dialog.dismiss();
                     }
                 });
-
-
-
-
             }
         });
 

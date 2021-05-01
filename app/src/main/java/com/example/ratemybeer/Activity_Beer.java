@@ -189,7 +189,7 @@ public class Activity_Beer extends AppCompatActivity  {
 
 
                 addFav.setImageResource((R.drawable.ic_staar));
-                Toast.makeText(getApplicationContext(),"Vous avez ajoutez "+name+" à votre liste favoris !", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Vous avez ajouté la bière \""+name+"\" à votre liste favoris !", Toast.LENGTH_SHORT).show();
 
                 addFav.setEnabled(true);
                 reference.addValueEventListener(new ValueEventListener() {
@@ -209,7 +209,7 @@ public class Activity_Beer extends AppCompatActivity  {
         });
         final AlertDialog dialog = new AlertDialog.Builder(this)
                 .setTitle("Confirmation")
-                .setMessage("Voulez-vous supprimer "+name+" du favoris ?")
+                .setMessage("Voulez-vous supprimer la bière \" "+name+"\" de vos favoris ?")
                 .setPositiveButton("Oui", null)
                 .setNegativeButton("Non", null).create();
 
@@ -225,7 +225,7 @@ public class Activity_Beer extends AppCompatActivity  {
                     @Override
                     public void onClick(View v) {
                         firebaseDatabase.getReference("Users").child(mAuth.getUid()).child("Favoris").child(name).removeValue();
-                        Toast.makeText(getApplicationContext(),"Vous avez supprimez "+name+" de votre liste favoris !", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Vous avez supprimé la bière \" "+name+"\" de vos favoris !", Toast.LENGTH_SHORT).show();
                         addFav.setImageResource((R.drawable.ic_starout));
                         del.setVisibility(View.GONE);
                         dialog.dismiss();
